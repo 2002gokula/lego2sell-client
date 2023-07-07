@@ -7,9 +7,9 @@ const Basket = () => {
   const navigation = useNavigate()
   const data = location.state && location.state.data
   const SearchValue = location.state.SearchValue
+  const condition = location.state.condition
   const [price, setPrice] = useState(null)
 
-  console.log(price)
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -41,7 +41,7 @@ const Basket = () => {
   }, [SearchValue])
 
   return (
-    <div className="lg:px-12  px-4 h-[84vh] space-x-0 lg:space-x-8 items-start flex py-8">
+    <div className="lg:px-12  px-4 h-full lg:h-[84vh] space-x-0 lg:space-x-8 items-start flex py-8">
       <div className="border w-full flex-1 py-6 px-4 lg:px-12  border-gray-300 rounded-xl">
         <div className="flex flex-col lg:flex-row items-center justify-between">
           <div className="flex flex-col lg:flex-row items-center gap-6">
@@ -57,7 +57,7 @@ const Basket = () => {
           <div className="flex items-center lg:py-0 py-4 gap-6">
             {price ? (
               <h2 className="text-blue-500 font-semibold">
-                ${price.body.lowestPrice}
+                £{condition === "52" ? price.body.price52 : price.body.price62}
               </h2>
             ) : (
               <Loader size="xs" />
@@ -101,7 +101,12 @@ const Basket = () => {
             <div className="flex flex-row md:flex-col items-center justify-between">
               <div className="text-[#706AEA] text-xl md:text-5xl font-bold mb-0 md:mb-2 order-2 md:order-1">
                 {price ? (
-                  <h2>${price.body.lowestPrice}</h2>
+                  <h2>
+                    £
+                    {condition === "52"
+                      ? price.body.price52
+                      : price.body.price62}
+                  </h2>
                 ) : (
                   <Loader size="xs" />
                 )}
@@ -113,7 +118,7 @@ const Basket = () => {
             <button
               onClick={() =>
                 navigation("/check-your-details", {
-                  state: { data, price, SearchValue },
+                  state: { data, price, SearchValue, condition },
                 })
               }
               type="button"

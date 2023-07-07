@@ -1,9 +1,11 @@
 import { Checkbox, Group, Loader, Radio } from "@mantine/core"
-import React from "react"
-import { Link } from "react-router-dom"
+import React, { useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
 
-const summary = ({ data, price, SearchValue }) => {
+const summary = ({ data, price, SearchValue, condition, prevStep }) => {
   console.log("SearchValue", SearchValue)
+  const navigation = useNavigate()
+  const [sendMethod, setSendMethod] = useState("Dropoff")
   return (
     <>
       <h1 className="text-4xl py-4 font-bold text-center">Offer Summary</h1>
@@ -16,7 +18,7 @@ const summary = ({ data, price, SearchValue }) => {
 
             <p className="text-gray-500 py-1">Select your preferred method*</p>
             <div className="">
-              <div className="py-8">
+              {/* <div className="py-8">
                 <Radio.Group withAsterisk>
                   <Group mt="xs">
                     <div className="flex relative items-center gap-4 border rounded-xl px-8 py-7">
@@ -27,19 +29,256 @@ const summary = ({ data, price, SearchValue }) => {
                     </div>
                     <div className="flex items-center gap-4 border rounded-xl px-8 py-6">
                       <Radio value="svelte" label="Home Collection" />
-                      {/* <img
-      className="w-24"
-      src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/1200px-PayPal.svg.png"
-      alt=""
-    /> */}
+                     
                     </div>
                   </Group>
                 </Radio.Group>
+              </div> */}
+              <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 mb-14">
+                <label
+                  htmlFor="deliverymethoddropoff"
+                  className={` mt-10 relative ${
+                    sendMethod === "Dropoff" ? "border-[#706AEA]" : ""
+                  } border-2 bg-white rounded-lg rounded-tl-none shadow-[0_4px_25px_rgba(38,50,92,0.1)] cursor-pointer`}
+                >
+                  <div
+                    className={`font-bold absolute top-[-42px] left-[-2px] p-4 py-2  ${
+                      sendMethod === "Dropoff" ? "bg-[#706AEA]" : "bg-gray-300"
+                    }  text-white rounded-t-lg`}
+                  >
+                    ⭐️ Recommended
+                  </div>
+                  <div className="p-6 border  py-10 flex items-center justify-between">
+                    <input
+                      value={sendMethod === "Dropoff"}
+                      onChange={(e) => setSendMethod("Dropoff")}
+                      type="radio"
+                      id="deliverymethoddropoff"
+                      name="deliverymethod"
+                      className="w-[23px] h-[23px]"
+                      defaultValue="dropoff"
+                      defaultChecked={true}
+                    />
+                    <div
+                      className={` ${
+                        sendMethod === "Dropoff"
+                          ? " text-[#373845]"
+                          : "text-gray-400"
+                      }   font-bold text-lg mr-auto ml-4`}
+                    >
+                      Drop off your trade
+                    </div>
+                    <span
+                      style={{
+                        boxSizing: "border-box",
+                        display: "inline-block",
+                        overflow: "hidden",
+                        width: "initial",
+                        height: "initial",
+                        background: "none",
+                        opacity: 1,
+                        border: 0,
+                        margin: 0,
+                        padding: 0,
+                        position: "relative",
+                        maxWidth: "100%",
+                      }}
+                    >
+                      <span
+                        style={{
+                          boxSizing: "border-box",
+                          display: "block",
+                          width: "initial",
+                          height: "initial",
+                          background: "none",
+                          opacity: 1,
+                          border: 0,
+                          margin: 0,
+                          padding: 0,
+                          maxWidth: "100%",
+                        }}
+                      >
+                        <img
+                          alt=""
+                          aria-hidden="true"
+                          src="/Images/evri.webp"
+                          style={{
+                            display: "block",
+                            maxWidth: "100%",
+                            width: "initial",
+                            height: "initial",
+                            background: "none",
+                            opacity: 1,
+                            border: 0,
+                            margin: 0,
+                            padding: 0,
+                          }}
+                        />
+                      </span>
+                      <img
+                        src="/Images/evri.webp"
+                        decoding="async"
+                        data-nimg="intrinsic"
+                        style={{
+                          position: "absolute",
+                          inset: 0,
+                          boxSizing: "border-box",
+                          padding: 0,
+                          border: "none",
+                          margin: "auto",
+                          display: "block",
+                          width: 0,
+                          height: 0,
+                          minWidth: "100%",
+                          maxWidth: "100%",
+                          minHeight: "100%",
+                          maxHeight: "100%",
+                        }}
+                      />
+                      <noscript />
+                    </span>
+                  </div>
+                  <div className="relative rounded-b-lg bg-[rgba(112,106,234,0.05)] p-6 py-10">
+                    <div
+                      className={`rounded-full   ${
+                        sendMethod === "Dropoff"
+                          ? "bg-[#706AEA]"
+                          : "bg-gray-300"
+                      }   text-white font-bold text-sm p-1 px-4 absolute top-[-10px]`}
+                    >
+                      Fastest Method
+                    </div>
+                    <div
+                      className={`  ${
+                        sendMethod === "Dropoff"
+                          ? "text-[#706AEA]"
+                          : "text-gray-400"
+                      }  text-sm md:tracking-wide`}
+                    >
+                      <strong>No printer? No problem.</strong> The majority of
+                      Evri drop off points allow you to print your label in
+                      store - by scanning the QR code on your confirmation
+                      email.
+                    </div>
+                  </div>
+                </label>
+                <label
+                  htmlFor="deliverymethodcollection"
+                  className={`xl:mt-10  ${
+                    sendMethod === "Homecollection" ? "border-[#706AEA]" : ""
+                  } bg-white rounded-lg overflow-hidden border-2 shadow-[0_4px_25px_rgba(38,50,92,0.1)] cursor-pointer`}
+                >
+                  <div className="p-6 py-10 flex items-center justify-between">
+                    <input
+                      value={sendMethod === "Homecollection"}
+                      onChange={(e) => setSendMethod("Homecollection")}
+                      type="radio"
+                      id="deliverymethodcollection"
+                      name="deliverymethod"
+                      className="w-[23px] h-[23px]"
+                      defaultValue="Homecollection"
+                    />
+                    <div
+                      className={` ${
+                        sendMethod === "Homecollection"
+                          ? "text-[#706AEA]"
+                          : "text-gray-400"
+                      } font-bold text-lg mr-auto ml-4`}
+                    >
+                      Home collection
+                    </div>
+                    <span
+                      style={{
+                        boxSizing: "border-box",
+                        display: "inline-block",
+                        overflow: "hidden",
+                        width: "initial",
+                        height: "initial",
+                        background: "none",
+                        opacity: 1,
+                        border: 0,
+                        margin: 0,
+                        padding: 0,
+                        position: "relative",
+                        maxWidth: "100%",
+                      }}
+                    >
+                      <span
+                        style={{
+                          boxSizing: "border-box",
+                          display: "block",
+                          width: "initial",
+                          height: "initial",
+                          background: "none",
+                          opacity: 1,
+                          border: 0,
+                          margin: 0,
+                          padding: 0,
+                          maxWidth: "100%",
+                        }}
+                      >
+                        <img
+                          alt=""
+                          aria-hidden="true"
+                          src="/Images/evri.webp"
+                          style={{
+                            display: "block",
+                            maxWidth: "100%",
+                            width: "initial",
+                            height: "initial",
+                            background: "none",
+                            opacity: 1,
+                            border: 0,
+                            margin: 0,
+                            padding: 0,
+                          }}
+                        />
+                      </span>
+                      <img
+                        src="/Images/evri.webp"
+                        decoding="async"
+                        data-nimg="intrinsic"
+                        style={{
+                          position: "absolute",
+                          inset: 0,
+                          boxSizing: "border-box",
+                          padding: 0,
+                          border: "none",
+                          margin: "auto",
+                          display: "block",
+                          width: 0,
+                          height: 0,
+                          minWidth: "100%",
+                          maxWidth: "100%",
+                          minHeight: "100%",
+                          maxHeight: "100%",
+                        }}
+                      />
+                      <noscript />
+                    </span>
+                  </div>
+                  <div className="bg-[rgba(55,56,69,0.05)] p-6 py-10 h-full">
+                    <div
+                      className={`${
+                        sendMethod === "Homecollection"
+                          ? "text-[#706AEA]"
+                          : "text-gray-400"
+                      }  text-sm md:tracking-wide`}
+                    >
+                      <strong>Printer required.</strong> Can't get to a drop off
+                      point? Simply arrange a convenient collection date &amp;
+                      time when you check out.
+                    </div>
+                  </div>
+                </label>
               </div>
+
               <div className="">
                 <div className="flex items-center justify-between">
                   <h1 className="text-2xl font-bold ">Your Details</h1>
-                  <button className="text-blue-500">Edit</button>
+                  <button onClick={prevStep} className="text-blue-500">
+                    Edit
+                  </button>
                 </div>
                 <div className="border px-6 my-4 py-4 rounded-xl">
                   <div className="flex items-center gap-4">
@@ -73,7 +312,12 @@ const summary = ({ data, price, SearchValue }) => {
                   </div>
                   <div className="flex text-blue-500 font-bold items-center gap-6">
                     {price ? (
-                      <h2>${price.body.lowestPrice}</h2>
+                      <h2>
+                        £
+                        {condition === "52"
+                          ? price.body.price52
+                          : price.body.price62}
+                      </h2>
                     ) : (
                       <Loader size="xs" />
                     )}
@@ -119,7 +363,12 @@ const summary = ({ data, price, SearchValue }) => {
               <div className="flex flex-row md:flex-col items-center justify-between">
                 <div className="text-[#706AEA] text-xl md:text-5xl font-bold mb-0 md:mb-2 order-2 md:order-1">
                   {price ? (
-                    <h2>${price.body.lowestPrice}</h2>
+                    <h2>
+                      £
+                      {condition === "52"
+                        ? price.body.price52
+                        : price.body.price62}
+                    </h2>
                   ) : (
                     <Loader size="xs" />
                   )}
@@ -128,21 +377,29 @@ const summary = ({ data, price, SearchValue }) => {
                   1 Item
                 </div>
               </div>
-              <div className="flex">
+              <div className="flex gap-1">
                 <Checkbox />
                 <p>
-                  {`I accept the offer of  $${price.body.lowestPrice} and the `}{" "}
+                  {`I accept the offer of   £
+                          ${
+                            condition === "52"
+                              ? price.body.price52
+                              : price.body.price62
+                          } and the `}
                   <span>terms and conditions*</span>
                 </p>
               </div>
-              <Link
-                to="/success"
-                // onClick={nextStep}
+              <button
+                onClick={() =>
+                  navigation("/success", {
+                    state: { data, price, SearchValue, condition },
+                  })
+                }
                 type="button"
                 className="hover:scale-[1.05] transition-all mt-4 w-full text-center lg:ml-0 flex items-center justify-center px-6 lg:px-9 rounded-full bg-blue-500 hover:bg-white hover:text-black  hover:border text-white font-bold text-[15px] h-[49px] lg:h-[65px]  xl:text-[18px]"
               >
                 Complete Offer
-              </Link>
+              </button>
             </div>
           </div>
         </div>

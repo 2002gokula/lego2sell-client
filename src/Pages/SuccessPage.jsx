@@ -1,9 +1,14 @@
+import { Loader } from "@mantine/core"
 import React from "react"
+import { useLocation } from "react-router-dom"
 
 const SuccessPage = () => {
+  const location = useLocation()
+  const condition = location.state.condition
+  const price = location.state.price
   return (
     <div>
-      <section className="lg:pt-24 py-10">
+      <section className="lg:pt-24 px-6 py-10">
         <div className=" md:text-center">
           <div className="text-5xl flex items-center justify-center lg:text-6xl mb-8">
             <svg
@@ -28,7 +33,13 @@ const SuccessPage = () => {
             Your offer ID is
             <strong className="font-bold text-[#706AEA]">#5000374</strong> |
             You'll receive{" "}
-            <strong className="font-bold text-[#706AEA]">£81.50</strong>
+            {price ? (
+              <strong className="font-bold text-[#706AEA]">
+                £{condition === "52" ? price.body.price52 : price.body.price62}
+              </strong>
+            ) : (
+              <Loader size="xs" />
+            )}
           </div>
         </div>
       </section>
@@ -41,75 +52,12 @@ const SuccessPage = () => {
             <div className="grid grid-rows-3 md:grid-rows-2 md:grid-cols-2 lg:grid-rows-none lg:grid-cols-3 gap-16">
               <div className="flex flex-col items-center justify-start text-center">
                 <div className="flex items-center justift-center h-[190px]">
-                  <span
-                    style={{
-                      boxSizing: "border-box",
-                      display: "inline-block",
-                      overflow: "hidden",
-                      width: "initial",
-                      height: "initial",
-                      background: "none",
-                      opacity: 1,
-                      border: 0,
-                      margin: 0,
-                      padding: 0,
-                      position: "relative",
-                      maxWidth: "100%",
-                    }}
-                  >
-                    <span
-                      style={{
-                        boxSizing: "border-box",
-                        display: "block",
-                        width: "initial",
-                        height: "initial",
-                        background: "none",
-                        opacity: 1,
-                        border: 0,
-                        margin: 0,
-                        padding: 0,
-                        maxWidth: "100%",
-                      }}
-                    >
-                      <img
-                        alt=""
-                        aria-hidden="true"
-                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27183%27%20height=%27165%27/%3e"
-                        style={{
-                          display: "block",
-                          maxWidth: "100%",
-                          width: "initial",
-                          height: "initial",
-                          background: "none",
-                          opacity: 1,
-                          border: 0,
-                          margin: 0,
-                          padding: 0,
-                        }}
-                      />
-                    </span>
-                    <img
-                      src="/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2Fdropoff_step_1.0090e327.webp&w=384&q=75"
-                      decoding="async"
-                      data-nimg="intrinsic"
-                      style={{
-                        position: "absolute",
-                        inset: 0,
-                        boxSizing: "border-box",
-                        padding: 0,
-                        border: "none",
-                        margin: "auto",
-                        display: "block",
-                        width: 0,
-                        height: 0,
-                        minWidth: "100%",
-                        maxWidth: "100%",
-                        minHeight: "100%",
-                        maxHeight: "100%",
-                      }}
-                      srcSet="/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2Fdropoff_step_1.0090e327.webp&w=256&q=75 1x, /_next/image/?url=%2F_next%2Fstatic%2Fmedia%2Fdropoff_step_1.0090e327.webp&w=384&q=75 2x"
-                    />
-                  </span>
+                  <img
+                    alt=""
+                    aria-hidden="true"
+                    src="/Images/Image 1.png"
+                    className="w-44"
+                  />
                 </div>
                 <div className="font-extrabold mb-4 text-lg">
                   <span className="text-[#706AEA]">1.</span> Pack your LEGO®
@@ -130,82 +78,20 @@ const SuccessPage = () => {
               </div>
               <div className="flex flex-col items-center justify-start text-center">
                 <div className="flex items-center justift-center h-[190px]">
-                  <span
-                    style={{
-                      boxSizing: "border-box",
-                      display: "inline-block",
-                      overflow: "hidden",
-                      width: "initial",
-                      height: "initial",
-                      background: "none",
-                      opacity: 1,
-                      border: 0,
-                      margin: 0,
-                      padding: 0,
-                      position: "relative",
-                      maxWidth: "100%",
-                    }}
-                  >
-                    <span
-                      style={{
-                        boxSizing: "border-box",
-                        display: "block",
-                        width: "initial",
-                        height: "initial",
-                        background: "none",
-                        opacity: 1,
-                        border: 0,
-                        margin: 0,
-                        padding: 0,
-                        maxWidth: "100%",
-                      }}
-                    >
-                      <img
-                        alt=""
-                        aria-hidden="true"
-                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27160%27%20height=%27167%27/%3e"
-                        style={{
-                          display: "block",
-                          maxWidth: "100%",
-                          width: "initial",
-                          height: "initial",
-                          background: "none",
-                          opacity: 1,
-                          border: 0,
-                          margin: 0,
-                          padding: 0,
-                        }}
-                      />
-                    </span>
-                    <img
-                      src="/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2Fdropoff_step_3.b232a23d.webp&w=384&q=75"
-                      decoding="async"
-                      data-nimg="intrinsic"
-                      style={{
-                        position: "absolute",
-                        inset: 0,
-                        boxSizing: "border-box",
-                        padding: 0,
-                        border: "none",
-                        margin: "auto",
-                        display: "block",
-                        width: 0,
-                        height: 0,
-                        minWidth: "100%",
-                        maxWidth: "100%",
-                        minHeight: "100%",
-                        maxHeight: "100%",
-                      }}
-                      srcSet="/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2Fdropoff_step_3.b232a23d.webp&w=256&q=75 1x, /_next/image/?url=%2F_next%2Fstatic%2Fmedia%2Fdropoff_step_3.b232a23d.webp&w=384&q=75 2x"
-                    />
-                  </span>
+                  <img
+                    alt=""
+                    className="w-44"
+                    aria-hidden="true"
+                    src="/Images/image 2.png"
+                  />
                 </div>
                 <div className="font-extrabold mb-4 text-lg">
                   <span className="text-[#706AEA]">2.</span> Print your label
                 </div>
                 <div className="text-[#87888F] leading-7 font-medium max-w-[366px] mx-auto">
-                  Print off your postage label and attach. No printer? Use and
-                  Evri drop off point with ‘print in store’ available.
+                  Print off your postage label and attach it. No printer? No
+                  Problem just simply write it on some paper and clearly and
+                  stick it on the package.
                 </div>
                 <div className="mt-6">
                   <a
@@ -221,83 +107,20 @@ const SuccessPage = () => {
               </div>
               <div className="flex flex-col items-center justify-start text-center">
                 <div className="flex items-center justift-center h-[190px]">
-                  <span
-                    style={{
-                      boxSizing: "border-box",
-                      display: "inline-block",
-                      overflow: "hidden",
-                      width: "initial",
-                      height: "initial",
-                      background: "none",
-                      opacity: 1,
-                      border: 0,
-                      margin: 0,
-                      padding: 0,
-                      position: "relative",
-                      maxWidth: "100%",
-                    }}
-                  >
-                    <span
-                      style={{
-                        boxSizing: "border-box",
-                        display: "block",
-                        width: "initial",
-                        height: "initial",
-                        background: "none",
-                        opacity: 1,
-                        border: 0,
-                        margin: 0,
-                        padding: 0,
-                        maxWidth: "100%",
-                      }}
-                    >
-                      <img
-                        alt=""
-                        aria-hidden="true"
-                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27170%27%20height=%27170%27/%3e"
-                        style={{
-                          display: "block",
-                          maxWidth: "100%",
-                          width: "initial",
-                          height: "initial",
-                          background: "none",
-                          opacity: 1,
-                          border: 0,
-                          margin: 0,
-                          padding: 0,
-                        }}
-                      />
-                    </span>
-                    <img
-                      src="/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2Fdropoff_step_4.3de67076.webp&w=384&q=75"
-                      decoding="async"
-                      data-nimg="intrinsic"
-                      style={{
-                        position: "absolute",
-                        inset: 0,
-                        boxSizing: "border-box",
-                        padding: 0,
-                        border: "none",
-                        margin: "auto",
-                        display: "block",
-                        width: 0,
-                        height: 0,
-                        minWidth: "100%",
-                        maxWidth: "100%",
-                        minHeight: "100%",
-                        maxHeight: "100%",
-                      }}
-                      srcSet="/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2Fdropoff_step_4.3de67076.webp&w=256&q=75 1x, /_next/image/?url=%2F_next%2Fstatic%2Fmedia%2Fdropoff_step_4.3de67076.webp&w=384&q=75 2x"
-                    />
-                  </span>
+                  <img
+                    className="w-44"
+                    alt=""
+                    aria-hidden="true"
+                    src="/Images/image 3.png"
+                  />
                 </div>
                 <div className="font-extrabold mb-4 text-lg">
                   <span className="text-[#706AEA]">3.</span> Takle top a dropoff
                   point
                 </div>
                 <div className="text-[#87888F] leading-7 font-medium max-w-[366px] mx-auto">
-                  Simply drop off your package(s) and they’ll deliver your LEGO®
-                  to us.
+                  Simply drop off your package(s) at the post office or Evri
+                  point and they’ll deliver your LEGO® to us.
                 </div>
                 <div className="mt-auto">
                   <a
@@ -306,152 +129,10 @@ const SuccessPage = () => {
                     title="EVRi Drop Off point"
                     href="/store-locator"
                   >
-                    Find your nearest drop off point
+                    Evri Postal Service
                   </a>
                 </div>
               </div>
-            </div>
-            <div className="absolute lg:left-[235px] xl:left-[305px] scale-50 xl:scale-75 2xl:scale-100 top-[90px] 2xl:left-[405px] opacity-0 lg:opacity-100 transition-all">
-              <span
-                style={{
-                  boxSizing: "border-box",
-                  display: "inline-block",
-                  overflow: "hidden",
-                  width: "initial",
-                  height: "initial",
-                  background: "none",
-                  opacity: 1,
-                  border: 0,
-                  margin: 0,
-                  padding: 0,
-                  position: "relative",
-                  maxWidth: "100%",
-                }}
-              >
-                <span
-                  style={{
-                    boxSizing: "border-box",
-                    display: "block",
-                    width: "initial",
-                    height: "initial",
-                    background: "none",
-                    opacity: 1,
-                    border: 0,
-                    margin: 0,
-                    padding: 0,
-                    maxWidth: "100%",
-                  }}
-                >
-                  <img
-                    alt=""
-                    aria-hidden="true"
-                    src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27178%27%20height=%2733%27/%3e"
-                    style={{
-                      display: "block",
-                      maxWidth: "100%",
-                      width: "initial",
-                      height: "initial",
-                      background: "none",
-                      opacity: 1,
-                      border: 0,
-                      margin: 0,
-                      padding: 0,
-                    }}
-                  />
-                </span>
-                <img
-                  srcSet="/_next/static/media/steps_sep_1.8859bb64.svg 1x, /_next/static/media/steps_sep_1.8859bb64.svg 2x"
-                  src="/_next/static/media/steps_sep_1.8859bb64.svg"
-                  decoding="async"
-                  data-nimg="intrinsic"
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    boxSizing: "border-box",
-                    padding: 0,
-                    border: "none",
-                    margin: "auto",
-                    display: "block",
-                    width: 0,
-                    height: 0,
-                    minWidth: "100%",
-                    maxWidth: "100%",
-                    minHeight: "100%",
-                    maxHeight: "100%",
-                  }}
-                />
-              </span>
-            </div>
-            <div className="absolute lg:left-[575px] xl:left-[730px] scale-50 xl:scale-75 2xl:scale-100 top-[130px] 2xl:left-[920px] opacity-0 lg:opacity-100 transition-all">
-              <span
-                style={{
-                  boxSizing: "border-box",
-                  display: "inline-block",
-                  overflow: "hidden",
-                  width: "initial",
-                  height: "initial",
-                  background: "none",
-                  opacity: 1,
-                  border: 0,
-                  margin: 0,
-                  padding: 0,
-                  position: "relative",
-                  maxWidth: "100%",
-                }}
-              >
-                <span
-                  style={{
-                    boxSizing: "border-box",
-                    display: "block",
-                    width: "initial",
-                    height: "initial",
-                    background: "none",
-                    opacity: 1,
-                    border: 0,
-                    margin: 0,
-                    padding: 0,
-                    maxWidth: "100%",
-                  }}
-                >
-                  <img
-                    alt=""
-                    aria-hidden="true"
-                    src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27174%27%20height=%2733%27/%3e"
-                    style={{
-                      display: "block",
-                      maxWidth: "100%",
-                      width: "initial",
-                      height: "initial",
-                      background: "none",
-                      opacity: 1,
-                      border: 0,
-                      margin: 0,
-                      padding: 0,
-                    }}
-                  />
-                </span>
-                <img
-                  srcSet="/_next/static/media/steps_sep_2.e4604615.svg 1x, /_next/static/media/steps_sep_2.e4604615.svg 2x"
-                  src="/_next/static/media/steps_sep_2.e4604615.svg"
-                  decoding="async"
-                  data-nimg="intrinsic"
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    boxSizing: "border-box",
-                    padding: 0,
-                    border: "none",
-                    margin: "auto",
-                    display: "block",
-                    width: 0,
-                    height: 0,
-                    minWidth: "100%",
-                    maxWidth: "100%",
-                    minHeight: "100%",
-                    maxHeight: "100%",
-                  }}
-                />
-              </span>
             </div>
           </div>
         </div>

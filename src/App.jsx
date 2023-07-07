@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { redirect, useNavigate } from "react-router-dom"
 import "./App.css"
-import { Modal } from "@mantine/core"
+import { Modal, Tooltip } from "@mantine/core"
 import { useDisclosure } from "@mantine/hooks"
 const App = () => {
   const [e, setE] = useState("")
@@ -21,7 +21,6 @@ const App = () => {
       console.log("Data", data)
       if (data.message == "SUCCESS") {
         // n.updateLegoData(data.body)
-
         navigation("/product", { state: { data, e } })
       } else {
         open(true)
@@ -48,18 +47,18 @@ const App = () => {
   }
   return (
     <div>
-      {" "}
-      <div className="home">
-        <div className="home-container">
-          <div className="search-box">
-            <div className="_home_hj7zo_1">
-              {/* <form action=""> */}
-              <div className="_home-container_hj7zo_4">
-                <img
-                  className="w-full object-contain h-[250px] mb-8"
-                  src="/Images/search-bg-5c6c0b0a.png"
-                  alt="search-img"
-                />
+      <div className="h-full lg:h-[85.6vh]">
+        <div className="">
+          <div className="">
+            <div className="">
+              <div className="flex items-center justify-center flex-col">
+                <div className="mt-12">
+                  <img
+                    className="w-full object-contain h-[290px] py-4"
+                    src="/Images/Logo.png"
+                    alt="search-img"
+                  />
+                </div>
                 <Modal
                   size="lg"
                   opened={opened}
@@ -89,15 +88,15 @@ const App = () => {
                   {/* Modal content */}
                 </Modal>
 
-                <div className="w-full flex items-center justify-center">
+                <div className="w-full px-6 flex items-center justify-center">
                   <input
-                    placeholder="Enter LEGO Set Code here"
+                    placeholder="Enter LEGO® Set Code here"
                     // disabled={e?.length === 5}
                     value={e}
                     onKeyPress={handleKeyPress}
                     onChange={handleInputChange}
-                    type="number"
-                    className="border px-6 w-full md:w-[50%] text-xl font-medium  py-4  rounded-2xl"
+                    type="text"
+                    className="border px-6 py-4 w-full md:w-[50%] text-xl font-medium  rounded-2xl"
                     required
                   />
                 </div>
@@ -108,11 +107,18 @@ const App = () => {
                     alt="search-btn"
                   />
                 </button>
-                <p className="text-base font-medium text-gray-400">
-                  Search Help
-                </p>
+                <br />
+                <br />
+                <Tooltip
+                  label="To search your LEGO® set just type in the LEGO® ID code found on all LEGO® sets and hit enter or the search button. (Example: 77941)"
+                  color="blue"
+                  withArrow
+                >
+                  <button className="text-base font-medium text-gray-400">
+                    search help
+                  </button>
+                </Tooltip>
               </div>
-              {/* </form> */}
             </div>
           </div>
         </div>

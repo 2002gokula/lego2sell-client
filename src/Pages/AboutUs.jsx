@@ -7,7 +7,7 @@ const AboutUs = () => {
         <h1 class="text-5xl font-bold mb-8">About</h1>
         <div class="content-wrapper">
           <div>
-            <div className="text-lg text-gray-400 font-semibold">
+            <div className="text-lg text-black font-medium">
               <p>
                 <img
                   className="rounded-2xl my-6 w-full object-cover h-[296px]"

@@ -278,7 +278,7 @@
 }
 .TearmsText > p {
   padding: 10px 0px;
-  color: #87888f;
+  color: black;
 }
 
 @media (max-width: 1006px) {

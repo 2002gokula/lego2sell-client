@@ -8,18 +8,34 @@ const Details = () => {
   const data = location.state && location.state.data
   const price = location.state.price
   const SearchValue = location.state.SearchValue
-
+  const condition = location.state.condition
   console.log(SearchValue)
   const [active, setActive] = useState(0)
+  const prevStep = () =>
+    setActive((current) => (current > 0 ? current - 1 : current))
   return (
     <div className="py-12 flex items-center justify-center">
       <div className="w-[80%] overflow-y-scroll">
         <Stepper active={active} onStepClick={setActive} breakpoint="sm">
-          <Stepper.Step label="First step" description="Create an account">
-            <DetailsForm price={price} data={data} setActive={setActive} />
+          <Stepper.Step label="My Details" description="Create an account">
+            <DetailsForm
+              condition={condition}
+              price={price}
+              data={data}
+              setActive={setActive}
+            />
           </Stepper.Step>
-          <Stepper.Step label="Second step" description="Verify email">
-            <Summary SearchValue={SearchValue} price={price} data={data} />
+          <Stepper.Step
+            label="Offer Summary"
+            description=" overview of an offer "
+          >
+            <Summary
+              prevStep={prevStep}
+              condition={condition}
+              SearchValue={SearchValue}
+              price={price}
+              data={data}
+            />
           </Stepper.Step>
           <Stepper.Step label="Final step" description="Get full access">
             Step 3 content: Get full access

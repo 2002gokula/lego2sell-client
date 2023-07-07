@@ -7,7 +7,7 @@ const Dashboard = () => {
   return (
     <div>
       <section className="overflow-hidden">
-        <div className="container flex flex-col lg:flex-row">
+        <div className="flex h-[83.1vh] flex-col lg:flex-row">
           <div className="w-full lg:w-3/12 relative py-12 lg:py-24">
             <div className="absolute top-[0px] right-[-1.5rem] lg:right-[0px] bottom-[0px] min-w-[100vw] bg-[rgba(112,106,234,0.05)]" />
             <div className="relative lg:hidden">

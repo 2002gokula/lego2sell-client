@@ -7,7 +7,7 @@ const Packaging = () => {
         <h1 className="text-5xl font-bold  mb-8">Packaging guidelines</h1>
         <div className="content-wrapper">
           <div>
-            <div className="text-lg text-gray-400 font-semibold">
+            <div className="text-lg text-black font-medium">
               <p>
                 <img
                   className="rounded-2xl h-[296px] object-cover w-full"
@@ -23,7 +23,7 @@ const Packaging = () => {
               </p>
               <div className="green-box  py-8 bg-green-100 my-12 rounded-3xl px-12">
                 <h3 className="text-black py-4 font-bold">
-                  Packaging <span className="green">dos</span>
+                  Packaging <span className="text-green-500">dos</span>
                 </h3>
                 <div className="flex py-2">
                   ✅
@@ -95,7 +95,7 @@ const Packaging = () => {
               </div>
               <div className="red-box py-8 px-12 mb-8 rounded-3xl bg-red-100">
                 <h3 className="text-black py-4 font-bold">
-                  Packaging <span className="red">don'ts</span>
+                  Packaging <span className="text-red-500">don'ts</span>
                 </h3>
                 <div className="flex py-2">
                   ⛔️

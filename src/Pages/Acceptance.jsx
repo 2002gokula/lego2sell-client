@@ -7,7 +7,7 @@ const Acceptance = () => {
         <h1 className="text-5xl font-bold mb-8">Acceptance Guidelines</h1>
         <div className="">
           <div>
-            <div className="text-lg text-gray-400 font-semibold">
+            <div className="text-lg text-black font-medium">
               <p>
                 <img
                   className="rounded-2xl w-full object-cover h-[296px]"
@@ -102,9 +102,6 @@ const Acceptance = () => {
                 behalf, or we can send it back to you. However, you will need to
                 cover the postage cost for this which will be in the email.
               </p>
-              <h4 className="text-blue-500 text-xl font-bold" id="legoperkg500">
-                Lego (per kg): £5.00
-              </h4>
               <div className="purple-box bg-purple-100 px-12 py-6 rounded-3xl mt-8">
                 <h6 className="text-green-500 py-2">TOP TIP</h6>
                 <p className="py-2">

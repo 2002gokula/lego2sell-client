@@ -4,10 +4,14 @@ import React, { useState } from "react"
 import { DatePickerInput } from "@mantine/dates"
 import CountryData from "../../CountryData.json"
 import cities from "../../cities.json"
-const DetailsForm = ({ setActive, price }) => {
+const DetailsForm = ({ setActive, price, condition }) => {
   const [value, setValue] = useState(null)
   const [searchValue, onSearchChange] = useState("")
+  const [searchcity, onSearchCity] = useState("")
+  const [SearchPost, setSearchPost] = useState()
   const [openaddress, setOpenaddress] = useState()
+  const [PaymentDetails, setPaymentDetails] = useState("Paypal")
+  console.log("demoP", PaymentDetails)
   const form = useForm({
     initialValues: {
       email: "",
@@ -16,7 +20,11 @@ const DetailsForm = ({ setActive, price }) => {
       Telephone: "",
       DOB: "",
       PostCode: "",
+      StreetAddress1: "",
       termsOfService: false,
+      StreetAddress2: "",
+      city: "",
+      Country: "",
     },
 
     validate: {
@@ -130,8 +138,8 @@ const DetailsForm = ({ setActive, price }) => {
                       label="Find by post code"
                       placeholder="Pick one"
                       searchable
-                      onSearchChange={onSearchChange}
-                      searchValue={searchValue}
+                      onSearchChange={setSearchPost}
+                      searchValue={SearchPost}
                       nothingFound="No options"
                       data={["React", "Angular", "Svelte", "Vue"]}
                     />
@@ -143,69 +151,56 @@ const DetailsForm = ({ setActive, price }) => {
                       Search
                     </button> */}
                   </div>
-                  <button onClick={() => setOpenaddress(!openaddress)}>
+                  {/* <button onClick={() => setOpenaddress(!openaddress)}>
                     <a
                       title="Forgotten Password"
                       class="text-sm  font-bold text-[#706AEA]"
                     >
                       Enter address manually
                     </a>
-                  </button>
+                  </button> */}
                 </div>
-                {openaddress && (
-                  <div className="">
-                    <div class=" py-3">
-                      <TextInput
-                        withAsterisk
-                        label="Street Address1"
-                        placeholder="StreetAddress1"
-                        {...form.getInputProps("StreetAddress1")}
-                      />
-                    </div>
-                    <div class=" py-3">
-                      <TextInput
-                        withAsterisk
-                        label="Street Address2"
-                        placeholder="StreetAddress2"
-                        {...form.getInputProps("StreetAddress2")}
-                      />
-                    </div>
-                    <div className="py-3">
-                      <Select
-                        withAsterisk
-                        label="Town / city"
-                        placeholder="Pick one"
-                        searchable
-                        onSearchChange={onSearchChange}
-                        searchValue={searchValue}
-                        nothingFound="No options"
-                        data={["React", "Angular", "Svelte", "Vue"]}
-                        // data={cities.name}
-                      />
-                    </div>
-                    <div className="py-3">
-                      {/* <Select
-                        withAsterisk
-                        label="Country"
-                        placeholder="Pick one"
-                        searchable
-                        onSearchChange={onSearchChange}
-                        searchValue={searchValue}
-                        nothingFound="No options"
-                        data={["React", "Angular", "Svelte", "Vue"]}
-                      /> */}
-                      <Select
-                        withAsterisk
-                        label="Country"
-                        placeholder="Pick one"
-                        name="issuecountry"
-                        searchable
-                        data={CountryData.countries}
-                        {...form.getInputProps("issuecountry")}
-                      />
-                    </div>
+
+                <div className="">
+                  <div class=" py-3">
+                    <TextInput
+                      withAsterisk
+                      label="Street Address1"
+                      placeholder="StreetAddress1"
+                      {...form.getInputProps("StreetAddress1")}
+                    />
                   </div>
-                )}
+                  <div class=" py-3">
+                    <TextInput
+                      withAsterisk
+                      label="Street Address2"
+                      placeholder="StreetAddress2"
+                      {...form.getInputProps("StreetAddress2")}
+                    />
+                  </div>
+                  <div className="py-3">
+                    <Select
+                      {...form.getInputProps("city")}
+                      withAsterisk
+                      label="Town / city"
+                      placeholder=" Pick Town / city "
+                      searchable
+                      nothingFound="No options"
+                      data={cities.data.map((value) => value.city)}
+                    />
+                  </div>
+                  <div className="py-3">
+                    <Select
+                      withAsterisk
+                      label="Country"
+                      placeholder="Pick Country"
+                      name="Country"
+                      searchable
+                      data={CountryData.countries}
+                      {...form.getInputProps("Country")}
+                    />
+                  </div>
+                </div>
               </div>
             </div>
             <Divider className="" />
@@ -217,47 +212,145 @@ const DetailsForm = ({ setActive, price }) => {
               </p>
               <div className="">
                 <div className="">
-                  <Radio.Group withAsterisk>
+                  <Radio.Group
+                    defaultValue="Paypal"
+                    onChange={setPaymentDetails}
+                    withAsterisk
+                  >
                     <Group mt="xs">
-                      <div className="flex items-center gap-4 border rounded-xl px-8 py-7">
-                        <Radio value="react" label="Bank Transfer" />
-                      </div>
-                      <div className="flex items-center gap-4 border rounded-xl px-8 py-6">
-                        <Radio value="svelte" />
+                      <label
+                        className={` ${
+                          PaymentDetails === "BackTransfer"
+                            ? "border-2 border-blue-500"
+                            : ""
+                        } flex items-center gap-4 border rounded-xl px-8 py-7`}
+                      >
+                        <Radio value="BackTransfer" label="Bank Transfer" />
+                      </label>
+                      <label
+                        className={`${
+                          PaymentDetails === "Paypal"
+                            ? "border-2 border-blue-500"
+                            : ""
+                        } flex items-center gap-4 border rounded-xl px-8 py-6`}
+                      >
+                        <Radio value="Paypal" />
                         <img
                           className="w-24"
                           src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/1200px-PayPal.svg.png"
                           alt=""
                         />
-                      </div>
+                      </label>
                     </Group>
                   </Radio.Group>
                 </div>
               </div>
-              <div className="py-6">
-                <h1 className="text-2xl font-bold ">Paypal Email *</h1>
-                <div class=" py-3">
-                  <TextInput
-                    type="email"
-                    withAsterisk
-                    label="Need for revice your payment"
-                    placeholder="Paypal Email"
-                    {...form.getInputProps("email")}
-                  />
+              {PaymentDetails === "Paypal" && (
+                <div className="py-6">
+                  <h1 className="text-2xl font-bold ">Paypal Email *</h1>
+                  <div class=" py-3">
+                    <TextInput
+                      type="email"
+                      withAsterisk
+                      label="Need for revice your payment"
+                      placeholder="Paypal Email"
+                      {...form.getInputProps("email")}
+                    />
+                  </div>
+                  <div class="rounded-md bg-[#F8F8FE] p-4 text-sm text-[#706AEA] text-center mt-4">
+                    We'll direct transfer to your PayPal account within{" "}
+                    <strong class="font-bold">5 working days</strong> of
+                    receiving your LEGO®.
+                  </div>
                 </div>
-              </div>
+              )}
+              {PaymentDetails === "BackTransfer" && (
+                <div className="py-6">
+                  <div className="flex flex-col md:flex-row">
+                    <div className="w-full md:w-1/2 md:pr-4 mb-4 md:mb-0">
+                      <label className="w-full flex text-2xl font-bold mb-2">
+                        Account number<span className="text-[#E52D3B]">*</span>
+                      </label>
+                      <TextInput
+                        placeholder="Account number"
+                        type="text"
+                        autoComplete="off"
+                        name="customer_paymentinfo_bank"
+                        id="customer_paymentinfo_bank"
+                        title="Enter Account Number"
+                        className="h-[67px] rounded-3xl lg:rounded-xl w-full pl-6 km_ignore"
+                      />
+                    </div>
+                    <div className="w-full md:w-1/2 md:pl-4">
+                      <label className="w-full flex text-2xl font-bold mb-2">
+                        Sort code<span className="text-[#E52D3B]">*</span>
+                      </label>
+                      <div className="flex items-center">
+                        <div className="w-3/12">
+                          <TextInput
+                            type="text"
+                            maxLength={2}
+                            autoComplete="off"
+                            title="Sort code digits 1 & 2"
+                            className="h-[67px] rounded-3xl lg:rounded-xl w-full pl-6 km_ignore"
+                            name="customer_paymentinfo_bank_sort1"
+                            id="customer_paymentinfo_bank_sort1"
+                            defaultValue=""
+                          />
+                        </div>
+                        <div className="px-4 -mt-3">-</div>
+                        <div className="w-3/12">
+                          <TextInput
+                            type="text"
+                            autoComplete="off"
+                            title="Sort code digits 3 & 4"
+                            maxLength={2}
+                            className="h-[67px]  rounded-3xl lg:rounded-xl w-full pl-6 km_ignore"
+                            name="customer_paymentinfo_bank_sort2"
+                            id="customer_paymentinfo_bank_sort2"
+                            defaultValue=""
+                          />
+                        </div>
+                        <div className="px-4 -mt-3">-</div>
+                        <div className="w-3/12">
+                          <TextInput
+                            type="text"
+                            autoComplete="off"
+                            title="Sort code digits 5 & 6"
+                            maxLength={2}
+                            className="h-[67px]  rounded-3xl lg:rounded-xl w-full pl-6 km_ignore"
+                            name="customer_paymentinfo_bank_sort3"
+                            id="customer_paymentinfo_bank_sort3"
+                            defaultValue=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="rounded-xl bg-[#F8F8FE] p-4 text-sm text-[#706AEA] text-center mt-4">
+                    We'll pay directly to your account the{" "}
+                    <strong className="font-bold">same day</strong> we receive
+                    your LEGO®.
+                  </div>
+                </div>
+              )}
             </div>
           </div>
-          <div className="flex-[0.4]">
+          <div className="flex-[0.4] sticky top-5">
             <div className="w-full mt-10 md:mt-0  md:relative bottom-0 left-0 right-0 z-10">
-              <div className="bg-white rounded-2xl  shadow-[0_4px_25px_rgba(38,50,92,0.1)] p-4 px-6 md:p-8 text-center md:sticky md:top-[160px]">
+              <div className="bg-white  rounded-2xl shadow-[0_4px_25px_rgba(38,50,92,0.1)] p-4 px-6 md:p-8 text-center !sticky top-[160px]">
                 <h2 className="h4 mb-4 hidden md:block">Offer summary</h2>
                 <div className="flex flex-row md:flex-col items-center justify-between">
                   <div className="text-[#706AEA] text-xl md:text-5xl font-bold mb-0 md:mb-2 order-2 md:order-1">
                     <h2>
                       {" "}
                       {price ? (
-                        <h2>${price.body.lowestPrice}</h2>
+                        <h2>
+                          £
+                          {condition === "52"
+                            ? price.body.price52
+                            : price.body.price62}
+                        </h2>
                       ) : (
                         <Loader size="xs" />
                       )}

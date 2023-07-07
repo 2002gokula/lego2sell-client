@@ -5,7 +5,7 @@ const Contact = () => {
     <div className="w-full px-6 lg:px-44 py-12 lg:py-24">
       {/* <h1 className="h1 mb-8"></h1> */}
       <img className="w-[20%]" src="/Images/contact.jpeg" alt="" />
-      <p className="mb-6 text-lg text-gray-400 font-semibold">
+      <p className="mb-6 text-lg text-black font-medium">
         If you can not find the information you need in our FAQ’s then just send
         us a quick email at the address below or via our quick and easy web form
         and one of the team will get back to you ASAP.
