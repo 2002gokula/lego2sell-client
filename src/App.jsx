@@ -10,13 +10,16 @@ const App = () => {
 
   const handleSearch = async () => {
     try {
-      const response = await fetch("https://api.lego2sell.com/find-lego", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ itemCode: e }),
-      })
+      const response = await fetch(
+        "https://lazy-tan-hermit-crab-veil.cyclic.app/find-lego",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ itemCode: e }),
+        }
+      )
       const data = await response.json()
       console.log("Data", data)
       if (data.message == "SUCCESS") {
