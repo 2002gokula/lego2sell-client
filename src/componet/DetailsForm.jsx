@@ -52,7 +52,7 @@ const DetailsForm = ({ setActive, price }) => {
         <form
           onSubmit={form.onSubmit((values) => console.log(values))}
           id="login-form"
-          className="py-6 space-x-12 flex"
+          className="py-6 flex-col lg:flex-row space-x-12 flex"
           method="post"
         >
           <div className="flex-1">
@@ -249,7 +249,7 @@ const DetailsForm = ({ setActive, price }) => {
             </div>
           </div>
           <div className="flex-[0.4]">
-            <div className="w-full sticky top-12 mt-10 md:mt-0  md:relative bottom-0 left-0 right-0 z-10">
+            <div className="w-full mt-10 md:mt-0  md:relative bottom-0 left-0 right-0 z-10">
               <div className="bg-white rounded-2xl  shadow-[0_4px_25px_rgba(38,50,92,0.1)] p-4 px-6 md:p-8 text-center md:sticky md:top-[160px]">
                 <h2 className="h4 mb-4 hidden md:block">Offer summary</h2>
                 <div className="flex flex-row md:flex-col items-center justify-between">

@@ -7,7 +7,7 @@ const summary = ({ data, price, SearchValue }) => {
   return (
     <>
       <h1 className="text-4xl py-4 font-bold text-center">Offer Summary</h1>
-      <div className="flex space-x-8">
+      <div className="flex lg:flex-row flex-col space-x-8">
         <div className="flex-1">
           <div className="py-12">
             <h1 className="text-2xl font-bold ">
@@ -60,8 +60,8 @@ const summary = ({ data, price, SearchValue }) => {
                 <h1 className="text-2xl font-bold py-4 ">
                   What you be sending us
                 </h1>
-                <div className="flex items-center py-6 border rounded-2xl  px-6 justify-between">
-                  <div className="flex items-center gap-6">
+                <div className="flex lg:flex-row flex-col items-center py-6 border rounded-2xl  px-6 justify-between">
+                  <div className="flex lg:flex-row flex-col items-center gap-6">
                     <img
                       className="w-44 object-contain  border rounded-lg px-4 border-gray-300 h-32"
                       src={data.body.image_url}

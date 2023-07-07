@@ -8,7 +8,6 @@ import "aos/dist/aos.css"
 AOS.init()
 import Product from "./Pages/Product.jsx"
 import Basket from "./Pages/Basket.jsx"
-import Details from "./componet/Details.jsx"
 import Header from "./componet/Header.jsx"
 import Footer from "./componet/Footer.jsx"
 import HowWrokPage from "./componet/HowWrokPage.jsx"
@@ -19,6 +18,7 @@ import Terms from "./Pages/Terms.jsx"
 import Packaging from "./Pages/Packaging.jsx"
 import AboutUs from "./Pages/AboutUs.jsx"
 import Contact from "./Pages/Contact.jsx"
+import Details from "./Pages/Details.jsx"
 const router = createBrowserRouter([
   {
     path: "/",
