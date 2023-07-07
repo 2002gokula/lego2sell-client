@@ -23,8 +23,8 @@ const Basket = () => {
         })
 
         const priceData = await response.json()
-        console.log("Data", priceData.body.price.avg_price)
-        const originalPrice = priceData.body.price.avg_price
+        console.log("Data", priceData)
+        const originalPrice = priceData.body.price.qty_avg_price
         const discountPercentage = condition
         const discount = originalPrice * (discountPercentage / 100)
         const discountedPrice = originalPrice - discount
@@ -58,7 +58,7 @@ const Basket = () => {
           <div className="flex items-center lg:py-0 py-4 gap-6">
             {price ? (
               <h2 className="text-blue-500 font-semibold">
-                £{price.toFixed(4).slice(0, 4)}
+                £{price.toFixed(5).slice(0, 5)}
               </h2>
             ) : (
               <Loader size="xs" />
@@ -102,7 +102,7 @@ const Basket = () => {
             <div className="flex flex-row md:flex-col items-center justify-between">
               <div className="text-[#706AEA] text-xl md:text-5xl font-bold mb-0 md:mb-2 order-2 md:order-1">
                 {price ? (
-                  <h2>£{price.toFixed(4).slice(0, 4)}</h2>
+                  <h2> £{price.toFixed(5).slice(0, 5)}</h2>
                 ) : (
                   <Loader size="xs" />
                 )}

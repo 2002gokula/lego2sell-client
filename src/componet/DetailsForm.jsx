@@ -111,17 +111,17 @@ const DetailsForm = ({ setActive, price, condition }) => {
                 {...form.getInputProps("Telephone")}
               />
             </div>
-            <div class=" py-4">
+            {/* <div class=" py-4">
               <DatePickerInput
                 {...form.getInputProps("DOB")}
-                label="DOB"
+                label="Date of Birth"
                 placeholder="DOB"
                 value={value}
                 onChange={setValue}
                 mx="auto"
               />
-            </div>
-            <Divider className="" />
+            </div> */}
+            {/* <Divider className="" /> */}
             <div className="py-4">
               <h1 className="text-2xl font-bold ">Address Details</h1>
 
@@ -131,8 +131,8 @@ const DetailsForm = ({ setActive, price, condition }) => {
               </p>
               <div className="">
                 <div class=" flex items-center justify-between py-3">
-                  <div className="flex w-full gap-12 items-center">
-                    <Select
+                  {/* <div className="flex w-full gap-12 items-center"> */}
+                  {/* <Select
                       {...form.getInputProps("PostCode")}
                       withAsterisk
                       label="Find by post code"
@@ -142,15 +142,15 @@ const DetailsForm = ({ setActive, price, condition }) => {
                       searchValue={SearchPost}
                       nothingFound="No options"
                       data={["React", "Angular", "Svelte", "Vue"]}
-                    />
-                    {/* <button
+                    /> */}
+                  {/* <button
                       onClick={() => navigation("/check-your-details")}
                       type="button"
                       className="hover:scale-[1.05] transition-all mt-4 w-1/5 text-center lg:ml-0 flex items-center justify-center px-6 lg:px-9 rounded-full bg-blue-500 hover:bg-white hover:text-black  hover:border text-white font-bold text-[15px] h-[49px] lg:h-[45px]  xl:text-[18px]"
                     >
                       Search
                     </button> */}
-                  </div>
+                  {/* </div> */}
                   {/* <button onClick={() => setOpenaddress(!openaddress)}>
                     <a
                       title="Forgotten Password"
@@ -345,7 +345,7 @@ const DetailsForm = ({ setActive, price, condition }) => {
                     <h2>
                       {" "}
                       {price ? (
-                        <h2>£{price.toFixed(4).slice(0, 4)}</h2>
+                        <h2> £{price.toFixed(5).slice(0, 5)}</h2>
                       ) : (
                         <Loader size="xs" />
                       )}

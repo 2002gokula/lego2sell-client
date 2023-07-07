@@ -35,7 +35,7 @@ const SuccessPage = () => {
             You'll receive{" "}
             {price ? (
               <strong className="font-bold text-[#706AEA]">
-                £{price.toFixed(4).slice(0, 4)}
+                £{price.toFixed(5).slice(0, 5)}
               </strong>
             ) : (
               <Loader size="xs" />
