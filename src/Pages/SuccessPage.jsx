@@ -35,7 +35,7 @@ const SuccessPage = () => {
             You'll receive{" "}
             {price ? (
               <strong className="font-bold text-[#706AEA]">
-                £{condition === "52" ? price.body.price52 : price.body.price62}
+                £{price.toFixed(4).slice(0, 4)}
               </strong>
             ) : (
               <Loader size="xs" />

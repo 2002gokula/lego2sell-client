@@ -46,7 +46,7 @@ const Header = () => {
   return (
     <div
       ref={ref}
-      className="flex border-b items-center w-full justify-between"
+      className="flex flex-col items-center w-full justify-between"
     >
       {router === "/" ? (
         <div className="flex justify-between w-full px-6 py-4 items-center">
@@ -401,14 +401,22 @@ const Header = () => {
           <div className="md:flex gap-8 hidden  items-center ">
             <Link to={"/"}>
               <img
-                className="w-full h-16 scale-125 object-contain"
-                src="/Images/Logo.png"
+                className="w-[90%] px-8 h-14 scale-125 object-contain"
+                src="/Images/Logo1.png"
                 alt=""
               />
             </Link>
           </div>
         </div>
       )}
+      <div className="grid w-full grid-cols-6">
+        <div className="h-[8px] bg-[#E52D3B]"></div>
+        <div className="h-[8px] bg-[#61AEE1]"></div>
+        <div className="h-[8px] bg-[#FADB0A]"></div>
+        <div className="h-[8px] bg-[#69B832]"></div>
+        <div className="h-[8px] bg-[#706AEA]"></div>
+        <div className="h-[8px] bg-[#F4A414]"></div>
+      </div>
     </div>
   )
 }

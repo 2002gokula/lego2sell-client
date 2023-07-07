@@ -312,12 +312,7 @@ const summary = ({ data, price, SearchValue, condition, prevStep }) => {
                   </div>
                   <div className="flex text-blue-500 font-bold items-center gap-6">
                     {price ? (
-                      <h2>
-                        £
-                        {condition === "52"
-                          ? price.body.price52
-                          : price.body.price62}
-                      </h2>
+                      <h2>£{price.toFixed(4).slice(0, 4)}</h2>
                     ) : (
                       <Loader size="xs" />
                     )}
@@ -363,12 +358,7 @@ const summary = ({ data, price, SearchValue, condition, prevStep }) => {
               <div className="flex flex-row md:flex-col items-center justify-between">
                 <div className="text-[#706AEA] text-xl md:text-5xl font-bold mb-0 md:mb-2 order-2 md:order-1">
                   {price ? (
-                    <h2>
-                      £
-                      {condition === "52"
-                        ? price.body.price52
-                        : price.body.price62}
-                    </h2>
+                    <h2>£{price.toFixed(4).slice(0, 4)}</h2>
                   ) : (
                     <Loader size="xs" />
                   )}
@@ -381,11 +371,7 @@ const summary = ({ data, price, SearchValue, condition, prevStep }) => {
                 <Checkbox />
                 <p>
                   {`I accept the offer of   £
-                          ${
-                            condition === "52"
-                              ? price.body.price52
-                              : price.body.price62
-                          } and the `}
+                          ${price} and the `}
                   <span>terms and conditions*</span>
                 </p>
               </div>

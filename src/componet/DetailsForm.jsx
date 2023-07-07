@@ -345,12 +345,7 @@ const DetailsForm = ({ setActive, price, condition }) => {
                     <h2>
                       {" "}
                       {price ? (
-                        <h2>
-                          £
-                          {condition === "52"
-                            ? price.body.price52
-                            : price.body.price62}
-                        </h2>
+                        <h2>£{price.toFixed(4).slice(0, 4)}</h2>
                       ) : (
                         <Loader size="xs" />
                       )}

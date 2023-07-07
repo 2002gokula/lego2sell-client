@@ -30,8 +30,8 @@ const Product = () => {
   }
 
   return (
-    <div className="flex h-full lg:h-[82vh] lg:flex-row flex-col">
-      <div className="flex-1 py-2 px-6 lg:px-24">
+    <div className="flex h-full items-center justify-center lg:h-[84vh] lg:flex-row flex-col">
+      <div className="flex-1 py-2 max-w-3xl  px-6 lg:px-24">
         <div className="flex items-center max-w-lg flex-col justify-center">
           <h2 class="mt-5 text-lg lg:text-2xl font-bold leading-9 tracking-tight text-gray-900">
             {` ${data.body.name} -
@@ -40,13 +40,13 @@ const Product = () => {
           <div className="">
             <img
               loading="eager"
-              className="w-[340px] h-[210px] object-contain"
+              className="w-[340px]  h-[210px] object-contain"
               src={data.body.image_url}
               alt="product-img"
             />
           </div>
         </div>
-        <div className="bg-[#00a2ff] max-w-lg rounded-3xl px-6 py-4 border-2 border-black">
+        <div className="bg-[#00a2ff] mt-12 max-w-lg rounded-3xl px-6 py-4 border-2 border-black">
           <h2 class="text-center py-2 text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Why sell with Us?
           </h2>
@@ -118,7 +118,7 @@ const Product = () => {
           </div>
         </div>
       </div>
-      <div className="flex-1 py-2 lg:py-0">
+      <div className="flex-1  max-w-3xl  py-2 lg:py-0">
         <form
           className="flex items-center justify-center"
           onSubmit={handleSubmit}
@@ -144,15 +144,7 @@ const Product = () => {
                         src={value.img}
                         alt="mint"
                       />
-                      {/* <input
-                        {...form.getInputProps("condition")}
-                        onChange={(e) => {
-                          setCondition(value.Discount)
-                        }}
-                        type="checkbox"
-                        className="hidden"
-                        id="mintCheckbox"
-                      /> */}
+
                       <input
                         onChange={(e) => {
                           setFormData({

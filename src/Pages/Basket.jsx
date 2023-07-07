@@ -9,26 +9,27 @@ const Basket = () => {
   const SearchValue = location.state.SearchValue
   const condition = location.state.condition
   const [price, setPrice] = useState(null)
-
+  console.log(price)
+  // console.log("Discounted Price:", discountedPrice)
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          "https://api.lego2sell.com/calculate-price",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ itemCode: "42111" }),
-          }
-        )
+        const response = await fetch("http://localhost:5100/calculate-price", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ itemCode: SearchValue }),
+        })
 
         const priceData = await response.json()
-        console.log("Data", priceData)
-
+        console.log("Data", priceData.body.price.avg_price)
+        const originalPrice = priceData.body.price.avg_price
+        const discountPercentage = condition
+        const discount = originalPrice * (discountPercentage / 100)
+        const discountedPrice = originalPrice - discount
         if (priceData.message === "SUCCESS") {
-          setPrice(priceData)
+          setPrice(discountedPrice)
         } else {
           alert("Could not find the LEGO you are looking for.")
         }
@@ -57,7 +58,7 @@ const Basket = () => {
           <div className="flex items-center lg:py-0 py-4 gap-6">
             {price ? (
               <h2 className="text-blue-500 font-semibold">
-                £{condition === "52" ? price.body.price52 : price.body.price62}
+                £{price.toFixed(4).slice(0, 4)}
               </h2>
             ) : (
               <Loader size="xs" />
@@ -101,12 +102,7 @@ const Basket = () => {
             <div className="flex flex-row md:flex-col items-center justify-between">
               <div className="text-[#706AEA] text-xl md:text-5xl font-bold mb-0 md:mb-2 order-2 md:order-1">
                 {price ? (
-                  <h2>
-                    £
-                    {condition === "52"
-                      ? price.body.price52
-                      : price.body.price62}
-                  </h2>
+                  <h2>£{price.toFixed(4).slice(0, 4)}</h2>
                 ) : (
                   <Loader size="xs" />
                 )}
