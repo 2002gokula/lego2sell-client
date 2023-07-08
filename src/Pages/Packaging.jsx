@@ -11,7 +11,7 @@ const Packaging = () => {
               <p>
                 <img
                   className="rounded-2xl h-[296px] object-cover w-full"
-                  src="/Images/Packaging.png"
+                  src="./Images/Packaging.png"
                   alt="packaging-guidelines.webp"
                 />
               </p>

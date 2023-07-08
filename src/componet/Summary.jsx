@@ -101,7 +101,7 @@ const summary = ({ data, price, SearchValue, condition, prevStep }) => {
                         <img
                           alt=""
                           aria-hidden="true"
-                          src="/Images/evri.webp"
+                          src="./Images/evri.webp"
                           style={{
                             display: "block",
                             maxWidth: "100%",
@@ -116,7 +116,7 @@ const summary = ({ data, price, SearchValue, condition, prevStep }) => {
                         />
                       </span>
                       <img
-                        src="/Images/evri.webp"
+                        src="./Images/evri.webp"
                         decoding="async"
                         data-nimg="intrinsic"
                         style={{
@@ -220,7 +220,7 @@ const summary = ({ data, price, SearchValue, condition, prevStep }) => {
                         <img
                           alt=""
                           aria-hidden="true"
-                          src="/Images/evri.webp"
+                          src="./Images/evri.webp"
                           style={{
                             display: "block",
                             maxWidth: "100%",
@@ -235,7 +235,7 @@ const summary = ({ data, price, SearchValue, condition, prevStep }) => {
                         />
                       </span>
                       <img
-                        src="/Images/evri.webp"
+                        src="./Images/evri.webp"
                         decoding="async"
                         data-nimg="intrinsic"
                         style={{

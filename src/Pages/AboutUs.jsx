@@ -11,7 +11,7 @@ const AboutUs = () => {
               <p>
                 <img
                   className="rounded-2xl my-6 w-full object-cover h-[296px]"
-                  src="/Images/About-Us.png"
+                  src="./Images/About-Us.png"
                   alt="Acceptance guidelines.webp"
                 />
               </p>

@@ -10,7 +10,7 @@ const Acceptance = () => {
               <p>
                 <img
                   className="rounded-2xl w-full object-cover h-[296px]"
-                  src="/Images/Appceptance.jpeg"
+                  src="./Images/Appceptance.jpeg"
                   alt="Acceptance guidelines.webp"
                 />
               </p>

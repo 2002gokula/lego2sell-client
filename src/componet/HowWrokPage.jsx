@@ -202,7 +202,7 @@ const HowWrokPage = () => {
                 <img
                   data-aos="fade-up"
                   alt="Step marker"
-                  src="/Images/timeline_marker.e6d0b1ec.svg"
+                  src="./Images/timeline_marker.e6d0b1ec.svg"
                   decoding="async"
                   data-nimg="intrinsic"
                   style={{
@@ -268,7 +268,7 @@ const HowWrokPage = () => {
                       className="rounded-3xl"
                       alt=""
                       aria-hidden="true"
-                      src="/Images/SearchLego.png"
+                      src="./Images/SearchLego.png"
                       style={{
                         display: "block",
                         maxWidth: "100%",
@@ -322,7 +322,7 @@ const HowWrokPage = () => {
                       data-aos="fade-up"
                       alt=""
                       aria-hidden="true"
-                      src="/Images/timeline_marker.e6d0b1ec.svg"
+                      src="./Images/timeline_marker.e6d0b1ec.svg"
                       style={{
                         display: "block",
                         maxWidth: "100%",
@@ -383,7 +383,7 @@ const HowWrokPage = () => {
                       className="rounded-3xl"
                       alt=""
                       aria-hidden="true"
-                      src="/Images/instantofferimage.jpeg"
+                      src="./Images/instantofferimage.jpeg"
                       style={{
                         display: "block",
                         maxWidth: "100%",
@@ -437,7 +437,7 @@ const HowWrokPage = () => {
                       data-aos="fade-up"
                       alt=""
                       aria-hidden="true"
-                      src="/Images/timeline_marker.e6d0b1ec.svg"
+                      src="./Images/timeline_marker.e6d0b1ec.svg"
                       style={{
                         display: "block",
                         maxWidth: "100%",
@@ -497,7 +497,7 @@ const HowWrokPage = () => {
                       className="rounded-3xl"
                       alt=""
                       aria-hidden="true"
-                      src="/Images/postittousimage.jpeg"
+                      src="./Images/postittousimage.jpeg"
                       style={{
                         display: "block",
                         maxWidth: "100%",
@@ -550,7 +550,7 @@ const HowWrokPage = () => {
                     <img
                       alt=""
                       aria-hidden="true"
-                      src="/Images/timeline_marker.e6d0b1ec.svg"
+                      src="./Images/timeline_marker.e6d0b1ec.svg"
                       style={{
                         display: "block",
                         maxWidth: "100%",
@@ -612,7 +612,7 @@ const HowWrokPage = () => {
                       className="rounded-3xl"
                       alt=""
                       aria-hidden="true"
-                      src="/Images/GetpaidImage.png"
+                      src="./Images/GetpaidImage.png"
                       style={{
                         display: "block",
                         maxWidth: "100%",

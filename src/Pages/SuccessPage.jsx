@@ -55,7 +55,7 @@ const SuccessPage = () => {
                   <img
                     alt=""
                     aria-hidden="true"
-                    src="/Images/Image 1.png"
+                    src="./Images/Image 1.png"
                     className="w-44"
                   />
                 </div>
@@ -82,7 +82,7 @@ const SuccessPage = () => {
                     alt=""
                     className="w-44"
                     aria-hidden="true"
-                    src="/Images/image 2.png"
+                    src="./Images/image 2.png"
                   />
                 </div>
                 <div className="font-extrabold mb-4 text-lg">
@@ -111,7 +111,7 @@ const SuccessPage = () => {
                     className="w-44"
                     alt=""
                     aria-hidden="true"
-                    src="/Images/image 3.png"
+                    src="./Images/image 3.png"
                   />
                 </div>
                 <div className="font-extrabold mb-4 text-lg">
