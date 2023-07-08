@@ -48,7 +48,7 @@ const Header = () => {
       ref={ref}
       className="flex flex-col items-center w-full justify-between"
     >
-      {router === "/" ? (
+      {router === "/lego2sell-client/" ? (
         <div className="flex justify-between w-full px-6 py-4 items-center">
           <div className="flex gap-8 items-center">
             <button
@@ -61,51 +61,59 @@ const Header = () => {
               <div className=" absolute top-[85px] left-2.5 bg-white rounded-2xl px-6 border py-4">
                 <ul class="">
                   <li class="pb-5 hover:text-blue-500 duration-300 last:pb-0 relative">
-                    <a
+                    <Link
                       title="Acceptance guidelines"
                       class="font-bold false"
-                      href="/acceptance-guidelines"
+                      to="/lego2sell-client/acceptance-guidelines"
                     >
                       Acceptance guidelines
-                    </a>
+                    </Link>
                   </li>
                   <li class="pb-5  hover:text-blue-500 duration-300 last:pb-0 relative">
-                    <a
+                    <Link
                       title="Packaging guidelines"
                       class="font-bold false"
-                      href="/packaging-guidelines"
+                      to="/lego2sell-client/packaging-guidelines"
                     >
                       Packaging guidelines
-                    </a>
+                    </Link>
                   </li>
 
                   <li class="pb-5 hover:text-blue-500 duration-300 last:pb-0 relative">
-                    <a title="About" class="font-bold false" href="/about">
+                    <Link
+                      title="About"
+                      class="font-bold false"
+                      to="/lego2sell-client/about"
+                    >
                       About
-                    </a>
+                    </Link>
                   </li>
                   <li class="pb-5 over:text-blue-500 duration-300 last:pb-0 relative">
-                    <a title="Contact" class="font-bold false" href="/contact">
+                    <Link
+                      title="Contact"
+                      class="font-bold false"
+                      to="/lego2sell-client/contact"
+                    >
                       Contact
-                    </a>
+                    </Link>
                   </li>
                   <li class="pb-5 duration-300 hover:text-blue-500 last:pb-0 relative">
-                    <a
+                    <Link
                       title="Privacy statement"
                       class="font-bold false"
-                      href="/privacy-statement"
+                      to="/lego2sell-client/privacy-statement"
                     >
                       Privacy statement
-                    </a>
+                    </Link>
                   </li>
                   <li class="pb-5 duration-300 hover:text-blue-500 last:pb-0 relative">
-                    <a
+                    <Link
                       title="Terms &amp; conditions"
                       class="font-bold false"
-                      href="/terms-and-conditions"
+                      href="/lego2sell-client/terms-and-conditions"
                     >
                       Terms &amp; conditions
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -162,19 +170,19 @@ const Header = () => {
                       <p>
                         If you still need help and would like to contact us, you
                         can call us on weekdays from 9 am - 5 pm on{" "}
-                        <a
-                          href="tel:01706248282"
+                        <Link
+                          to="tel:01706248282"
                           className="font-bold text-[#706AEA]"
                         >
                           Phone Numberr
-                        </a>{" "}
+                        </Link>{" "}
                         or email us any time at{" "}
-                        <a
-                          href="mailto:info@webuybricks.co.uk"
+                        <Link
+                          to="mailto:info@webuybricks.co.uk"
                           className="font-bold text-[#706AEA]"
                         >
                           Email Demo
-                        </a>
+                        </Link>
                         . Alternatively, you can visit our contact us page and
                         use our web form to submit your enquiry. A member of our
                         customer service team will be in contact to help you
@@ -183,7 +191,7 @@ const Header = () => {
                       <a
                         title="Contact our team"
                         className="button"
-                        href="/contact/"
+                        href="/lego2sell-client/contact/"
                       >
                         Contact our team
                       </a>
@@ -194,7 +202,10 @@ const Header = () => {
             )}
           </div>
           <div className="md:flex gap-8 hidden  items-center ">
-            <Link to="/how-it-works" className="flex gap-3 items-center">
+            <Link
+              to="/lego2sell-client/how-it-works"
+              className="flex gap-3 items-center"
+            >
               <div className="">
                 <h4 className="text-base font-medium">How it Works?</h4>
                 <p className="text-sm text-gray-400">Just 4 Easy Steps</p>
@@ -221,7 +232,10 @@ const Header = () => {
                 </g>
               </svg>
             </Link>
-            <Link to="/my-account" className="flex gap-3 items-center">
+            <Link
+              to="/lego2sell-client/my-account"
+              className="flex gap-3 items-center"
+            >
               <div className="">
                 <h4 className="text-base font-medium">Start Selling</h4>
                 <p className="text-sm text-gray-400">0 item | $0.00</p>
@@ -261,56 +275,60 @@ const Header = () => {
             {MenuOpen && (
               <div className=" z-50 absolute top-[85px] right-20 bg-white rounded-2xl px-6 border py-4">
                 <ul class="">
-                  <li class="pb-5 hover:text-blue-500 last:pb-0 relative">
-                    <a
+                  <li class="pb-5 hover:text-blue-500 duration-300 last:pb-0 relative">
+                    <Link
                       title="Acceptance guidelines"
                       class="font-bold false"
-                      href="/acceptance-guidelines"
+                      to="/lego2sell-client/acceptance-guidelines"
                     >
                       Acceptance guidelines
-                    </a>
+                    </Link>
                   </li>
-                  <li class="pb-5  hover:text-blue-500 last:pb-0 relative">
-                    <a
+                  <li class="pb-5  hover:text-blue-500 duration-300 last:pb-0 relative">
+                    <Link
                       title="Packaging guidelines"
                       class="font-bold false"
-                      href="/packaging-guidelines"
+                      to="/lego2sell-client/packaging-guidelines"
                     >
                       Packaging guidelines
-                    </a>
+                    </Link>
                   </li>
-                  <li class="pb-5 hover:text-blue-500 last:pb-0 relative">
-                    <a title="About" class="font-bold false" href="/about">
-                      My Account
-                    </a>
-                  </li>
-                  <li class="pb-5 hover:text-blue-500 last:pb-0 relative">
-                    <a title="About" class="font-bold false" href="/about">
+
+                  <li class="pb-5 hover:text-blue-500 duration-300 last:pb-0 relative">
+                    <Link
+                      title="About"
+                      class="font-bold false"
+                      to="/lego2sell-client/about"
+                    >
                       About
-                    </a>
+                    </Link>
                   </li>
-                  <li class="pb-5 last:pb-0 relative">
-                    <a title="Contact" class="font-bold false" href="/contact">
+                  <li class="pb-5 over:text-blue-500 duration-300 last:pb-0 relative">
+                    <Link
+                      title="Contact"
+                      class="font-bold false"
+                      to="/lego2sell-client/contact"
+                    >
                       Contact
-                    </a>
+                    </Link>
                   </li>
-                  <li class="pb-5 hover:text-blue-500 last:pb-0 relative">
-                    <a
+                  <li class="pb-5 duration-300 hover:text-blue-500 last:pb-0 relative">
+                    <Link
                       title="Privacy statement"
                       class="font-bold false"
-                      href="/privacy-statement"
+                      to="/lego2sell-client/privacy-statement"
                     >
                       Privacy statement
-                    </a>
+                    </Link>
                   </li>
-                  <li class="pb-5 hover:text-blue-500 last:pb-0 relative">
-                    <a
+                  <li class="pb-5 duration-300 hover:text-blue-500 last:pb-0 relative">
+                    <Link
                       title="Terms &amp; conditions"
                       class="font-bold false"
-                      href="/terms-and-conditions"
+                      href="/lego2sell-client/terms-and-conditions"
                     >
                       Terms &amp; conditions
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -399,7 +417,7 @@ const Header = () => {
             )}
           </div>
           <div className="md:flex gap-8 hidden  items-center ">
-            <Link to={"/"}>
+            <Link to={"/lego2sell-client/"}>
               <img
                 className="w-[90%] px-8 h-14 scale-125 object-contain"
                 src="/Images/Logo1.png"

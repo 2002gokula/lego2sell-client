@@ -66,7 +66,7 @@ const Basket = () => {
             ) : (
               <Loader size="xs" />
             )}
-            <button onClick={() => navigation("/")}>
+            <button onClick={() => navigation("/lego2sell-client/")}>
               <svg
                 width={24}
                 viewBox="0 0 24 24"
@@ -116,7 +116,7 @@ const Basket = () => {
             </div>
             <button
               onClick={() =>
-                navigation("/client/check-your-details", {
+                navigation("/lego2sell-client/check-your-details", {
                   state: { data, price, SearchValue, condition },
                 })
               }

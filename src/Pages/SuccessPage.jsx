@@ -1,6 +1,6 @@
 import { Loader } from "@mantine/core"
 import React from "react"
-import { useLocation } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 
 const SuccessPage = () => {
   const location = useLocation()
@@ -66,14 +66,14 @@ const SuccessPage = () => {
                   Pack your LEGO® as per the packaging guidelines.
                 </div>
                 <div className="mt-auto">
-                  <a
-                    href="/packaging-guidelines"
+                  <Link
+                    to="/lego2sell-client/packaging-guidelines"
                     target="_blank"
                     className="text-[#706AEA] font-bold"
                     title="Packaging guidelines"
                   >
                     Packaging guidelines
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="flex flex-col items-center justify-start text-center">
@@ -123,14 +123,14 @@ const SuccessPage = () => {
                   point and they’ll deliver your LEGO® to us.
                 </div>
                 <div className="mt-auto">
-                  <a
+                  <Link
                     className="text-[#706AEA] font-bold mt-6"
                     target="_blank"
                     title="EVRi Drop Off point"
-                    href="/store-locator"
+                    to="/lego2sell-client/"
                   >
                     Evri Postal Service
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
