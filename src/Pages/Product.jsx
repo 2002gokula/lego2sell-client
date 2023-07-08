@@ -1,5 +1,3 @@
-import { Checkbox, TextInput } from "@mantine/core"
-import { useForm } from "@mantine/form"
 import React, { useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 const ConditionData = [
