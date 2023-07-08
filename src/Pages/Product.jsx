@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 const ConditionData = [
   { img: "./Images/mint-6e3bd362.png", Discount: "52" },
-  { img: ".Images/very-good-64c6e7cf.png", Discount: "62" },
+  { img: "./Images/very-good-64c6e7cf.png", Discount: "62" },
   { img: "./Images/damaged-df96ca46.png", Discount: "" },
 ]
 const Product = () => {

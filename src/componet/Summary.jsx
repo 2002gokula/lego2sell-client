@@ -2,10 +2,19 @@ import { Checkbox, Group, Loader, Radio } from "@mantine/core"
 import React, { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 
-const summary = ({ data, price, SearchValue, condition, prevStep }) => {
+const summary = ({
+  data,
+  price,
+  SearchValue,
+  condition,
+  prevStep,
+  formData,
+}) => {
   console.log("SearchValue", SearchValue)
   const navigation = useNavigate()
   const [sendMethod, setSendMethod] = useState("Dropoff")
+  console.log(formData)
+  const [acceptOffer, setAcceptOffer] = useState()
   return (
     <>
       <h1 className="text-4xl py-4 font-bold text-center">Offer Summary</h1>
@@ -281,17 +290,32 @@ const summary = ({ data, price, SearchValue, condition, prevStep }) => {
                   </button>
                 </div>
                 <div className="border px-6 my-4 py-4 rounded-xl">
-                  <div className="flex items-center gap-4">
-                    <h3 className="text-base">Name:</h3>
-                    <h6 className="text-base">Demo</h6>
+                  <div className="flex items-center py-1 gap-4">
+                    <h3 className="text-base font-semibold">Name:</h3>
+                    <h6 className="text-base">
+                      {formData.firstName} {formData.lastName}
+                    </h6>
                   </div>
-                  <div className="flex items-center gap-4">
-                    <h3 className="text-base">Name:</h3>
-                    <h6 className="text-base">Demo</h6>
+                  <div className="flex items-center  py-1 gap-4">
+                    <h3 className="text-base font-semibold">Email:</h3>
+                    <h6 className="text-base">{formData.email}</h6>
                   </div>
-                  <div className="flex items-center gap-4">
-                    <h3 className="text-base">Name:</h3>
-                    <h6 className="text-base">Demo</h6>
+                  <div className="flex items-center py-1 gap-4">
+                    <h3 className="text-base font-semibold">Telephone:</h3>
+                    <h6 className="text-base">{formData.Telephone}</h6>
+                  </div>
+                  <div className="flex items-center py-1 gap-4">
+                    <h3 className="text-base font-semibold">Address:</h3>
+                    <h6 className="text-base">
+                      {formData.StreetAddress1}
+                      {formData.city} {formData.Country}
+                    </h6>
+                  </div>
+                  <div className="flex items-center py-1 gap-4">
+                    <h3 className="text-base font-semibold">
+                      Payment details:
+                    </h3>
+                    <h6 className="text-base">{formData.PaymentDetails}</h6>
                   </div>
                 </div>
               </div>
@@ -368,7 +392,7 @@ const summary = ({ data, price, SearchValue, condition, prevStep }) => {
                 </div>
               </div>
               <div className="flex gap-1">
-                <Checkbox />
+                <Checkbox onChange={() => setAcceptOffer(!acceptOffer)} />
                 <p>
                   {`I accept the offer of   £
                           ${price.toFixed(5).slice(0, 5)} and the `}
@@ -376,13 +400,18 @@ const summary = ({ data, price, SearchValue, condition, prevStep }) => {
                 </p>
               </div>
               <button
+                disabled={!acceptOffer}
                 onClick={() =>
                   navigation("/lego2sell-client/success", {
                     state: { data, price, SearchValue, condition },
                   })
                 }
                 type="button"
-                className="hover:scale-[1.05] transition-all mt-4 w-full text-center lg:ml-0 flex items-center justify-center px-6 lg:px-9 rounded-full bg-blue-500 hover:bg-white hover:text-black  hover:border text-white font-bold text-[15px] h-[49px] lg:h-[65px]  xl:text-[18px]"
+                className={` hover:scale-[1.05] ${
+                  acceptOffer
+                    ? "bg-blue-500 "
+                    : "bg-gray-400 cursor-not-allowed"
+                } transition-all mt-4 w-full text-center lg:ml-0 flex items-center justify-center px-6 lg:px-9 rounded-full  hover:bg-white hover:text-black  hover:border text-white font-bold text-[15px] h-[49px] lg:h-[65px]  xl:text-[18px]`}
               >
                 Complete Offer
               </button>

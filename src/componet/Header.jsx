@@ -1,7 +1,7 @@
 import { Accordion, Group, Text } from "@mantine/core"
 import React, { useEffect, useRef, useState } from "react"
 import { charactersList } from "./FAQData"
-import { Link } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 const Header = () => {
   const [FAQOpen, setFAQOpen] = useState()
 
@@ -58,10 +58,14 @@ const Header = () => {
               Menus
             </button>
             {MenuOpen && (
-              <div className=" absolute top-[85px] left-2.5 bg-white rounded-2xl px-6 border py-4">
+              <div
+                ref={ref}
+                className=" absolute top-[85px] left-2.5 bg-white rounded-2xl px-6 border py-4"
+              >
                 <ul class="">
                   <li class="pb-5 hover:text-blue-500 duration-300 last:pb-0 relative">
                     <Link
+                      onClick={() => setMenuOpen(!MenuOpen)}
                       title="Acceptance guidelines"
                       class="font-bold false"
                       to="/lego2sell-client/acceptance-guidelines"
@@ -71,6 +75,7 @@ const Header = () => {
                   </li>
                   <li class="pb-5  hover:text-blue-500 duration-300 last:pb-0 relative">
                     <Link
+                      onClick={() => setMenuOpen(!MenuOpen)}
                       title="Packaging guidelines"
                       class="font-bold false"
                       to="/lego2sell-client/packaging-guidelines"
@@ -81,6 +86,7 @@ const Header = () => {
 
                   <li class="pb-5 hover:text-blue-500 duration-300 last:pb-0 relative">
                     <Link
+                      onClick={() => setMenuOpen(!MenuOpen)}
                       title="About"
                       class="font-bold false"
                       to="/lego2sell-client/about"
@@ -90,6 +96,7 @@ const Header = () => {
                   </li>
                   <li class="pb-5 over:text-blue-500 duration-300 last:pb-0 relative">
                     <Link
+                      onClick={() => setMenuOpen(!MenuOpen)}
                       title="Contact"
                       class="font-bold false"
                       to="/lego2sell-client/contact"
@@ -99,6 +106,7 @@ const Header = () => {
                   </li>
                   <li class="pb-5 duration-300 hover:text-blue-500 last:pb-0 relative">
                     <Link
+                      onClick={() => setMenuOpen(!MenuOpen)}
                       title="Privacy statement"
                       class="font-bold false"
                       to="/lego2sell-client/privacy-statement"
@@ -108,6 +116,7 @@ const Header = () => {
                   </li>
                   <li class="pb-5 duration-300 hover:text-blue-500 last:pb-0 relative">
                     <Link
+                      onClick={() => setMenuOpen(!MenuOpen)}
                       title="Terms &amp; conditions"
                       class="font-bold false"
                       href="/lego2sell-client/terms-and-conditions"
@@ -277,6 +286,7 @@ const Header = () => {
                 <ul class="">
                   <li class="pb-5 hover:text-blue-500 duration-300 last:pb-0 relative">
                     <Link
+                      onClick={() => setMenuOpen(!MenuOpen)}
                       title="Acceptance guidelines"
                       class="font-bold false"
                       to="/lego2sell-client/acceptance-guidelines"
@@ -286,6 +296,7 @@ const Header = () => {
                   </li>
                   <li class="pb-5  hover:text-blue-500 duration-300 last:pb-0 relative">
                     <Link
+                      onClick={() => setMenuOpen(!MenuOpen)}
                       title="Packaging guidelines"
                       class="font-bold false"
                       to="/lego2sell-client/packaging-guidelines"
@@ -296,6 +307,7 @@ const Header = () => {
 
                   <li class="pb-5 hover:text-blue-500 duration-300 last:pb-0 relative">
                     <Link
+                      onClick={() => setMenuOpen(!MenuOpen)}
                       title="About"
                       class="font-bold false"
                       to="/lego2sell-client/about"
@@ -305,6 +317,7 @@ const Header = () => {
                   </li>
                   <li class="pb-5 over:text-blue-500 duration-300 last:pb-0 relative">
                     <Link
+                      onClick={() => setMenuOpen(!MenuOpen)}
                       title="Contact"
                       class="font-bold false"
                       to="/lego2sell-client/contact"
@@ -314,6 +327,7 @@ const Header = () => {
                   </li>
                   <li class="pb-5 duration-300 hover:text-blue-500 last:pb-0 relative">
                     <Link
+                      onClick={() => setMenuOpen(!MenuOpen)}
                       title="Privacy statement"
                       class="font-bold false"
                       to="/lego2sell-client/privacy-statement"
@@ -323,6 +337,7 @@ const Header = () => {
                   </li>
                   <li class="pb-5 duration-300 hover:text-blue-500 last:pb-0 relative">
                     <Link
+                      onClick={() => setMenuOpen(!MenuOpen)}
                       title="Terms &amp; conditions"
                       class="font-bold false"
                       href="/lego2sell-client/terms-and-conditions"

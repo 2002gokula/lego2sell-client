@@ -4,27 +4,28 @@ import React, { useState } from "react"
 import { DatePickerInput } from "@mantine/dates"
 import CountryData from "../../CountryData.json"
 import cities from "../../cities.json"
-const DetailsForm = ({ setActive, price, condition }) => {
+const DetailsForm = ({ setActive, price, condition, setFormData }) => {
   const [value, setValue] = useState(null)
   const [searchValue, onSearchChange] = useState("")
   const [searchcity, onSearchCity] = useState("")
   const [SearchPost, setSearchPost] = useState()
   const [openaddress, setOpenaddress] = useState()
   const [PaymentDetails, setPaymentDetails] = useState("Paypal")
-  console.log("demoP", PaymentDetails)
+
   const form = useForm({
     initialValues: {
       email: "",
+      PaymentDetails: PaymentDetails,
       firstName: "",
       lastName: "",
       Telephone: "",
-      DOB: "",
-      PostCode: "",
+      title: "",
       StreetAddress1: "",
       termsOfService: false,
       StreetAddress2: "",
       city: "",
       Country: "",
+      Paypalemail: "",
     },
 
     validate: {
@@ -36,29 +37,34 @@ const DetailsForm = ({ setActive, price, condition }) => {
         value < 2 ? "LastName must have at least 2 letters" : null,
       Telephone: (value) =>
         value < 2 ? "Telephone must have at least 2 letters" : null,
-      DOB: (value) => (value < 2 ? "DOB must have at least 2 letters" : null),
       StreetAddress1: (value) =>
         value < 2 ? "StreetAddress1 must have at least 2 letters" : null,
       StreetAddress2: (value) =>
         value < 2 ? "StreetAddress2 must have at least 2 letters" : null,
-      PostCode: (value) =>
-        value < 2 ? "PostCode must have at least 2 letters" : null,
       email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
+      Paypalemail: (value) =>
+        /^\S+@\S+$/.test(value) ? null : "Invalid email",
     },
   })
+  // console.log(form)
   const nextStep = () =>
     setActive((current) => {
-      // if (form.validate().hasErrors) {
-      //   return current
-      // }
+      if (form.validate().hasErrors) {
+        return current
+      }
       return current < 3 ? current + 1 : current
     })
+
   return (
     <div>
       <div class="w-full">
         <h1 className="text-4xl font-bold text-center">Details</h1>
         <form
-          onSubmit={form.onSubmit((values) => console.log(values))}
+          onSubmit={form.onSubmit((values) => {
+            console.log(values)
+            setFormData(values)
+            nextStep()
+          })}
           id="login-form"
           className="py-6 flex-col lg:flex-row space-x-12 flex"
           method="post"
@@ -67,6 +73,7 @@ const DetailsForm = ({ setActive, price, condition }) => {
             <h3 className="text-2xl font-bold">My Details</h3>
             <div className="py-3">
               <Select
+                {...form.getInputProps("title")}
                 withAsterisk
                 label="Title"
                 placeholder="Pick one"
@@ -74,7 +81,7 @@ const DetailsForm = ({ setActive, price, condition }) => {
                 onSearchChange={onSearchChange}
                 searchValue={searchValue}
                 nothingFound="No options"
-                data={["Dr", "Angular", "Svelte", "Vue"]}
+                data={["Dr", "Miss", "Mr", "Mrs", "Ms", "Rev", "Sir"]}
               />
             </div>
             <div class=" py-3">
@@ -254,7 +261,7 @@ const DetailsForm = ({ setActive, price, condition }) => {
                       withAsterisk
                       label="Need for revice your payment"
                       placeholder="Paypal Email"
-                      {...form.getInputProps("email")}
+                      {...form.getInputProps("Paypalemail")}
                     />
                   </div>
                   <div class="rounded-md bg-[#F8F8FE] p-4 text-sm text-[#706AEA] text-center mt-4">
@@ -272,6 +279,7 @@ const DetailsForm = ({ setActive, price, condition }) => {
                         Account number<span className="text-[#E52D3B]">*</span>
                       </label>
                       <TextInput
+                        {...form.getInputProps("accountNo")}
                         placeholder="Account number"
                         type="text"
                         autoComplete="off"
@@ -288,6 +296,7 @@ const DetailsForm = ({ setActive, price, condition }) => {
                       <div className="flex items-center">
                         <div className="w-3/12">
                           <TextInput
+                            {...form.getInputProps("SortNo")}
                             type="text"
                             maxLength={2}
                             autoComplete="off"
@@ -301,6 +310,7 @@ const DetailsForm = ({ setActive, price, condition }) => {
                         <div className="px-4 -mt-3">-</div>
                         <div className="w-3/12">
                           <TextInput
+                            {...form.getInputProps("SortNo")}
                             type="text"
                             autoComplete="off"
                             title="Sort code digits 3 & 4"
@@ -314,6 +324,7 @@ const DetailsForm = ({ setActive, price, condition }) => {
                         <div className="px-4 -mt-3">-</div>
                         <div className="w-3/12">
                           <TextInput
+                            {...form.getInputProps("SortNo")}
                             type="text"
                             autoComplete="off"
                             title="Sort code digits 5 & 6"
@@ -356,7 +367,6 @@ const DetailsForm = ({ setActive, price, condition }) => {
                   </div>
                 </div>
                 <button
-                  onClick={nextStep}
                   type="submit"
                   className="hover:scale-[1.05] transition-all mt-4 w-full text-center lg:ml-0 flex items-center justify-center px-6 lg:px-9 rounded-full bg-blue-500 hover:bg-white hover:text-black  hover:border text-white font-bold text-[15px] h-[49px] lg:h-[65px]  xl:text-[18px]"
                 >

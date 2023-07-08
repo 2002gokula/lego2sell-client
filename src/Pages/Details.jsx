@@ -10,6 +10,7 @@ const Details = () => {
   const SearchValue = location.state.SearchValue
   const condition = location.state.condition
   console.log(SearchValue)
+  const [formData, setFormData] = useState()
   const [active, setActive] = useState(0)
   const prevStep = () =>
     setActive((current) => (current > 0 ? current - 1 : current))
@@ -19,6 +20,7 @@ const Details = () => {
         <Stepper active={active} onStepClick={setActive} breakpoint="sm">
           <Stepper.Step label="My Details" description="Create an account">
             <DetailsForm
+              setFormData={setFormData}
               condition={condition}
               price={price}
               data={data}
@@ -30,6 +32,7 @@ const Details = () => {
             description=" overview of an offer "
           >
             <Summary
+              formData={formData}
               prevStep={prevStep}
               condition={condition}
               SearchValue={SearchValue}
