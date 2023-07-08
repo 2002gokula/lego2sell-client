@@ -21,7 +21,7 @@ import Contact from "./Pages/Contact.jsx"
 import Details from "./Pages/Details.jsx"
 const router = createBrowserRouter([
   {
-    path: "/client/",
+    path: "/lego2sell-client/",
     element: (
       <>
         <Header />
@@ -31,7 +31,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/client/product",
+    path: "//lego2sell-client/product",
     element: (
       <>
         <Header />
@@ -41,7 +41,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/client/selling-basket",
+    path: "/lego2sell-client/selling-basket",
     element: (
       <>
         <Header />
