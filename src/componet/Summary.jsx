@@ -316,7 +316,7 @@ const summary = ({ data, price, SearchValue, condition, prevStep }) => {
                     ) : (
                       <Loader size="xs" />
                     )}
-                    <button onClick={() => navigation("/")}>
+                    <button onClick={() => navigation("/lego2sell-client/")}>
                       <svg
                         width={24}
                         viewBox="0 0 24 24"
@@ -377,7 +377,7 @@ const summary = ({ data, price, SearchValue, condition, prevStep }) => {
               </div>
               <button
                 onClick={() =>
-                  navigation("/success", {
+                  navigation("/lego2sell-client/success", {
                     state: { data, price, SearchValue, condition },
                   })
                 }
