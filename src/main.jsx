@@ -51,7 +51,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/client/check-your-details",
+    path: "/lego2sell-client/check-your-details",
     element: (
       <>
         <Header />
@@ -61,7 +61,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/client/how-it-works",
+    path: "/lego2sell-client/how-it-works",
     element: (
       <>
         <Header />
@@ -71,7 +71,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/client/success",
+    path: "/lego2sell-client/success",
     element: (
       <>
         <Header />
@@ -81,7 +81,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/client/my-account",
+    path: "/lego2sell-client/my-account",
     element: (
       <>
         <Header />
@@ -91,7 +91,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/client/terms-and-conditions",
+    path: "/lego2sell-client/terms-and-conditions",
     element: (
       <>
         <Header />
@@ -101,7 +101,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/client/acceptance-guidelines",
+    path: "/lego2sell-client/acceptance-guidelines",
     element: (
       <>
         <Header />
@@ -111,7 +111,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/client/packaging-guidelines",
+    path: "/lego2sell-client/packaging-guidelines",
     element: (
       <>
         <Header />
@@ -121,7 +121,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/client/about",
+    path: "/lego2sell-client/about",
     element: (
       <>
         <Header />
@@ -131,7 +131,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/client/Contact",
+    path: "/lego2sell-client/Contact",
     element: (
       <>
         <Header />

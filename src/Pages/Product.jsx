@@ -24,7 +24,7 @@ const Product = () => {
     e.preventDefault()
 
     console.log(formData)
-    navigation("/client/selling-basket", {
+    navigation("/lego2sell-client/selling-basket", {
       state: { data, SearchValue, condition, formData },
     })
   }
