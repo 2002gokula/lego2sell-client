@@ -24,7 +24,7 @@ const App = () => {
       console.log("Data", data)
       if (data.message == "SUCCESS") {
         // n.updateLegoData(data.body)
-        navigation("/product", { state: { data, e } })
+        navigation("/client/product", { state: { data, e } })
       } else {
         open(true)
         // alert("Could not find the LEGO you are looking for.")

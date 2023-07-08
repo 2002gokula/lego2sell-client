@@ -24,7 +24,7 @@ const Product = () => {
     e.preventDefault()
 
     console.log(formData)
-    navigation("/selling-basket", {
+    navigation("/client/selling-basket", {
       state: { data, SearchValue, condition, formData },
     })
   }
@@ -212,11 +212,6 @@ const Product = () => {
                 <div className="flex items-center justify-center py-2">
                   <button className="" type="submit">
                     <img
-                      // onClick={() =>
-                      //   navigation("/selling-basket", {
-                      //     state: { data, SearchValue, condition },
-                      //   })
-                      // }
                       className="flex object-contain w-[118px] h-[50px] items-center mx-auto"
                       src="/Images/get-quote-85e4043b.png"
                       alt="get-quote"

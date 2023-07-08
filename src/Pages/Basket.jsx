@@ -116,7 +116,7 @@ const Basket = () => {
             </div>
             <button
               onClick={() =>
-                navigation("/check-your-details", {
+                navigation("/client/check-your-details", {
                   state: { data, price, SearchValue, condition },
                 })
               }
