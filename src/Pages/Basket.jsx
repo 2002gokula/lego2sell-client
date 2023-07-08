@@ -14,13 +14,16 @@ const Basket = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:5100/calculate-price", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ itemCode: SearchValue }),
-        })
+        const response = await fetch(
+          "https://wicked-shoe-cow.cyclic.app/calculate-price",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ itemCode: SearchValue }),
+          }
+        )
 
         const priceData = await response.json()
         console.log("Data", priceData)

@@ -11,7 +11,7 @@ const App = () => {
   const handleSearch = async () => {
     try {
       const response = await fetch(
-        "https://lazy-tan-hermit-crab-veil.cyclic.app/find-lego",
+        "https://wicked-shoe-cow.cyclic.app/find-lego",
         {
           method: "POST",
           headers: {

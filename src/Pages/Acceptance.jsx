@@ -34,12 +34,13 @@ const Acceptance = () => {
                     <p>We accept LEGO®, Technic, Bionicle and DUPLO.</p>
                   </div>
                 </div>
-                <div className="flex  py-2">
+                <div className="flex py-2">
                   ✅
                   <div className="ml-4">
-                    <p>We accept LEGO®, Technic, Bionicle and DUPLO.</p>
+                    <p>LEGO® that’s a brand new sealed complete set.</p>
                   </div>
                 </div>
+
                 <div className="flex py-2">
                   ✅
                   <div className="ml-4">
@@ -60,12 +61,7 @@ const Acceptance = () => {
                 <h3 className="text-black py-4 font-bold">
                   LEGO® we <span className="text-red-500">can't</span> accept
                 </h3>
-                <div className="flex py-2">
-                  ⛔️
-                  <div className="ml-4">
-                    <p>LEGO® that is damaged and not new sealed.</p>
-                  </div>
-                </div>
+
                 <div className="flex py-2">
                   ⛔️
                   <div className="ml-4">
@@ -107,10 +103,13 @@ const Acceptance = () => {
                 <p className="py-2">
                   If you have any doubts about the condition of your LEGO®, give
                   it a quick check before you send them in to avoid any
-                  disappointment. Pack your bricks well to stop any damage in
+                  disappointment. Pack your sets well to stop any damage in
                   transit and minimise the risk of any going missing, as we
-                  can’t pay you for missing items. Take a look at our{" "}
-                  <a className="text-green-500" href="/packaging-guidelines">
+                  can’t pay you for missing items. Take a look at our
+                  <a
+                    className="pl-1 text-green-500"
+                    href="/packaging-guidelines"
+                  >
                     Packaging Guidelines
                   </a>{" "}
                   for more information on packing your LEGO®.
@@ -125,7 +124,9 @@ const Acceptance = () => {
               <p>
                 Head over to our FAQs page to see if we’ve answered any of your
                 questions there. Alternatively, get in touch with us by emailing
-                support@lego2sell.com.
+                <span className=" pl-1 text-blue-500">
+                  support@lego2sell.com.
+                </span>
               </p>
             </div>
           </div>
