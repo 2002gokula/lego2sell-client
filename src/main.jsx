@@ -31,7 +31,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "//lego2sell-client/product",
+    path: "/lego2sell-client/product",
     element: (
       <>
         <Header />
