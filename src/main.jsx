@@ -21,7 +21,7 @@ import Contact from "./Pages/Contact.jsx"
 import Details from "./Pages/Details.jsx"
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/client/",
     element: (
       <>
         <Header />
@@ -31,7 +31,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/product",
+    path: "/client/product",
     element: (
       <>
         <Header />
@@ -41,7 +41,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/selling-basket",
+    path: "/client/selling-basket",
     element: (
       <>
         <Header />
@@ -51,7 +51,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/check-your-details",
+    path: "/client/check-your-details",
     element: (
       <>
         <Header />
@@ -61,7 +61,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/how-it-works",
+    path: "/client/how-it-works",
     element: (
       <>
         <Header />
@@ -71,7 +71,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/success",
+    path: "/client/success",
     element: (
       <>
         <Header />
@@ -81,7 +81,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/my-account",
+    path: "/client/my-account",
     element: (
       <>
         <Header />
@@ -91,7 +91,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/terms-and-conditions",
+    path: "/client/terms-and-conditions",
     element: (
       <>
         <Header />
@@ -101,7 +101,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/acceptance-guidelines",
+    path: "/client/acceptance-guidelines",
     element: (
       <>
         <Header />
@@ -111,7 +111,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/packaging-guidelines",
+    path: "/client/packaging-guidelines",
     element: (
       <>
         <Header />
@@ -121,7 +121,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/about",
+    path: "/client/about",
     element: (
       <>
         <Header />
@@ -131,7 +131,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/Contact",
+    path: "/client/Contact",
     element: (
       <>
         <Header />
