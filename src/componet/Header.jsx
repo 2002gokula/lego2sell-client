@@ -406,7 +406,7 @@ const Header = () => {
                       <a
                         title="Contact our team"
                         className="button"
-                        href="/contact/"
+                        href="/lego2sell-client/contact/"
                       >
                         Contact our team
                       </a>

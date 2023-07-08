@@ -62,7 +62,7 @@ const Terms = () => {
               <a
                 title="Acceptance guidelines"
                 class="font-bold text-[#706AEA]"
-                href="/acceptance-guidelines/"
+                href="/lego2sell-client/acceptance-guidelines/"
               >
                 Acceptance guidelines
               </a>
@@ -71,7 +71,7 @@ const Terms = () => {
               <a
                 title="Packaging guidelines"
                 class="font-bold false"
-                href="/packaging-guidelines/"
+                href="/lego2sell-client/packaging-guidelines/"
               >
                 Packaging guidelines
               </a>
@@ -80,7 +80,7 @@ const Terms = () => {
               <a
                 title="EVRi store locator"
                 class="font-bold false"
-                href="/store-locator/"
+                href="/lego2sell-client/store-locator/"
               >
                 EVRi store locator
               </a>
@@ -89,18 +89,26 @@ const Terms = () => {
               <a
                 title="FAQs"
                 class="font-bold false"
-                href="/frequently-asked-questions/"
+                href="/lego2sell-client/frequently-asked-questions/"
               >
                 FAQs
               </a>
             </li>
             <li class="pb-5 last:pb-0 relative">
-              <a title="About" class="font-bold false" href="/about/">
+              <a
+                title="About"
+                class="font-bold false"
+                href="/lego2sell-client/about/"
+              >
                 About
               </a>
             </li>
             <li class="pb-5 last:pb-0 relative">
-              <a title="Contact" class="font-bold false" href="/contact/">
+              <a
+                title="Contact"
+                class="font-bold false"
+                href="/lego2sell-client/contact/"
+              >
                 Contact
               </a>
             </li>
@@ -108,7 +116,7 @@ const Terms = () => {
               <a
                 title="Privacy statement"
                 class="font-bold false"
-                href="/privacy-statement/"
+                href="/lego2sell-client/privacy-statement/"
               >
                 Privacy statement
               </a>
@@ -117,7 +125,7 @@ const Terms = () => {
               <a
                 title="Terms &amp; conditions"
                 class="font-bold false"
-                href="/terms-and-conditions/"
+                href="/lego2sell-client/terms-and-conditions/"
               >
                 Terms &amp; conditions
               </a>
@@ -595,7 +603,10 @@ const Terms = () => {
 
               <p>
                 We therefore strongly recommend you read our{" "}
-                <a className="text-blue-600" href="/packaging-guidelines/">
+                <a
+                  className="text-blue-600"
+                  href="/lego2sell-client/packaging-guidelines/"
+                >
                   Packaging Guidelines which can be found here
                 </a>
                 .
@@ -658,7 +669,10 @@ const Terms = () => {
                 Our decision is final where items fail our Quality Assessment.
                 Please note that we may supply photos of the rejected Item(s),
                 but whether we do so will be at our discretion. Our{" "}
-                <a className="text-blue-600" href="/acceptance-guidelines/">
+                <a
+                  className="text-blue-600"
+                  href="/lego2sell-client/acceptance-guidelines/"
+                >
                   Item Condition Guidelines can be found here
                 </a>{" "}
                 for further information.

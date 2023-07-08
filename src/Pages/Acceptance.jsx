@@ -107,7 +107,7 @@ const Acceptance = () => {
                   can’t pay you for missing items. Take a look at our
                   <a
                     className="pl-1 text-green-500"
-                    href="/packaging-guidelines"
+                    href="/lego2sell-client/packaging-guidelines"
                   >
                     Packaging Guidelines
                   </a>{" "}

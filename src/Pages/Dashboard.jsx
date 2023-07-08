@@ -64,7 +64,7 @@ const Dashboard = () => {
                   <a
                     title="Dashboard"
                     className="font-bold text-[#706AEA]"
-                    href="/my-account"
+                    href="/lego2sell-client/my-account"
                   >
                     Dashboard
                   </a>
@@ -73,7 +73,7 @@ const Dashboard = () => {
                   <a
                     title="My details"
                     className="font-bold false"
-                    href="/edit-profile/"
+                    href="/lego2sell-client/edit-profile/"
                   >
                     My details
                   </a>
@@ -83,7 +83,7 @@ const Dashboard = () => {
                   <a
                     title="Change password"
                     className="font-bold false"
-                    href="/edit-profile/edit-password/"
+                    href="/lego2sell-client/edit-profile/edit-password/"
                   >
                     Change password
                   </a>
@@ -219,14 +219,17 @@ const Dashboard = () => {
             <a
               title="Sell more Lego®"
               className="hover:scale-[1.05] transition-all ml-auto mt-10 lg:ml-0 text-center flex lg:inline-flex justify-center items-center px-6 lg:px-14 rounded-full bg-[#69B832] text-white font-bold text-[15px] h-[49px] lg:h-[65px] text-[15px] xl:text-[18px]"
-              href="/"
+              href="/lego2sell-client"
             >
               Sell more LEGO®
             </a>
             <div className="lg:hidden mt-10">
               <ul>
                 <li className="relative">
-                  <a className="font-bold flex justify-center font-bold w-full items-center text-[#E52D3B] cursor-pointer h-[49px]">
+                  <a
+                    href="/lego2sell-client/"
+                    className="font-bold flex justify-center font-bold w-full items-center text-[#E52D3B] cursor-pointer h-[49px]"
+                  >
                     Logout
                   </a>
                 </li>

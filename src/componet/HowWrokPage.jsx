@@ -639,7 +639,7 @@ const HowWrokPage = () => {
             data-aos="fade-up"
             title="Start selling LEGO®"
             className="flex w-full lg:inline-flex lg:w-auto justify-center items-center px-6 lg:px-12 rounded-full bg-[#69B832] text-white font-bold text-[15px] h-[49px] lg:h-[65px] xl:text-[18px]"
-            href="/"
+            href="/lego2sell-client"
           >
             Get Selling That LEGO®
           </a>
