@@ -58,7 +58,7 @@ const App = () => {
                 <div className="mt-12">
                   <img
                     className="w-full object-contain h-[290px] py-4"
-                    src="/Images/Logo.png"
+                    src="./Images/Logo.png"
                     alt="search-img"
                   />
                 </div>
@@ -72,7 +72,7 @@ const App = () => {
                   <div className="flex items-center justify-center">
                     <img
                       className="w-3/4"
-                      src="/Images/SearchErrorMessage.jpg"
+                      src="./Images/SearchErrorMessage.jpg"
                       alt=""
                     />
                   </div>
@@ -106,7 +106,7 @@ const App = () => {
                 <button type="submit" onClick={handleSearch}>
                   <img
                     className="_search-btn_hj7zo_15"
-                    src="/Images/search-img-6ce3ac56.png"
+                    src="./Images/search-img-6ce3ac56.png"
                     alt="search-btn"
                   />
                 </button>
