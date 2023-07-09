@@ -315,7 +315,7 @@ const summary = ({
                     <h3 className="text-base font-semibold">
                       Payment details:
                     </h3>
-                    <h6 className="text-base">{formData.PaymentDetails}</h6>
+                    <h6 className="text-base">{formData.paymentMethod}</h6>
                   </div>
                 </div>
               </div>

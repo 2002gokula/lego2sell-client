@@ -45,7 +45,7 @@ const Basket = () => {
   }, [SearchValue])
 
   return (
-    <div className="lg:px-12  px-4 h-full lg:h-[84vh] space-x-0 lg:space-x-8 items-start flex py-8">
+    <div className="lg:px-12 lg:flex-row flex-col px-4 h-[88vh] lg:h-[84vh] space-x-0 lg:space-x-8 items-start flex py-8">
       <div className="border w-full flex-1 py-6 px-4 lg:px-12  border-gray-300 rounded-xl">
         <div className="flex flex-col lg:flex-row items-center justify-between">
           <div className="flex flex-col lg:flex-row items-center gap-6">
@@ -98,9 +98,9 @@ const Basket = () => {
           </div>
         </div>
       </div>
-      <div className="lg:flex-[0.4]">
-        <div className="w-full  mt-10 md:mt-0 fixed md:relative bottom-0 left-0 right-0 z-10">
-          <div className="bg-white rounded-2xl  shadow-[0_4px_25px_rgba(38,50,92,0.1)] p-4 px-6 md:p-8 text-center md:sticky md:top-[160px]">
+      <div className="flex-1 w-full lg:flex-[0.4]">
+        <div className="w-full  mt-10 md:mt-0  md:relative bottom-0 left-0 right-0 z-10">
+          <div className="bg-white rounded-2xl  shadow-[0_4px_25px_rgba(38,50,92,0.1)] p-4 px-6 md:p-8 text-center ">
             <h2 className="h4 mb-4 hidden md:block">Offer summary</h2>
             <div className="flex flex-row md:flex-col items-center justify-between">
               <div className="text-[#706AEA] text-xl md:text-5xl font-bold mb-0 md:mb-2 order-2 md:order-1">

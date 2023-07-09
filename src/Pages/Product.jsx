@@ -1,3 +1,4 @@
+import axios from "axios"
 import React, { useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 const ConditionData = [
@@ -18,9 +19,23 @@ const Product = () => {
     ifcondition: "",
   })
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    const payload = {
+      SetCondition: formData.SetCondition,
+      email: formData.email,
+      ifSetcondition: formData.ifcondition,
+    }
+    try {
+      const response = await axios.post(
+        "http://localhost:5100/get_Quote",
+        payload
+      )
 
+      console.log("workingsdsd", response.data)
+    } catch (error) {
+      console.error(error)
+    }
     console.log(formData)
     navigation("/lego2sell-client/selling-basket", {
       state: { data, SearchValue, condition, formData },

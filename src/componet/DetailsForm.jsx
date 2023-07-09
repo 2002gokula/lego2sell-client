@@ -4,7 +4,14 @@ import React, { useState } from "react"
 import { DatePickerInput } from "@mantine/dates"
 import CountryData from "../../CountryData.json"
 import cities from "../../cities.json"
-const DetailsForm = ({ setActive, price, condition, setFormData }) => {
+import axios from "axios"
+const DetailsForm = ({
+  setActive,
+  price,
+  condition,
+  setFormData,
+  formData,
+}) => {
   const [value, setValue] = useState(null)
   const [searchValue, onSearchChange] = useState("")
   const [searchcity, onSearchCity] = useState("")
@@ -15,7 +22,7 @@ const DetailsForm = ({ setActive, price, condition, setFormData }) => {
   const form = useForm({
     initialValues: {
       email: "",
-      PaymentDetails: PaymentDetails,
+      paymentMethod: PaymentDetails,
       firstName: "",
       lastName: "",
       Telephone: "",
@@ -26,6 +33,10 @@ const DetailsForm = ({ setActive, price, condition, setFormData }) => {
       city: "",
       Country: "",
       Paypalemail: "",
+      accountNumber: "",
+      sortCode1: "",
+      sortCode2: "",
+      sortCode3: "",
     },
 
     validate: {
@@ -46,22 +57,40 @@ const DetailsForm = ({ setActive, price, condition, setFormData }) => {
         /^\S+@\S+$/.test(value) ? null : "Invalid email",
     },
   })
-  // console.log(form)
+
   const nextStep = () =>
     setActive((current) => {
-      if (form.validate().hasErrors) {
-        return current
-      }
+      // if (form.validate().hasErrors) {
+      //   return current
+      // }
       return current < 3 ? current + 1 : current
     })
+  console.log("gokula", formData)
+  // const payload = {
+  //   paymentMethod: formData.paymentMethod,
+  //   paypalEmail: formData.Paypalemail,
+  //   sortCode: formData.sortCode1,
+  // }
+  // if (PaymentDetails !== "paypal") {
+  //   payload.accountNumber = formData.accountNumber
+  // }
 
   return (
     <div>
       <div class="w-full">
         <h1 className="text-4xl font-bold text-center">Details</h1>
         <form
-          onSubmit={form.onSubmit((values) => {
-            console.log(values)
+          onSubmit={form.onSubmit(async (values) => {
+            // try {
+            //   const response = await axios.post(
+            //     "http://localhost:5100/add_details",
+            //     payload
+            //   )
+
+            //   console.log(response.data)
+            // } catch (error) {
+            //   console.error(error)
+            // }
             setFormData(values)
             nextStep()
           })}
@@ -279,7 +308,7 @@ const DetailsForm = ({ setActive, price, condition, setFormData }) => {
                         Account number<span className="text-[#E52D3B]">*</span>
                       </label>
                       <TextInput
-                        {...form.getInputProps("accountNo")}
+                        {...form.getInputProps("accountNumber")}
                         placeholder="Account number"
                         type="text"
                         autoComplete="off"
@@ -296,7 +325,7 @@ const DetailsForm = ({ setActive, price, condition, setFormData }) => {
                       <div className="flex items-center">
                         <div className="w-3/12">
                           <TextInput
-                            {...form.getInputProps("SortNo")}
+                            {...form.getInputProps("sortCode1")}
                             type="text"
                             maxLength={2}
                             autoComplete="off"
@@ -310,7 +339,7 @@ const DetailsForm = ({ setActive, price, condition, setFormData }) => {
                         <div className="px-4 -mt-3">-</div>
                         <div className="w-3/12">
                           <TextInput
-                            {...form.getInputProps("SortNo")}
+                            {...form.getInputProps("sortCode2")}
                             type="text"
                             autoComplete="off"
                             title="Sort code digits 3 & 4"
@@ -324,7 +353,7 @@ const DetailsForm = ({ setActive, price, condition, setFormData }) => {
                         <div className="px-4 -mt-3">-</div>
                         <div className="w-3/12">
                           <TextInput
-                            {...form.getInputProps("SortNo")}
+                            {...form.getInputProps("sortCode3")}
                             type="text"
                             autoComplete="off"
                             title="Sort code digits 5 & 6"

@@ -1,7 +1,7 @@
 import { Accordion, Group, Text } from "@mantine/core"
 import React, { useEffect, useRef, useState } from "react"
 import { charactersList } from "./FAQData"
-import { Link, NavLink } from "react-router-dom"
+import { Link } from "react-router-dom"
 const Header = () => {
   const [FAQOpen, setFAQOpen] = useState()
 
@@ -431,10 +431,10 @@ const Header = () => {
               </div>
             )}
           </div>
-          <div className="md:flex gap-8 hidden  items-center ">
+          <div className="md:flex gap-8   items-center ">
             <Link to={"/lego2sell-client/"}>
               <img
-                className="w-[90%] px-8 h-14 scale-125 object-contain"
+                className="w-[90%] px-3 lg:px-8 h-14 scale-125 object-contain"
                 src="./Images/Logo1.png"
                 alt=""
               />
