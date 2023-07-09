@@ -18,7 +18,7 @@ const summary = ({
   return (
     <>
       <h1 className="text-4xl py-4 font-bold text-center">Offer Summary</h1>
-      <div className="flex lg:flex-row flex-col space-x-8">
+      <div className="flex lg:flex-row flex-col space-x-0 lg:space-x-8">
         <div className="flex-1">
           <div className="py-12">
             <h1 className="text-2xl font-bold ">
@@ -336,7 +336,7 @@ const summary = ({
                   </div>
                   <div className="flex text-blue-500 font-bold items-center gap-6">
                     {price ? (
-                      <h2> £{price.toFixed(5).slice(0, 5)}</h2>
+                      <h2> £{price.toFixed(2)}</h2>
                     ) : (
                       <Loader size="xs" />
                     )}
@@ -381,11 +381,7 @@ const summary = ({
               <h2 className="h4 mb-4 hidden md:block">Offer summary</h2>
               <div className="flex flex-row md:flex-col items-center justify-between">
                 <div className="text-[#706AEA] text-xl md:text-5xl font-bold mb-0 md:mb-2 order-2 md:order-1">
-                  {price ? (
-                    <h2> £{price.toFixed(5).slice(0, 5)}</h2>
-                  ) : (
-                    <Loader size="xs" />
-                  )}
+                  {price ? <h2> £{price.toFixed(2)}</h2> : <Loader size="xs" />}
                 </div>
                 <div className="font-bold text-xl md:text-base order-1 md:order-2">
                   1 Item
@@ -395,7 +391,7 @@ const summary = ({
                 <Checkbox onChange={() => setAcceptOffer(!acceptOffer)} />
                 <p>
                   {`I accept the offer of   £
-                          ${price.toFixed(5).slice(0, 5)} and the `}
+                          ${price.toFixed(2)} and the `}
                   <span>terms and conditions*</span>
                 </p>
               </div>

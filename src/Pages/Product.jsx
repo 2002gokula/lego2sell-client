@@ -43,7 +43,7 @@ const Product = () => {
   }
 
   return (
-    <div className="flex h-full items-center justify-center lg:h-[84vh] lg:flex-row flex-col">
+    <div className="flex h-full items-center justify-center lg:h-[84vh] lg:flex-row flex-col-reverse">
       <div className="flex-1 py-2 max-w-3xl  px-6 lg:px-24">
         <div className="flex items-center max-w-lg flex-col justify-center">
           <h2 class="mt-5 text-lg lg:text-2xl font-bold leading-9 tracking-tight text-gray-900">

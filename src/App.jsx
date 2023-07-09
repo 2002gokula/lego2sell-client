@@ -50,7 +50,7 @@ const App = () => {
   }
   return (
     <div>
-      <div className="h-full lg:h-[85.6vh]">
+      <div className="h-[87.6vh] lg:h-[85.6vh]">
         <div className="">
           <div className="">
             <div className="">

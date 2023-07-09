@@ -35,7 +35,7 @@ const SuccessPage = () => {
             You'll receive{" "}
             {price ? (
               <strong className="font-bold text-[#706AEA]">
-                £{price.toFixed(5).slice(0, 5)}
+                £{price.toFixed(2)}
               </strong>
             ) : (
               <Loader size="xs" />
@@ -45,7 +45,7 @@ const SuccessPage = () => {
       </section>
       <section className="py-10 lg:pb-24">
         <div className="">
-          <h2 className="h3 mb-8 md:text-center">
+          <h2 className="h3 px-6 mb-8 md:text-center">
             What you need to do next...
           </h2>
           <div className="relative">

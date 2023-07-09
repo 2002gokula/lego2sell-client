@@ -95,7 +95,7 @@ const DetailsForm = ({
             nextStep()
           })}
           id="login-form"
-          className="py-6 flex-col lg:flex-row space-x-12 flex"
+          className="py-6 flex-col lg:flex-row space-x-0 lg:space-x-12 flex"
           method="post"
         >
           <div className="flex-1">
@@ -315,7 +315,7 @@ const DetailsForm = ({
                         name="customer_paymentinfo_bank"
                         id="customer_paymentinfo_bank"
                         title="Enter Account Number"
-                        className="h-[67px] rounded-3xl lg:rounded-xl w-full pl-6 km_ignore"
+                        className="h-[67px] rounded-3xl lg:rounded-xl w-full lg:pl-6 pl-0 km_ignore"
                       />
                     </div>
                     <div className="w-full md:w-1/2 md:pl-4">
@@ -323,42 +323,42 @@ const DetailsForm = ({
                         Sort code<span className="text-[#E52D3B]">*</span>
                       </label>
                       <div className="flex items-center">
-                        <div className="w-3/12">
+                        <div className=" w-full lg:w-3/12">
                           <TextInput
                             {...form.getInputProps("sortCode1")}
                             type="text"
                             maxLength={2}
                             autoComplete="off"
                             title="Sort code digits 1 & 2"
-                            className="h-[67px] rounded-3xl lg:rounded-xl w-full pl-6 km_ignore"
+                            className="h-[67px] rounded-3xl lg:rounded-xl w-full lg:pl-6 pl-1 km_ignore"
                             name="customer_paymentinfo_bank_sort1"
                             id="customer_paymentinfo_bank_sort1"
                             defaultValue=""
                           />
                         </div>
-                        <div className="px-4 -mt-3">-</div>
-                        <div className="w-3/12">
+                        <div className="lg:px-4 px-1 -mt-3">-</div>
+                        <div className=" w-full lg:w-3/12">
                           <TextInput
                             {...form.getInputProps("sortCode2")}
                             type="text"
                             autoComplete="off"
                             title="Sort code digits 3 & 4"
                             maxLength={2}
-                            className="h-[67px]  rounded-3xl lg:rounded-xl w-full pl-6 km_ignore"
+                            className="h-[67px]  rounded-3xl lg:rounded-xl w-full lg:pl-6 pl-1 km_ignore"
                             name="customer_paymentinfo_bank_sort2"
                             id="customer_paymentinfo_bank_sort2"
                             defaultValue=""
                           />
                         </div>
-                        <div className="px-4 -mt-3">-</div>
-                        <div className="w-3/12">
+                        <div className="lg:px-4 px-1  -mt-3">-</div>
+                        <div className=" w-full lg:w-3/12">
                           <TextInput
                             {...form.getInputProps("sortCode3")}
                             type="text"
                             autoComplete="off"
                             title="Sort code digits 5 & 6"
                             maxLength={2}
-                            className="h-[67px]  rounded-3xl lg:rounded-xl w-full pl-6 km_ignore"
+                            className="h-[67px]  rounded-3xl lg:rounded-xl w-full lg:pl-6 pl-1 km_ignore"
                             name="customer_paymentinfo_bank_sort3"
                             id="customer_paymentinfo_bank_sort3"
                             defaultValue=""
@@ -385,7 +385,7 @@ const DetailsForm = ({
                     <h2>
                       {" "}
                       {price ? (
-                        <h2> £{price.toFixed(5).slice(0, 5)}</h2>
+                        <h2> £{price.toFixed(2)}</h2>
                       ) : (
                         <Loader size="xs" />
                       )}

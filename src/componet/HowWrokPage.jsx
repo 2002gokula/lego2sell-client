@@ -2,8 +2,8 @@ import React from "react"
 
 const HowWrokPage = () => {
   return (
-    <div>
-      <section className="lg:pt-24 py-10">
+    <div className="">
+      <section className="lg:pt-24 lg:px-0 px-6  py-10">
         <div className="mb-12 md:text-center">
           <h1 className="text-2xl font-bold">How it works</h1>
         </div>
@@ -18,7 +18,7 @@ const HowWrokPage = () => {
           </p>
         </div>
       </section>
-      <section className="py-8 lg:pt-10 lg:pb-20 relative overflow-hidden">
+      <section className="py-8 lg:px-0 px-6 lg:pt-10 lg:pb-20 relative overflow-hidden">
         <div className="absolute top-[50%] left-0 right-0 bg-[#F8F8FE] bottom-0 z-0" />
         <div className="">
           {/* <div className="aspect-video mx-auto max-w-5xl rounded-lg flex items-center justify-center text-5xl my-12 z-10 relative">
@@ -179,7 +179,7 @@ const HowWrokPage = () => {
           </div> */}
         </div>
       </section>
-      <section className="py-10 flex items-center justify-center lg:pb-20 lg:pt-20 bg-[#F8F8FE] overflow-hidden">
+      <section className="py-10 lg:px-0 px-6 flex items-center justify-center lg:pb-20 lg:pt-20 bg-[#F8F8FE] overflow-hidden">
         <div className=" text-center max-w-7xl">
           <h2 className="h1 mb-16">
             Sell Your New LEGO® Sets In 4 Easy Steps….

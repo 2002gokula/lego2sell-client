@@ -2,7 +2,7 @@ import React from "react"
 const Acceptance = () => {
   return (
     <div>
-      <div className="w-full px-44 py-12 lg:py-24">
+      <div className="w-full px-6 lg:px-44 py-12 lg:py-24">
         <h1 className="text-5xl font-bold mb-8">Acceptance Guidelines</h1>
         <div className="">
           <div>

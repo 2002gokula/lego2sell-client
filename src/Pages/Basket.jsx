@@ -61,7 +61,7 @@ const Basket = () => {
           <div className="flex items-center lg:py-0 py-4 gap-6">
             {price ? (
               <h2 className="text-blue-500 font-semibold">
-                £{price.toFixed(5).slice(0, 5)}
+                £{price.toFixed(2)}
               </h2>
             ) : (
               <Loader size="xs" />
@@ -104,11 +104,7 @@ const Basket = () => {
             <h2 className="h4 mb-4 hidden md:block">Offer summary</h2>
             <div className="flex flex-row md:flex-col items-center justify-between">
               <div className="text-[#706AEA] text-xl md:text-5xl font-bold mb-0 md:mb-2 order-2 md:order-1">
-                {price ? (
-                  <h2> £{price.toFixed(5).slice(0, 5)}</h2>
-                ) : (
-                  <Loader size="xs" />
-                )}
+                {price ? <h2> £{price.toFixed(2)}</h2> : <Loader size="xs" />}
               </div>
               <div className="font-bold text-xl md:text-base order-1 md:order-2">
                 1 Item
