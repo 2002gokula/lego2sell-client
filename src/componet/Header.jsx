@@ -274,7 +274,7 @@ const Header = () => {
         </div>
       ) : (
         <div className="flex flex-row-reverse justify-between w-full px-6 py-4 items-center">
-          <div className="flex gap-8 items-center">
+          <div className="flex gap-7 items-center">
             <button
               onClick={() => setMenuOpen(!MenuOpen)}
               className="text-lg font-medium"
