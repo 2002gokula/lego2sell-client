@@ -236,7 +236,7 @@ const Product = () => {
           </div>
         </form>
       </div>
-      <div className="bg-[#00a2ff] mx-8 lg:hidden block mt-12 max-w-lg rounded-3xl px-6 py-4 border-2 border-black">
+      <div className="bg-[#00a2ff] mb-6 mx-8 lg:hidden block mt-12 max-w-lg rounded-3xl px-6 py-4 border-2 border-black">
         <h2 class="text-center py-2 text-2xl font-bold leading-9 tracking-tight text-gray-900">
           Why sell with Us?
         </h2>
