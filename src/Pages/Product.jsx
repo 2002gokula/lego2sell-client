@@ -263,7 +263,7 @@ const Product = () => {
                 <div className="">
                   <img
                     className="w-[102px] object-contain h-[100px]"
-                    src="/Images/mr-gold-d05d3d03.png"
+                    src="./Images/mr-_gold_waving-removebg-preview.png"
                     alt="mr-gold"
                   />
                 </div>
