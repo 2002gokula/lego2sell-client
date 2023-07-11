@@ -4,9 +4,9 @@ import axios from "axios"
 import React, { useEffect, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 const ConditionData = [
-  { img: "/Images/mint-6e3bd362.png", Discount: "52" },
-  { img: "/Images/very-good-64c6e7cf.png", Discount: "62" },
-  { img: "/Images/damaged-df96ca46.png", Discount: "no" },
+  { img: "./Images/mint-6e3bd362.png", Discount: "52" },
+  { img: "./Images/very-good-64c6e7cf.png", Discount: "62" },
+  { img: "./Images/damaged-df96ca46.png", Discount: "no" },
 ]
 const Product = () => {
   const [condition, setCondition] = useState()
@@ -317,7 +317,7 @@ const Product = () => {
                   <button className="" type="submit">
                     <img
                       className="flex object-contain w-[118px] h-[50px] items-center mx-auto"
-                      src="/Images/get-quote-85e4043b.png"
+                      src="./Images/get-quote-85e4043b.png"
                       alt="get-quote"
                     />
                   </button>
