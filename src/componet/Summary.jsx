@@ -1,5 +1,6 @@
 import { Checkbox, Group, Loader, Radio } from "@mantine/core"
-import React, { useState } from "react"
+import axios from "axios"
+import React, { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 
 const summary = ({
@@ -9,12 +10,39 @@ const summary = ({
   condition,
   prevStep,
   formData,
+  storedUserId,
 }) => {
   console.log("SearchValue", SearchValue)
   const navigation = useNavigate()
   const [sendMethod, setSendMethod] = useState("Dropoff")
   console.log(formData)
   const [acceptOffer, setAcceptOffer] = useState()
+  const payload = {
+    Deliverymethod: sendMethod,
+    Price: price ? price.toFixed(2) : null,
+    noItems: 2,
+    Status: "pending",
+    ProductName: data.body.name,
+    ProductId: SearchValue,
+    ProductImg: data.body.image_url,
+  }
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      const response = await axios.post(
+        `https://wicked-shoe-cow.cyclic.app/Getorder/${storedUserId}`,
+        payload
+      )
+
+      console.log("workingsdsd", response.data)
+    } catch (error) {
+      console.error(error)
+    }
+    navigation("/lego2sell-client/success", {
+      state: { data, price, SearchValue, condition },
+    })
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }
   return (
     <>
       <h1 className="text-4xl py-4 font-bold text-center">Offer Summary</h1>
@@ -396,12 +424,8 @@ const summary = ({
                 </p>
               </div>
               <button
+                onClick={handleSubmit}
                 disabled={!acceptOffer}
-                onClick={() =>
-                  navigation("/lego2sell-client/success", {
-                    state: { data, price, SearchValue, condition },
-                  })
-                }
                 type="button"
                 className={` hover:scale-[1.05] ${
                   acceptOffer

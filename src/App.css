@@ -285,4 +285,16 @@
   ._product_5bex1_1 {
     flex-direction: column;
   }
+  .mantine-Stepper-stepBody {
+    display: none;
+  }
+  .mantine-Stepper-separator {
+    display: none;
+  }
+}
+
+.mantine-Stepper-steps {
+  display: flex !important;
+  flex-direction: row;
+  justify-content: space-between;
 }

@@ -12,14 +12,21 @@ const Details = () => {
   console.log(SearchValue)
   const [formData, setFormData] = useState([])
   const [active, setActive] = useState(0)
+  const storedUserId = localStorage.getItem("userId")
   const prevStep = () =>
     setActive((current) => (current > 0 ? current - 1 : current))
   return (
     <div className="py-12 flex items-center justify-center">
       <div className="w-[80%] overflow-y-scroll">
-        <Stepper active={active} onStepClick={setActive} breakpoint="sm">
+        <Stepper
+          active={active}
+          mx={{ display: "flex" }}
+          onStepClick={setActive}
+          breakpoint="sm"
+        >
           <Stepper.Step label="My Details" description="Create an account">
             <DetailsForm
+              storedUserId={storedUserId}
               formData={formData}
               setFormData={setFormData}
               condition={condition}
@@ -33,6 +40,7 @@ const Details = () => {
             description=" overview of an offer "
           >
             <Summary
+              storedUserId={storedUserId}
               formData={formData}
               prevStep={prevStep}
               condition={condition}

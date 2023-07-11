@@ -1,8 +1,8 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import ReactDOM from "react-dom/client"
 import App from "./App.jsx"
 import "./index.css"
-import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom"
 import AOS from "aos"
 import "aos/dist/aos.css"
 AOS.init()
@@ -19,6 +19,12 @@ import Packaging from "./Pages/Packaging.jsx"
 import AboutUs from "./Pages/AboutUs.jsx"
 import Contact from "./Pages/Contact.jsx"
 import Details from "./Pages/Details.jsx"
+import SignUpForm from "./Pages/Signin.jsx"
+import LoginPage from "./Pages/Login.jsx"
+import Login from "./Pages/Login.jsx"
+import Admin from "./Pages/Admin.jsx"
+const storedUserId = localStorage.getItem("userId")
+const isAdmin = storedUserId === "64ad76dbd662357b1c99f829"
 const router = createBrowserRouter([
   {
     path: "/lego2sell-client/",
@@ -26,6 +32,37 @@ const router = createBrowserRouter([
       <>
         <Header />
         <App />
+        <Footer />
+      </>
+    ),
+  },
+  {
+    path: "/lego2sell-client/signup/",
+    element: (
+      <>
+        <Header />
+        <SignUpForm />
+        <Footer />
+      </>
+    ),
+  },
+
+  {
+    path: "/lego2sell-client/Admin/",
+    element: (
+      <>
+        <Header />
+        {isAdmin ? <Admin /> : <div>Unauthorization Persn Not allow</div>}
+        <Footer />
+      </>
+    ),
+  },
+  {
+    path: "/lego2sell-client/login/",
+    element: (
+      <>
+        <Header />
+        <Login />
         <Footer />
       </>
     ),

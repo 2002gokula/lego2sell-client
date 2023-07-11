@@ -5,6 +5,8 @@ import { Link } from "react-router-dom"
 const Header = () => {
   const [FAQOpen, setFAQOpen] = useState()
   const [openMenu, setOpenMenu] = useState()
+  const savedLength = localStorage.getItem("savedLength")
+  const OrderTotalPrice = localStorage.getItem("totalPrice")
   const items = charactersList.map((item) => (
     <Accordion.Item value={item.id} key={item.label}>
       <Accordion.Control>
@@ -52,7 +54,10 @@ const Header = () => {
         <div className="flex justify-between w-full px-6 py-4 items-center">
           <div className="flex gap-8 items-center">
             <button
-              onClick={() => setMenuOpen(!MenuOpen)}
+              onClick={() => {
+                setMenuOpen(!MenuOpen)
+                setFAQOpen(false)
+              }}
               className="text-lg font-medium"
             >
               Menus
@@ -128,7 +133,10 @@ const Header = () => {
               </div>
             )}
             <button
-              onClick={() => setFAQOpen(!FAQOpen)}
+              onClick={() => {
+                setFAQOpen(!FAQOpen)
+                setOpenMenu(false)
+              }}
               className="text-lg font-medium"
             >
               FAQS
@@ -209,6 +217,18 @@ const Header = () => {
                 </div>
               </div>
             )}
+            <Link
+              to="/lego2sell-client/signup/"
+              className="text-lg hidden lg:block font-medium"
+            >
+              Sign up
+            </Link>
+            <Link
+              to="/lego2sell-client/login/"
+              className="text-lg  hidden lg:block font-medium"
+            >
+              Sign In
+            </Link>
           </div>
           <div className="lg:flex hidden gap-8  items-center ">
             <Link
@@ -247,7 +267,9 @@ const Header = () => {
             >
               <div className="">
                 <h4 className="text-base font-medium">Start Selling</h4>
-                <p className="text-sm text-gray-400">0 item | $0.00</p>
+                <p className="text-sm text-gray-400">
+                  {savedLength} item | £{OrderTotalPrice}
+                </p>
               </div>
               <svg
                 width={28}
@@ -302,7 +324,7 @@ const Header = () => {
               </svg>
             </button>
             {openMenu && (
-              <div className="flex gap-8 flex-wrap items-center justify-center  absolute right-6 px-6 py-4 rounded-lg top-12 bg-white border">
+              <div className="flex gap-8 flex-wrap flex-col items-center justify-center  absolute right-6 px-6 py-4 rounded-lg top-12 bg-white border">
                 <Link
                   to="/lego2sell-client/how-it-works"
                   className="flex gap-3 items-center"
@@ -370,6 +392,18 @@ const Header = () => {
                     </g>
                   </svg>
                 </Link>
+                <Link
+                  to="/lego2sell-client/signup/"
+                  className="text-lg font-medium"
+                >
+                  Sign up
+                </Link>
+                <Link
+                  to="/lego2sell-client/login/"
+                  className="text-lg   font-medium"
+                >
+                  Sign In
+                </Link>
               </div>
             )}
           </div>
@@ -378,7 +412,10 @@ const Header = () => {
         <div className="flex flex-row-reverse justify-between w-full px-6 py-4 items-center">
           <div className="flex gap-7 items-center">
             <button
-              onClick={() => setMenuOpen(!MenuOpen)}
+              onClick={() => {
+                setMenuOpen(!MenuOpen)
+                setFAQOpen(false)
+              }}
               className="text-lg font-medium"
             >
               Menus
@@ -451,7 +488,10 @@ const Header = () => {
               </div>
             )}
             <button
-              onClick={() => setFAQOpen(!FAQOpen)}
+              onClick={() => {
+                setFAQOpen(!FAQOpen)
+                setMenuOpen(false)
+              }}
               className="text-lg font-medium"
             >
               FAQS
@@ -537,7 +577,7 @@ const Header = () => {
             <Link to={"/lego2sell-client/"}>
               <img
                 className="w-[80%] max-[306px]:w-[100%] px-3 lg:px-8 h-14 scale-125 object-contain"
-                src="./Images/Logo1.png"
+                src="/Images/Logo1.png"
                 alt=""
               />
             </Link>

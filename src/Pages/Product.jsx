@@ -1,34 +1,46 @@
+import { Modal } from "@mantine/core"
+import { useDisclosure } from "@mantine/hooks"
 import axios from "axios"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 const ConditionData = [
-  { img: "./Images/mint-6e3bd362.png", Discount: "52" },
-  { img: "./Images/very-good-64c6e7cf.png", Discount: "62" },
-  { img: "./Images/damaged-df96ca46.png", Discount: "" },
+  { img: "/Images/mint-6e3bd362.png", Discount: "52" },
+  { img: "/Images/very-good-64c6e7cf.png", Discount: "62" },
+  { img: "/Images/damaged-df96ca46.png", Discount: "no" },
 ]
 const Product = () => {
   const [condition, setCondition] = useState()
-
+  const [damageOpen, setDamageOpen] = useState()
   const location = useLocation()
+  const [isLoading, setIsLoading] = useState(true)
   const data = location.state && location.state.data
   const SearchValue = location.state && location.state.e
   const navigation = useNavigate()
+  const [isFormValid, setIsFormValid] = useState(true)
   const [formData, setFormData] = useState({
     SetCondition: "",
     email: "",
     ifcondition: "",
   })
-
+  const storedUserId = localStorage.getItem("userId")
   const handleSubmit = async (e) => {
     e.preventDefault()
+
+    // Perform form validation
+    if (!formData.SetCondition || !formData.email || !formData.ifcondition) {
+      setIsFormValid(false)
+      return
+    }
+
     const payload = {
       SetCondition: formData.SetCondition,
       email: formData.email,
       ifSetcondition: formData.ifcondition,
     }
+
     try {
       const response = await axios.post(
-        "http://localhost:5100/get_Quote",
+        `https://wicked-shoe-cow.cyclic.app/get_Quote/${storedUserId}`,
         payload
       )
 
@@ -36,17 +48,33 @@ const Product = () => {
     } catch (error) {
       console.error(error)
     }
+
     console.log(formData)
-    navigation("/lego2sell-client/selling-basket", {
+
+    navigation(`/lego2sell-client/selling-basket/`, {
       state: { data, SearchValue, condition, formData },
     })
+  }
+
+  useEffect(() => {
+    // Simulate loading delay for demonstration purposes
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 100)
+    if (formData.SetCondition === "no") {
+      setDamageOpen(true)
+    } else setDamageOpen(false)
+  }, [formData])
+
+  if (isLoading) {
+    return <div>Loading...</div>
   }
 
   return (
     <div className="flex h-full items-center justify-center lg:h-[84vh] lg:flex-row flex-col">
       <div className="flex-1 py-2 max-w-3xl  px-6 lg:px-24">
         <div className="flex items-center max-w-lg flex-col justify-center">
-          <h2 class="mt-5 text-lg lg:text-2xl font-bold leading-9 tracking-tight text-gray-900">
+          <h2 class="mb-3 text-lg lg:text-2xl font-bold leading-9 tracking-tight text-gray-900">
             {` ${data.body.name} -
             ${SearchValue}`}
           </h2>
@@ -56,6 +84,8 @@ const Product = () => {
               className="w-[340px]  h-[210px] object-contain"
               src={data.body.image_url}
               alt="product-img"
+              sizes="(max-width: 768px) 100vw, 50vw"
+              srcSet={`${data.body.image_url} 1x, ${data.body.image_url_2x} 2x`}
             />
           </div>
         </div>
@@ -146,6 +176,7 @@ const Product = () => {
                   Set Condition
                 </h4>
                 <div className="flex items-center justify-between">
+                  {/* {formData.SetCondition === "no"} */}
                   {ConditionData.map((value, index) => (
                     <label>
                       <img
@@ -172,16 +203,71 @@ const Product = () => {
                       />
                     </label>
                   ))}
+
+                  {damageOpen && (
+                    <Modal
+                      centered
+                      title="don’t take damage items"
+                      opened
+                      onClose={() => setDamageOpen(false)}
+                    >
+                      <div className="py-4">
+                        <button>
+                          <svg
+                            // onClick={setDamageOpen(false)}
+                            className=" absolute top-3 right-3"
+                            width={24}
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g
+                              id="SVGRepo_tracerCarrier"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            ></g>
+                            <g id="SVGRepo_iconCarrier">
+                              {" "}
+                              <path
+                                d="M14.5 9.50002L9.5 14.5M9.49998 9.5L14.5 14.5"
+                                stroke="#1C274C"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                              ></path>{" "}
+                              <path
+                                d="M7 3.33782C8.47087 2.48697 10.1786 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 10.1786 2.48697 8.47087 3.33782 7"
+                                stroke="#1C274C"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                              ></path>{" "}
+                            </g>
+                          </svg>
+                        </button>
+                        <div className="mt-8 text-xl font-semibold">
+                          we don’t take damage items
+                        </div>
+                        <p className="font-normal text-gray-400 ">
+                          At our company, we have a policy of only accepting
+                          items that are in good condition and free from any
+                          damage. We prioritize offering high-quality products
+                          to our customers, and damaged items do not meet our
+                          quality standards.
+                        </p>
+                      </div>
+                    </Modal>
+                  )}
                 </div>
               </div>
               <div className="border-2 flex border-black rounded-3xl px-6 py-4 bg-[#6af99e]">
                 <div className="">
                   <img
                     className="w-[102px] object-contain h-[100px]"
-                    src="./Images/mr-gold-d05d3d03.png"
+                    src="/Images/mr-gold-d05d3d03.png"
                     alt="mr-gold"
                   />
                 </div>
+
                 <div className="flex items-center flex-col">
                   <h3 className="text-base text-center font-medium">
                     Have you selected the right set condition and your item is
@@ -204,6 +290,11 @@ const Product = () => {
                     />
                     <h3 className="text-base font-medium">Yes</h3>
                   </div>
+                  {!isFormValid && (
+                    <p className="text-red-500">
+                      Please fill in this required fields.
+                    </p>
+                  )}
                 </div>
               </div>
               <div className="border-2  border-black rounded-3xl px-6 py-4 bg-[#6af99e]">
@@ -219,14 +310,14 @@ const Product = () => {
                     })
                   }
                   type="email"
-                  required
                   placeholder="Enter your email"
                 />
+
                 <div className="flex items-center justify-center py-2">
                   <button className="" type="submit">
                     <img
                       className="flex object-contain w-[118px] h-[50px] items-center mx-auto"
-                      src="./Images/get-quote-85e4043b.png"
+                      src="/Images/get-quote-85e4043b.png"
                       alt="get-quote"
                     />
                   </button>

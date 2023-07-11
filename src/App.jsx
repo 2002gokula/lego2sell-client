@@ -1,37 +1,48 @@
-import React, { useState } from "react"
-import { redirect, useNavigate } from "react-router-dom"
+import React, { useEffect, useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
 import "./App.css"
-import { Modal, Tooltip } from "@mantine/core"
+import { Loader, Modal, Tooltip } from "@mantine/core"
 import { useDisclosure } from "@mantine/hooks"
 const App = () => {
   const [e, setE] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
   const [opened, { open, close }] = useDisclosure(false)
   const navigation = useNavigate()
-
+  const storedUserId = localStorage.getItem("userId")
   const handleSearch = async () => {
-    try {
-      const response = await fetch(
-        "https://wicked-shoe-cow.cyclic.app/find-lego",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ itemCode: e }),
+    if (storedUserId === "") {
+      navigation(`/lego2sell-client/signup`)
+    } else {
+      try {
+        setIsLoading(true) // Set loading state to true
+
+        const response = await fetch(
+          "https://wicked-shoe-cow.cyclic.app/find-lego",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ itemCode: e }),
+          }
+        )
+        const data = await response.json()
+        console.log("Data", data)
+
+        if (data.message === "SUCCESS") {
+          navigation(`/lego2sell-client/product/`, {
+            state: { data, e },
+          })
+        } else {
+          open(true)
+          // alert("Could not find the LEGO you are looking for.")
         }
-      )
-      const data = await response.json()
-      console.log("Data", data)
-      if (data.message == "SUCCESS") {
-        // n.updateLegoData(data.body)
-        navigation("/lego2sell-client/product", { state: { data, e } })
-      } else {
+      } catch {
         open(true)
         // alert("Could not find the LEGO you are looking for.")
+      } finally {
+        setIsLoading(false) // Set loading state back to false
       }
-    } catch {
-      open(true)
-      // alert("Could not find the LEGO you are looking for.")
     }
   }
   const handleInputChange = (event) => {
@@ -42,12 +53,19 @@ const App = () => {
       setE(numericValue)
     }
   }
-
+  if (isLoading) {
+    return (
+      <div className="flex h-[84vh] items-center justify-center mx-auto my-auto">
+        <Loader />
+      </div>
+    )
+  }
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       handleSearch()
     }
   }
+
   return (
     <div>
       <div className="h-[87.6vh] lg:h-[85.6vh]">

@@ -11,6 +11,7 @@ const DetailsForm = ({
   condition,
   setFormData,
   formData,
+  storedUserId,
 }) => {
   const [value, setValue] = useState(null)
   const [searchValue, onSearchChange] = useState("")
@@ -81,17 +82,19 @@ const DetailsForm = ({
         <h1 className="text-4xl font-bold text-center">Details</h1>
         <form
           onSubmit={form.onSubmit(async (values) => {
-            // try {
-            //   const response = await axios.post(
-            //     "http://localhost:5100/add_details",
-            //     payload
-            //   )
+            try {
+              const response = await axios.post(
+                `https://wicked-shoe-cow.cyclic.app/MyDetails/${storedUserId}`,
+                values
+              )
 
-            //   console.log(response.data)
-            // } catch (error) {
-            //   console.error(error)
-            // }
+              console.log("workingsdsd", response.data)
+            } catch (error) {
+              console.error(error)
+            }
+
             setFormData(values)
+            window.scrollTo({ top: 0, behavior: "smooth" })
             nextStep()
           })}
           id="login-form"
