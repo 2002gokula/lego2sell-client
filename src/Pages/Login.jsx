@@ -42,7 +42,7 @@ function Login() {
       localStorage.setItem("userId", userId)
 
       // Navigate to another route
-      navigation(`/lego2sell-client/?userId=${userId}`)
+      navigation(`/lego2sell-client/`)
     } catch (error) {
       console.error("An error occurred:", error)
       // Handle the error as needed

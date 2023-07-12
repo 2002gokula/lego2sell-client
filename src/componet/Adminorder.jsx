@@ -2,31 +2,21 @@ import { Select } from "@mantine/core"
 import axios from "axios"
 import React, { useEffect, useState } from "react"
 
-const Adminorder = ({ value, data }) => {
+const Adminorder = ({ items, data }) => {
   const [OrderOpen, setOrderOpen] = useState()
+  const [userId, setUserId] = useState()
   const [Status, setStatus] = useState("pending")
-  console.log(Status)
-  // console.log(value)
-  // const UserData = [
-  //   { title: "firstName", Value: data[0].firstName },
-  //   { title: "firstName", Value: value.firstName },
-  // ]
+  const [orderId, setOrderId] = useState()
   const storedUserId = localStorage.getItem("userId")
-  const orderId = "64ad7f1357889b3c19c57c9a"
-  console.log("demoo", orderId)
   useEffect(() => {
-    // Call the handleUpdate function when storedUserId, Status, or orderId changes
     handleUpdate()
-  }, [storedUserId, Status, orderId])
+  }, [storedUserId, Status, Status])
   const handleUpdate = () => {
     axios
-      .put(
-        `https://wicked-shoe-cow.cyclic.app/Getorder/status/${storedUserId}`,
-        {
-          Status,
-          orderId,
-        }
-      )
+      .put(`https://wicked-shoe-cow.cyclic.app/Getorder/status/${userId}`, {
+        Status,
+        orderId,
+      })
       .then((response) => {
         console.log("Data updated:", response.data)
         // Handle successful update
@@ -44,15 +34,17 @@ const Adminorder = ({ value, data }) => {
       >
         <div className="flex items-center justify-between">
           <div className="mr-auto font-medium">
-            Offer ID: #3434
+            User ID: # {items?._id}
             <br className="md:hidden" />
-            <span className="md:hidden text-[#706AEA] font-bold">£81.50</span>
+            <span className="md:hidden text-[#706AEA] font-bold">
+              {items?.email}
+            </span>
           </div>
           <div className="rounded-full text-xs px-6 py-2 font-bold bg-[#FDEDD0] text-[#F4A414] mr-7">
-            pending
+            {items.email}
           </div>
           <div className="text-[#706AEA] font-bold mr-6 hidden md:flex">
-            £54545
+            Watch Details
           </div>
           <div className="text-[#706AEA] text-lg">
             <svg
@@ -77,7 +69,7 @@ const Adminorder = ({ value, data }) => {
       {OrderOpen && (
         <div className="bg-white duration-300 mt-4 shadow-[0_4px_20px_rgba(0,0,0,0.15)] rounded-2xl">
           <div className="flex items-start w-full flex-wrap">
-            {value.Order.map((value) => (
+            {items?.Order.map((value, index) => (
               <div className="w-2/4">
                 <div class="px-6 border-t">
                   <h1 class="text-2xl font-bold py-4 ">
@@ -87,15 +79,15 @@ const Adminorder = ({ value, data }) => {
                     <div class="flex lg:flex-row flex-col items-center gap-6">
                       <img
                         class="w-44 object-contain  border rounded-lg px-4 border-gray-300 h-32"
-                        src={value.ProductImg}
+                        src={value?.ProductImg}
                         alt=""
                       />
                       <h3 class="text-lg font-semibold">
-                        {value.ProductName} {value.ProductId}
+                        {value?.ProductName} {value?.ProductId}
                       </h3>
                     </div>
                     <div class="flex text-blue-500 font-bold items-center gap-6">
-                      <h2> £{value.Price}</h2>
+                      <h2> £{value?.Price}</h2>
                     </div>
                   </div>
                 </div>
@@ -119,13 +111,16 @@ const Adminorder = ({ value, data }) => {
                 <div>
                   <div className="text-center py-6 px-2 lg:px-6">
                     <h3 className="mr-auto text-lg font-medium mb-4">
-                      Offer ID: #{value.offerId}
+                      Offer ID: #{value?.offerId}
                     </h3>
                     <div className="rounded-full text-xs px-2 lg:px-6 py-2 font-bold text-[#F4A414] w-full">
                       {/* {value.Status} */}
                       <Select
-                        value={Status}
-                        onChange={setStatus}
+                        onChange={(e) => {
+                          setStatus(e)
+                          setUserId(items._id)
+                          setOrderId(value._id)
+                        }}
                         label="Change Product Status"
                         placeholder="Pick one"
                         data={[
@@ -142,11 +137,11 @@ const Adminorder = ({ value, data }) => {
                     <div className="bg-[#F8F8FE] rounded-lg p-2 lg:p-8 mt-8">
                       <div className="flex flex-wrap w-full items-center justify-between">
                         <div>Date &amp; Time</div>
-                        <div>{value.timestamp}</div>
+                        <div>{value?.timestamp}</div>
                       </div>
                       <div className="flex  flex-wrap w-full items-center justify-between mt-2">
                         <div>No. of items</div>
-                        <div>{value.noItems}</div>
+                        <div>{index + 1}</div>
                       </div>
                       <div className="flex  flex-wrap w-full items-center justify-between mt-2">
                         <div>Delivery method</div>
@@ -156,7 +151,7 @@ const Adminorder = ({ value, data }) => {
                       </div>
                       <div className="flex  flex-wrap w-full items-center justify-between mt-2">
                         <div>Status</div>
-                        <div>{value.Status}</div>
+                        <div>{value?.Status}</div>
                       </div>
                       <hr className="mt-4" />
                       <div className="flex  flex-wrap w-full items-center justify-between mt-4">
@@ -164,7 +159,7 @@ const Adminorder = ({ value, data }) => {
                           Total offer value
                         </div>
                         <div className="font-bold text-lg text-[#706AEA]">
-                          £{value.Price}
+                          £{value?.Price}
                         </div>
                       </div>
                       <div className="flex  flex-wrap flex-col mt-8">
@@ -196,41 +191,41 @@ const Adminorder = ({ value, data }) => {
               <div class="flex items-center py-1 gap-4">
                 <h3 class="text-base font-semibold">Name:</h3>
                 <h6 class="text-base">
-                  {data[0].firstName}
-                  {data[0].lastName} {data[0].title}
+                  {data[0]?.firstName}
+                  {data[0]?.lastName} {data[0]?.title}
                 </h6>
               </div>
               <div class="flex items-center py-1 gap-4">
                 <h3 class="text-base font-semibold">lastName:</h3>
-                <h6 class="text-base">{data[0].lastName} </h6>
+                <h6 class="text-base">{data[0]?.lastName} </h6>
               </div>
               <div class="flex items-center py-1 gap-4">
                 <h3 class="text-base font-semibold">email:</h3>
-                <h6 class="text-base">{data[0].email} </h6>
+                <h6 class="text-base">{data[0]?.email} </h6>
               </div>
               <div class="flex items-center py-1 gap-4">
                 <h3 class="text-base font-semibold">Telephone:</h3>
-                <h6 class="text-base">{data[0].Telephone} </h6>
+                <h6 class="text-base">{data[0]?.Telephone} </h6>
               </div>
               <div class="flex items-center py-1 gap-4">
                 <h3 class="text-base font-semibold">StreetAddress1:</h3>
-                <h6 class="text-base">{data[0].StreetAddress1} </h6>
+                <h6 class="text-base">{data[0]?.StreetAddress1} </h6>
               </div>
               <div class="flex items-center py-1 gap-4">
                 <h3 class="text-base font-semibold">paymentMethod:</h3>
-                <h6 class="text-base">{data[0].paymentMethod} </h6>
+                <h6 class="text-base">{data[0]?.paymentMethod} </h6>
               </div>
               <div class="flex items-center py-1 gap-4">
                 <h3 class="text-base font-semibold">Paypalemail :</h3>
-                <h6 class="text-base">{data[0].Paypalemail} </h6>
+                <h6 class="text-base">{data[0]?.Paypalemail} </h6>
               </div>
               <div class="flex items-center py-1 gap-4">
                 <h3 class="text-base font-semibold">Country :</h3>
-                <h6 class="text-base">{data[0].Country} </h6>
+                <h6 class="text-base">{data[0]?.Country} </h6>
               </div>
               <div class="flex items-center py-1 gap-4">
                 <h3 class="text-base font-semibold">city :</h3>
-                <h6 class="text-base">{data[0].city} </h6>
+                <h6 class="text-base">{data[0]?.city} </h6>
               </div>
 
               {/* {console.log("dde33434343mo", data[0])} */}

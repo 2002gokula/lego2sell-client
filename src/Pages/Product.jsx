@@ -1,11 +1,10 @@
-import { Modal } from "@mantine/core"
-import { useDisclosure } from "@mantine/hooks"
-import axios from "axios"
 import React, { useEffect, useState } from "react"
+import { Modal } from "@mantine/core"
+import axios from "axios"
 import { useLocation, useNavigate } from "react-router-dom"
 const ConditionData = [
-  { img: "./Images/mint-6e3bd362.png", Discount: "52" },
-  { img: "./Images/very-good-64c6e7cf.png", Discount: "62" },
+  { img: "/mint-6e3bd362.png", Discount: "52" },
+  { img: "/Images/very-good-64c6e7cf.png", Discount: "62" },
   { img: "./Images/damaged-df96ca46.png", Discount: "no" },
 ]
 const Product = () => {
@@ -80,12 +79,9 @@ const Product = () => {
           </h2>
           <div className="">
             <img
-              loading="eager"
               className="w-[340px]  h-[210px] object-contain"
               src={data.body.image_url}
               alt="product-img"
-              sizes="(max-width: 768px) 100vw, 50vw"
-              srcSet={`${data.body.image_url} 1x, ${data.body.image_url_2x} 2x`}
             />
           </div>
         </div>

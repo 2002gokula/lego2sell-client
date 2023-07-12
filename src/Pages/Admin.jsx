@@ -16,7 +16,7 @@ const Admin = () => {
     <div className="">
       <div className="px-44 py-4 my-6">
         {data?.map((value) => (
-          <Adminorder data={value.Mydetails} value={value} />
+          <Adminorder data={value.Mydetails} items={value} />
         ))}
       </div>
     </div>
