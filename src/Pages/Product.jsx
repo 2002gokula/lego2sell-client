@@ -3,9 +3,9 @@ import { Modal } from "@mantine/core"
 import axios from "axios"
 import { useLocation, useNavigate } from "react-router-dom"
 const ConditionData = [
-  { img: "/mint-6e3bd362.png", Discount: "52" },
-  { img: "/Images/very-good-64c6e7cf.png", Discount: "62" },
-  { img: "./Images/damaged-df96ca46.png", Discount: "no" },
+  { img: "../mint.png", Discount: "52" },
+  { img: "../Images/verygood.png", Discount: "62" },
+  { img: "../Images/damaged.png", Discount: "no" },
 ]
 const Product = () => {
   const [condition, setCondition] = useState()
@@ -56,7 +56,6 @@ const Product = () => {
   }
 
   useEffect(() => {
-    // Simulate loading delay for demonstration purposes
     setTimeout(() => {
       setIsLoading(false)
     }, 100)
