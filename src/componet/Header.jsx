@@ -418,7 +418,7 @@ const Header = () => {
               }}
               className="text-lg font-medium"
             >
-              Menus
+              Menu
             </button>
             {MenuOpen && (
               <div className=" z-50 absolute top-[85px] right-4 lg:right-20 bg-white rounded-2xl px-6 border py-4">
