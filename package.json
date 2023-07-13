@@ -13,16 +13,21 @@
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
+    "@headlessui/react": "^1.7.15",
+    "@heroicons/react": "^2.0.18",
     "@mantine/core": "^6.0.15",
     "@mantine/dates": "^6.0.15",
     "@mantine/form": "^6.0.15",
     "@mantine/hooks": "^6.0.15",
     "aos": "^3.0.0-beta.6",
     "axios": "^1.4.0",
+    "country-state-city": "^3.1.4",
     "gh-pages": "^5.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.14.1"
+    "react-router-dom": "^6.14.1",
+    "react-select": "^5.7.3",
+    "zxcvbn": "^4.4.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.37",

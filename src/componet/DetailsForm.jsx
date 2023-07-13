@@ -1,10 +1,12 @@
 import { Divider, Group, Radio, Select, TextInput } from "@mantine/core"
 import { useForm } from "@mantine/form"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { DatePickerInput } from "@mantine/dates"
 import CountryData from "../../CountryData.json"
 import cities from "../../cities.json"
+import CountryCitits from "../../CountryCitits.json"
 import axios from "axios"
+// import Select from "react-select"
 const DetailsForm = ({
   setActive,
   price,
@@ -13,50 +15,72 @@ const DetailsForm = ({
   formData,
   storedUserId,
 }) => {
-  const [value, setValue] = useState(null)
   const [searchValue, onSearchChange] = useState("")
-  const [searchcity, onSearchCity] = useState("")
-  const [SearchPost, setSearchPost] = useState()
-  const [openaddress, setOpenaddress] = useState()
   const [PaymentDetails, setPaymentDetails] = useState("Paypal")
+  const [data, setData] = useState()
+  const [getCountry, setGetCountry] = useState()
+  const [getState, setGetState] = useState()
+  const [countryid, setCountryid] = useState("")
+  const [state, setState] = useState([])
+  console.log(state)
+  const [stateid, setStateid] = useState("")
 
+  const handlecounty = (e) => {
+    const getcountryId = e.target.value
+    const getStatedata = CountryCitits.find(
+      (country) => country.country_id === getcountryId
+    ).states
+    setState(getStatedata)
+    setCountryid(getcountryId)
+    //console.log(getcountryId);
+  }
+
+  const handlestate = (e) => {
+    const stateid = e.target.value
+    //console.log(stateid);
+    setStateid(stateid)
+  }
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    alert("Get Country id" + countryid + " And " + stateid)
+  }
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `https://wicked-shoe-cow.cyclic.app/Mydetails/${storedUserId}`
+        )
+        setData(response.data.Mydetails[0])
+      } catch (error) {
+        console.error("An error occurred:", error)
+        // Handle the error as needed
+      }
+    }
+
+    fetchData()
+  }, [])
+  const [firstName, setFirstName] = useState()
   const form = useForm({
     initialValues: {
-      email: "",
+      email: data?.email,
       paymentMethod: PaymentDetails,
-      firstName: "",
-      lastName: "",
-      Telephone: "",
-      title: "",
-      StreetAddress1: "",
+      firstName: data?.firstName,
+      lastName: data?.lastName,
+      Telephone: data?.Telephone,
+      title: data?.title,
+      StreetAddress1: data?.StreetAddress1,
       termsOfService: false,
-      StreetAddress2: "",
-      city: "",
-      Country: "",
-      Paypalemail: "",
-      accountNumber: "",
-      sortCode1: "",
-      sortCode2: "",
-      sortCode3: "",
+      StreetAddress2: data?.StreetAddress2,
+      city: data?.city,
+      Country: data?.Country,
+      Paypalemail: data?.Paypalemail,
+      accountNumber: data?.accountNumber,
+      sortCode1: data?.sortCode1,
+      sortCode2: data?.sortCode2,
+      sortCode3: data?.sortCode3,
     },
 
-    validate: {
-      firstName: (value) =>
-        value < 2
-          ? "firstName must have at least 2 letters must have at least 2 letters"
-          : null,
-      lastName: (value) =>
-        value < 2 ? "LastName must have at least 2 letters" : null,
-      Telephone: (value) =>
-        value < 2 ? "Telephone must have at least 2 letters" : null,
-      StreetAddress1: (value) =>
-        value < 2 ? "StreetAddress1 must have at least 2 letters" : null,
-      StreetAddress2: (value) =>
-        value < 2 ? "StreetAddress2 must have at least 2 letters" : null,
-      email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
-      Paypalemail: (value) =>
-        /^\S+@\S+$/.test(value) ? null : "Invalid email",
-    },
+    validate: {},
   })
 
   const nextStep = () =>
@@ -66,7 +90,7 @@ const DetailsForm = ({
       // }
       return current < 3 ? current + 1 : current
     })
-  console.log("gokula", formData)
+  // console.log("gokula", formData)
   // const payload = {
   //   paymentMethod: formData.paymentMethod,
   //   paypalEmail: formData.Paypalemail,
@@ -75,23 +99,42 @@ const DetailsForm = ({
   // if (PaymentDetails !== "paypal") {
   //   payload.accountNumber = formData.accountNumber
   // }
+  const [cityData, setCityData] = useState([])
+  // console.log(cityData)
+  const country = [...new Set(cityData.map((items) => items.country))]
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          "https://pkgstore.datahub.io/core/world-cities/world-cities_json/data/5b3dd46ad10990bca47b04b4739a02ba/world-cities_json.json"
+        )
+        const data = await response.json()
+        setCityData(data)
+      } catch (error) {
+        console.error("Error fetching city data:", error)
+      }
+    }
+
+    fetchData()
+  }, [])
+  console.log("demo", firstName)
   return (
     <div>
       <div class="w-full">
         <h1 className="text-4xl font-bold text-center">Details</h1>
         <form
           onSubmit={form.onSubmit(async (values) => {
-            try {
-              const response = await axios.post(
-                `https://wicked-shoe-cow.cyclic.app/MyDetails/${storedUserId}`,
-                values
-              )
+            // try {
+            //   const response = await axios.post(
+            //     `https://wicked-shoe-cow.cyclic.app/MyDetails/${storedUserId}`,
+            //     values
+            //   )
 
-              console.log("workingsdsd", response.data)
-            } catch (error) {
-              console.error(error)
-            }
+            //   console.log("workingsdsd", response.data)
+            // } catch (error) {
+            //   console.error(error)
+            // }
 
             setFormData(values)
             window.scrollTo({ top: 0, behavior: "smooth" })
@@ -105,19 +148,24 @@ const DetailsForm = ({
             <h3 className="text-2xl font-bold">My Details</h3>
             <div className="py-3">
               <Select
+                value={data?.title}
+                defaultValue={data?.title}
                 {...form.getInputProps("title")}
                 withAsterisk
                 label="Title"
                 placeholder="Pick one"
                 searchable
                 onSearchChange={onSearchChange}
-                searchValue={searchValue}
+                searchValue={data?.title}
                 nothingFound="No options"
                 data={["Dr", "Miss", "Mr", "Mrs", "Ms", "Rev", "Sir"]}
               />
             </div>
             <div class=" py-3">
               <TextInput
+                onChange={setFirstName}
+                defaultValue={data?.firstName}
+                value={data?.firstName}
                 type="text"
                 withAsterisk
                 label="First Name"
@@ -127,6 +175,7 @@ const DetailsForm = ({
             </div>
             <div class=" py-3">
               <TextInput
+                defaultValue={data?.lastName}
                 withAsterisk
                 label="Last Name"
                 placeholder="Last Name"
@@ -135,6 +184,8 @@ const DetailsForm = ({
             </div>
             <div class=" py-3">
               <TextInput
+                defaultValue={data?.email}
+                value={data?.email}
                 type="email"
                 withAsterisk
                 label="Email"
@@ -144,6 +195,8 @@ const DetailsForm = ({
             </div>
             <div class=" py-3">
               <TextInput
+                defaultValue={data?.Telephone}
+                value={data?.Telephone}
                 withAsterisk
                 label="Telephone"
                 placeholder="Telephone"
@@ -165,8 +218,7 @@ const DetailsForm = ({
               <h1 className="text-2xl font-bold ">Address Details</h1>
 
               <p className="text-gray-500 py-1">
-                Simply enter your postcode and choosethe right address from the
-                list
+                Please enter your address details below.
               </p>
               <div className="">
                 <div class=" flex items-center justify-between py-3">
@@ -203,6 +255,8 @@ const DetailsForm = ({
                 <div className="">
                   <div class=" py-3">
                     <TextInput
+                      defaultValue={data?.StreetAddress1}
+                      value={data?.StreetAddress1}
                       withAsterisk
                       label="Street Address1"
                       placeholder="StreetAddress1"
@@ -211,14 +265,44 @@ const DetailsForm = ({
                   </div>
                   <div class=" py-3">
                     <TextInput
+                      defaultValue={data?.StreetAddress2}
+                      value={data?.StreetAddress2}
                       withAsterisk
                       label="Street Address2"
                       placeholder="StreetAddress2"
                       {...form.getInputProps("StreetAddress2")}
                     />
                   </div>
+                  {/* <select
+                    name="country"
+                    className="form-control"
+                    onChange={(e) => handlecounty(e)}
+                  >
+                    <option value="">--Select Country--</option>
+                    {CountryCitits.map((getcountry, index) => (
+                      <option value={getcountry.country_id} key={index}>
+                        {getcountry.country_name}
+                      </option>
+                    ))}
+                  </select> */}
                   <div className="py-3">
                     <Select
+                      defaultValue={data?.Country}
+                      value={data?.Country}
+                      onChange={(e) => handlecounty(e)}
+                      withAsterisk
+                      label="Country"
+                      placeholder="Pick Country"
+                      name="Country"
+                      searchable
+                      data={CountryCitits.map((items) => items.country_name)}
+                      {...form.getInputProps("Country")}
+                    />
+                  </div>
+                  <div className="py-3">
+                    <Select
+                      defaultValue={data?.city}
+                      value={data?.city}
                       {...form.getInputProps("city")}
                       withAsterisk
                       label="Town / city"
@@ -226,17 +310,6 @@ const DetailsForm = ({
                       searchable
                       nothingFound="No options"
                       data={cities.data.map((value) => value.city)}
-                    />
-                  </div>
-                  <div className="py-3">
-                    <Select
-                      withAsterisk
-                      label="Country"
-                      placeholder="Pick Country"
-                      name="Country"
-                      searchable
-                      data={CountryData.countries}
-                      {...form.getInputProps("Country")}
                     />
                   </div>
                 </div>
@@ -289,6 +362,8 @@ const DetailsForm = ({
                   <h1 className="text-2xl font-bold ">Paypal Email *</h1>
                   <div class=" py-3">
                     <TextInput
+                      defaultValue={data?.Paypalemail}
+                      value={data?.Paypalemail}
                       type="email"
                       withAsterisk
                       label="Need for revice your payment"
@@ -311,6 +386,8 @@ const DetailsForm = ({
                         Account number<span className="text-[#E52D3B]">*</span>
                       </label>
                       <TextInput
+                        defaultValue={data?.accountNumber}
+                        value={data?.accountNumber}
                         {...form.getInputProps("accountNumber")}
                         placeholder="Account number"
                         type="text"
@@ -328,6 +405,8 @@ const DetailsForm = ({
                       <div className="flex items-center">
                         <div className=" w-full lg:w-3/12">
                           <TextInput
+                            defaultValue={data?.sortCode1}
+                            value={data?.sortCode1}
                             {...form.getInputProps("sortCode1")}
                             type="text"
                             maxLength={2}
@@ -336,7 +415,6 @@ const DetailsForm = ({
                             className="h-[67px] rounded-3xl lg:rounded-xl w-full lg:pl-6 pl-1 km_ignore"
                             name="customer_paymentinfo_bank_sort1"
                             id="customer_paymentinfo_bank_sort1"
-                            defaultValue=""
                           />
                         </div>
                         <div className="lg:px-4 px-1 -mt-3">-</div>
@@ -344,19 +422,22 @@ const DetailsForm = ({
                           <TextInput
                             {...form.getInputProps("sortCode2")}
                             type="text"
+                            defaultValue={data?.sortCode2}
+                            value={data?.sortCode2}
                             autoComplete="off"
                             title="Sort code digits 3 & 4"
                             maxLength={2}
                             className="h-[67px]  rounded-3xl lg:rounded-xl w-full lg:pl-6 pl-1 km_ignore"
                             name="customer_paymentinfo_bank_sort2"
                             id="customer_paymentinfo_bank_sort2"
-                            defaultValue=""
                           />
                         </div>
                         <div className="lg:px-4 px-1  -mt-3">-</div>
                         <div className=" w-full lg:w-3/12">
                           <TextInput
                             {...form.getInputProps("sortCode3")}
+                            defaultValue={data?.sortCode3}
+                            value={data?.sortCode3}
                             type="text"
                             autoComplete="off"
                             title="Sort code digits 5 & 6"
@@ -364,7 +445,6 @@ const DetailsForm = ({
                             className="h-[67px]  rounded-3xl lg:rounded-xl w-full lg:pl-6 pl-1 km_ignore"
                             name="customer_paymentinfo_bank_sort3"
                             id="customer_paymentinfo_bank_sort3"
-                            defaultValue=""
                           />
                         </div>
                       </div>

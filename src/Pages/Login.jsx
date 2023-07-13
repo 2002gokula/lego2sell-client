@@ -50,90 +50,109 @@ function Login() {
   }
 
   return (
-    <div>
-      <>
-        <div className="flex min-h-full h-[84.6vh] flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-          <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-            <img
-              className="mx-auto h-16 w-auto"
-              src="/Images/Logo1.png"
-              alt="Lego2sell"
-            />
-            <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-              Sign in to your account
-            </h2>
-          </div>
+    <div className="flex items-center justify-center flex-col">
+      <section className="lg:pt-24 px-6 py-10">
+        <div className="container md:text-center">
+          <h1 className="h1 text-4xl font-bold">Log in or create an account</h1>
+        </div>
+      </section>
+      <section className="py-10 lg:pb-24">
+        <div className="container px-6  flex flex-col lg:flex-row max-w-2xl lg:max-w-5xl">
+          <div className="w-full lg:w-5/12">
+            <h3 className="h3 text-3xl font-bold mb-6">Existing customers</h3>
+            <p className="mb-8  font-medium text-[#87888F]">
+              Already have an account with us? Log in using Facebook or enter
+              your email and password below.
+            </p>
 
-          <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
+            <form
+              onSubmit={handleSubmit}
+              id="login-form"
+              action=""
+              method="post"
+            >
+              <div className="mb-6">
                 <label
-                  htmlFor="email"
-                  className="block text-sm font-medium leading-6 text-gray-900"
+                  className="w-full flex font-bold text-sm mb-2"
+                  htmlFor="user-name"
                 >
-                  Email address
+                  Email address<span className="text-[#E52D3B]">*</span>
                 </label>
-                <div className="mt-2">
-                  <input
-                    onChange={handleEmailChange}
-                    id="email"
-                    value={email}
-                    name="email"
-                    placeholder="Email"
-                    type="email"
-                    autoComplete="email"
-                    required
-                    className="block w-full pl-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
-                </div>
+                <input
+                  onChange={handleEmailChange}
+                  id="email"
+                  value={email}
+                  className="h-[67px] border border-[rgba(133,138,149,0.4)] rounded-3xl lg:rounded-xl w-full pl-6"
+                  type="text"
+                  name="customer_email"
+                  placeholder="Email Address"
+                  defaultValue="uk"
+                />
               </div>
-
-              <div>
-                <div className="flex items-center justify-between">
-                  <label
-                    htmlFor="password"
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                  >
-                    Password
-                  </label>
-                </div>
-                <div className="mt-2">
-                  <input
-                    placeholder="password"
-                    value={password}
-                    onChange={handlePasswordChange}
-                    id="password"
-                    name="password"
-                    type="password"
-                    autoComplete="current-password"
-                    required
-                    className="block  pl-4  w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <button
-                  type="submit"
-                  className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              <div className="login-form-password">
+                <label
+                  className="w-full flex font-bold text-sm mb-2"
+                  htmlFor="password"
                 >
-                  Sign In
-                </button>
+                  Password<span className="text-[#E52D3B]">*</span>
+                </label>
+                <input
+                  value={password}
+                  onChange={handlePasswordChange}
+                  className="h-[67px] border border-[rgba(133,138,149,0.4)] rounded-3xl lg:rounded-xl w-full pl-6"
+                  type="password"
+                  name="password"
+                  id="password"
+                  placeholder="Password"
+                  defaultValue="Gk8883578186@"
+                />
+              </div>
+              <div className="mt-8">
+                <div className="mt-4">
+                  <button
+                    type="submit"
+                    className="cursor-pointer bg-[#69B832] text-white rounded-full h-[80px] w-full flex items-center justify-center font-bold text-lg"
+                  >
+                    Submit
+                  </button>
+                  {/* <input
+                    className="cursor-pointer bg-[#69B832] text-white rounded-full h-[80px] w-full flex items-center justify-center font-bold text-lg"
+                    type="submit"
+                    id="login-button"
+                    defaultValue="Log in"
+                  /> */}
+                </div>
+              </div>
+              <div className="mt-4">
+                <a
+                  title="Forgotten Password"
+                  className="text-sm font-bold text-[#706AEA]"
+                  href="/forgot-password/"
+                >
+                  I've forgotten my password
+                </a>
               </div>
             </form>
-
-            <p className="mt-10 text-center text-sm text-gray-500">
-              You already Have Account
-              <Link
-                to="/lego2sell-client/signup/"
-                className="font-semibold pl-2 leading-6 text-indigo-600 hover:text-indigo-500"
-              >
-                Sign up
-              </Link>
+          </div>
+          <div className="w-full lg:w-2/12 text-center flex items-center justify-center py-14 lg:py-0">
+            <h3 className="h3 font-bold text-2xl">Or</h3>
+          </div>
+          <div className="w-full lg:w-5/12">
+            <h3 className="h3 text-3xl font-bold mb-6">New customers</h3>
+            <p className="mb-8 ont-medium text-[#87888F]">
+              Create an account with WeBuyBricks to start selling your LEGO® for
+              cash! Creating an account will allow you to easily view and track
+              your orders and much more.
             </p>
+            <Link
+              to="/lego2sell-client/signup/"
+              className="bg-[#69B832] text-white rounded-full h-[80px] w-full flex items-center justify-center font-bold text-lg"
+            >
+              Create an account
+            </Link>
           </div>
         </div>
-      </>
+      </section>
     </div>
   )
 }

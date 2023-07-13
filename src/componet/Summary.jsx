@@ -2,7 +2,7 @@ import { Checkbox, Group, Loader, Radio } from "@mantine/core"
 import axios from "axios"
 import React, { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-
+import { Country, State, City } from "country-state-city"
 const summary = ({
   data,
   price,
@@ -12,11 +12,12 @@ const summary = ({
   formData,
   storedUserId,
 }) => {
-  console.log("SearchValue", SearchValue)
+  // console.log("SearchValue", SearchValue)
   const navigation = useNavigate()
   const [sendMethod, setSendMethod] = useState("Dropoff")
   console.log(formData)
   const [acceptOffer, setAcceptOffer] = useState()
+  const [details, setDetails] = useState()
   const payload = {
     Deliverymethod: sendMethod,
     Price: price ? price.toFixed(2) : null,
@@ -26,6 +27,21 @@ const summary = ({
     ProductId: SearchValue,
     ProductImg: data.body.image_url,
   }
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `https://wicked-shoe-cow.cyclic.app/Mydetails/${storedUserId}`
+        )
+        setDetails(response.data.Mydetails[0])
+      } catch (error) {
+        console.error("An error occurred:", error)
+        // Handle the error as needed
+      }
+    }
+
+    fetchData()
+  }, [])
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
@@ -43,6 +59,7 @@ const summary = ({
     })
     window.scrollTo({ top: 0, behavior: "smooth" })
   }
+
   return (
     <>
       <h1 className="text-4xl py-4 font-bold text-center">Offer Summary</h1>
@@ -321,29 +338,29 @@ const summary = ({
                   <div className="flex items-center py-1 gap-4">
                     <h3 className="text-base font-semibold">Name:</h3>
                     <h6 className="text-base">
-                      {formData.firstName} {formData.lastName}
+                      {details?.firstName} {details?.lastName}
                     </h6>
                   </div>
                   <div className="flex items-center  py-1 gap-4">
                     <h3 className="text-base font-semibold">Email:</h3>
-                    <h6 className="text-base">{formData.email}</h6>
+                    <h6 className="text-base">{details?.email}</h6>
                   </div>
                   <div className="flex items-center py-1 gap-4">
                     <h3 className="text-base font-semibold">Telephone:</h3>
-                    <h6 className="text-base">{formData.Telephone}</h6>
+                    <h6 className="text-base">{details?.Telephone}</h6>
                   </div>
                   <div className="flex items-center py-1 gap-4">
                     <h3 className="text-base font-semibold">Address:</h3>
                     <h6 className="text-base">
-                      {formData.StreetAddress1}
-                      {formData.city} {formData.Country}
+                      {details?.StreetAddress1}
+                      {details?.city} {details?.Country}
                     </h6>
                   </div>
                   <div className="flex items-center py-1 gap-4">
                     <h3 className="text-base font-semibold">
                       Payment details:
                     </h3>
-                    <h6 className="text-base">{formData.paymentMethod}</h6>
+                    <h6 className="text-base">{details?.paymentMethod}</h6>
                   </div>
                 </div>
               </div>

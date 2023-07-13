@@ -42,10 +42,10 @@ const Dashboard = () => {
       localStorage.setItem("totalPrice", totalPrice.toFixed(2))
     }
   }, [orderitems])
-  console.log(totalPrice)
+  // console.log(totalPrice)
   return (
     <div>
-      <section className="overflow-hidden h-[84.4vh]">
+      <section className="overflow-y-scroll h-[84vh]">
         <div className="flex flex-col px-6  lg:flex-row">
           <div className="w-full lg:w-9/12 lg:pl-20 py-12 lg:py-24">
             <h1 className="text-4xl font-extrabold mb-6">My dashboard</h1>
