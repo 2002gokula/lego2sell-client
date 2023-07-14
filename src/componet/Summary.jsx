@@ -49,15 +49,15 @@ const summary = ({
         `https://wicked-shoe-cow.cyclic.app/Getorder/${storedUserId}`,
         payload
       )
-
-      console.log("workingsdsd", response.data)
+      const offerId = response.data.offerId
+      navigation("/lego2sell-client/success", {
+        state: { data, price, SearchValue, condition, offerId },
+      })
+      window.scrollTo({ top: 0, behavior: "smooth" })
+      console.log("workingsdsd", response.data.offerId)
     } catch (error) {
       console.error(error)
     }
-    navigation("/lego2sell-client/success", {
-      state: { data, price, SearchValue, condition },
-    })
-    window.scrollTo({ top: 0, behavior: "smooth" })
   }
 
   return (
@@ -72,22 +72,6 @@ const summary = ({
 
             <p className="text-gray-500 py-1">Select your preferred method*</p>
             <div className="">
-              {/* <div className="py-8">
-                <Radio.Group withAsterisk>
-                  <Group mt="xs">
-                    <div className="flex relative items-center gap-4 border rounded-xl px-8 py-7">
-                      <Radio value="react" label="Drop off your trade" />
-                      <div className=" bg-blue-500 px-4 py-1 rounded-t-lg text-white absolute -top-8 left-0">
-                        ⭐ Recommended
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-4 border rounded-xl px-8 py-6">
-                      <Radio value="svelte" label="Home Collection" />
-                     
-                    </div>
-                  </Group>
-                </Radio.Group>
-              </div> */}
               <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 mb-14">
                 <label
                   htmlFor="deliverymethoddropoff"
@@ -152,7 +136,7 @@ const summary = ({
                           maxWidth: "100%",
                         }}
                       >
-                        <img
+                        {/* <img
                           alt=""
                           aria-hidden="true"
                           src="./Images/evri.webp"
@@ -167,9 +151,9 @@ const summary = ({
                             margin: 0,
                             padding: 0,
                           }}
-                        />
+                        /> */}
                       </span>
-                      <img
+                      {/* <img
                         src="./Images/evri.webp"
                         decoding="async"
                         data-nimg="intrinsic"
@@ -188,8 +172,7 @@ const summary = ({
                           minHeight: "100%",
                           maxHeight: "100%",
                         }}
-                      />
-                      <noscript />
+                      /> */}
                     </span>
                   </div>
                   <div className="relative rounded-b-lg bg-[rgba(112,106,234,0.05)] p-6 py-10">
@@ -271,7 +254,7 @@ const summary = ({
                           maxWidth: "100%",
                         }}
                       >
-                        <img
+                        {/* <img
                           alt=""
                           aria-hidden="true"
                           src="./Images/evri.webp"
@@ -286,9 +269,9 @@ const summary = ({
                             margin: 0,
                             padding: 0,
                           }}
-                        />
+                        /> */}
                       </span>
-                      <img
+                      {/* <img
                         src="./Images/evri.webp"
                         decoding="async"
                         data-nimg="intrinsic"
@@ -307,8 +290,7 @@ const summary = ({
                           minHeight: "100%",
                           maxHeight: "100%",
                         }}
-                      />
-                      <noscript />
+                      /> */}
                     </span>
                   </div>
                   <div className="bg-[rgba(55,56,69,0.05)] p-6 py-10 h-full">
@@ -334,35 +316,43 @@ const summary = ({
                     Edit
                   </button>
                 </div>
-                <div className="border px-6 my-4 py-4 rounded-xl">
-                  <div className="flex items-center py-1 gap-4">
-                    <h3 className="text-base font-semibold">Name:</h3>
-                    <h6 className="text-base">
-                      {details?.firstName} {details?.lastName}
-                    </h6>
+                {details ? (
+                  <div className="border px-6 my-4 py-4 rounded-xl">
+                    <div className="flex items-center py-1 gap-4">
+                      <h3 className="text-base font-semibold">Name:</h3>
+                      <h6 className="text-base">
+                        {details?.firstName} {details?.lastName}
+                      </h6>
+                    </div>
+                    <div className="flex items-center  py-1 gap-4">
+                      <h3 className="text-base font-semibold">Email:</h3>
+                      <h4 className="text-base line-clamp-4 w-[200px] lg:w-full ">
+                        {details?.email}
+                      </h4>
+                    </div>
+                    <div className="flex items-center py-1 gap-4">
+                      <h3 className="text-base font-semibold">Telephone:</h3>
+                      <h6 className="text-base">{details?.Telephone}</h6>
+                    </div>
+                    <div className="flex items-center py-1 gap-4">
+                      <h3 className="text-base font-semibold">Address:</h3>
+                      <h6 className="text-base">
+                        {details?.StreetAddress1}
+                        {details?.city} {details?.Country}
+                      </h6>
+                    </div>
+                    <div className="flex items-center py-1 gap-4">
+                      <h3 className="text-base font-semibold">
+                        Payment details:
+                      </h3>
+                      <h6 className="text-base">{details?.paymentMethod}</h6>
+                    </div>
                   </div>
-                  <div className="flex items-center  py-1 gap-4">
-                    <h3 className="text-base font-semibold">Email:</h3>
-                    <h6 className="text-base">{details?.email}</h6>
+                ) : (
+                  <div className="py-12">
+                    <Loader />
                   </div>
-                  <div className="flex items-center py-1 gap-4">
-                    <h3 className="text-base font-semibold">Telephone:</h3>
-                    <h6 className="text-base">{details?.Telephone}</h6>
-                  </div>
-                  <div className="flex items-center py-1 gap-4">
-                    <h3 className="text-base font-semibold">Address:</h3>
-                    <h6 className="text-base">
-                      {details?.StreetAddress1}
-                      {details?.city} {details?.Country}
-                    </h6>
-                  </div>
-                  <div className="flex items-center py-1 gap-4">
-                    <h3 className="text-base font-semibold">
-                      Payment details:
-                    </h3>
-                    <h6 className="text-base">{details?.paymentMethod}</h6>
-                  </div>
-                </div>
+                )}
               </div>
               <div className="">
                 <h1 className="text-2xl font-bold py-4 ">
@@ -421,8 +411,8 @@ const summary = ({
           </div>
         </div>
         <div className="flex-[0.4]">
-          <div className="w-full sticky top-12 mt-10 md:mt-0  md:relative bottom-0 left-0 right-0 z-10">
-            <div className="bg-white rounded-2xl  shadow-[0_4px_25px_rgba(38,50,92,0.1)] p-4 px-6 md:p-8 text-center md:sticky md:top-[160px]">
+          <div className="w-full ">
+            <div className="bg-white relative lg:!fixed lg:!top-[310px] w-full lg:w-[340px] rounded-2xl  shadow-[0_4px_25px_rgba(38,50,92,0.1)] p-4 px-6 md:p-8 text-center ">
               <h2 className="h4 mb-4 hidden md:block">Offer summary</h2>
               <div className="flex flex-row md:flex-col items-center justify-between">
                 <div className="text-[#706AEA] text-xl md:text-5xl font-bold mb-0 md:mb-2 order-2 md:order-1">
@@ -432,7 +422,7 @@ const summary = ({
                   1 Item
                 </div>
               </div>
-              <div className="flex gap-1">
+              <div className="flex py-4 gap-1">
                 <Checkbox onChange={() => setAcceptOffer(!acceptOffer)} />
                 <p>
                   {`I accept the offer of   £
@@ -446,9 +436,9 @@ const summary = ({
                 type="button"
                 className={` hover:scale-[1.05] ${
                   acceptOffer
-                    ? "bg-blue-500 "
-                    : "bg-gray-400 cursor-not-allowed"
-                } transition-all mt-4 w-full text-center lg:ml-0 flex items-center justify-center px-6 lg:px-9 rounded-full  hover:bg-white hover:text-black  hover:border text-white font-bold text-[15px] h-[49px] lg:h-[65px]  xl:text-[18px]`}
+                    ? "bg-blue-500 rounded-xl "
+                    : "bg-gray-400 rounded-xl  cursor-not-allowed"
+                } transition-all mt-4 w-full text-center lg:ml-0 flex items-center justify-center px-6 lg:px-9 bg-blue-500 hover:bg-white hover:text-black  hover:border text-white font-bold text-[15px] h-[49px] lg:h-[65px]  xl:text-[18px]`}
               >
                 Complete Offer
               </button>

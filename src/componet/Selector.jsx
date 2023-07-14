@@ -3,7 +3,14 @@ import { Combobox, Transition } from "@headlessui/react"
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid"
 import { Select } from "@mantine/core"
 
-function Selector({ data, selected, setSelected, setSelect }) {
+function Selector({
+  data,
+  form,
+  selected,
+  setSelected,
+  setSelect,
+  setSelectedCoutry,
+}) {
   const [query, setQuery] = useState("")
   // console.log(query)
   const filteredPeople =
@@ -50,6 +57,7 @@ function Selector({ data, selected, setSelected, setSelect }) {
               ) : (
                 filteredPeople.map((person) => (
                   <Combobox.Option
+                    // onClick={() => setSelectedCoutry(person.name)}
                     key={person.id}
                     className={({ active }) =>
                       `relative cursor-pointer select-none py-2 pl-10 pr-4 ${
@@ -63,7 +71,6 @@ function Selector({ data, selected, setSelected, setSelect }) {
                     {({ selected, active }) => (
                       <>
                         <span
-                          onClick={() => setSelect(person.name)}
                           className={`block truncate ${
                             selected ? "font-medium" : "font-normal"
                           }`}

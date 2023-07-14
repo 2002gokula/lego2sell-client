@@ -1,11 +1,39 @@
 import { Loader } from "@mantine/core"
-import React from "react"
+import axios from "axios"
+import React, { useEffect, useState } from "react"
 import { Link, useLocation } from "react-router-dom"
 
 const SuccessPage = () => {
   const location = useLocation()
+  const storedUserId = localStorage.getItem("userId")
   const condition = location.state.condition
+  const offerId = location.state.offerId
   const price = location.state.price
+  const [orderitems, setOrderitems] = useState()
+  console.log(orderitems)
+  useEffect(() => {
+    const fetchUserOrders = async () => {
+      try {
+        const response = await axios.get(
+          `https://wicked-shoe-cow.cyclic.app/Getorder/${storedUserId}`
+        )
+
+        if (response.status === 200) {
+          const { orders } = response.data
+          console.log("User orders:", orders)
+          setOrderitems(orders)
+          // Process the orders data as needed
+        } else {
+          throw new Error("Error: " + response.status)
+        }
+      } catch (error) {
+        console.error("An error occurred:", error)
+        // Handle the error as needed
+      }
+    }
+
+    fetchUserOrders()
+  }, [storedUserId, setOrderitems])
   return (
     <div>
       <section className="lg:pt-24 px-6 py-10">
@@ -28,11 +56,13 @@ const SuccessPage = () => {
               />
             </svg>
           </div>
-          <h1 className="h1 mb-6">Thank you for selling your LEGO®</h1>
-          <div className="text-base md:text-2xl">
+          <h1 className="h1 text-2xl text-center font-bold mb-6">
+            Thank you for selling your LEGO®
+          </h1>
+          <div className="text-lg text-center font-medium md:text-2xl">
             Your offer ID is
-            <strong className="font-bold text-[#706AEA]">#5000374</strong> |
-            You'll receive{" "}
+            <strong className="font-bold text-[#706AEA]">#{offerId}</strong> |
+            You'll receive
             {price ? (
               <strong className="font-bold text-[#706AEA]">
                 £{price.toFixed(2)}
@@ -45,7 +75,7 @@ const SuccessPage = () => {
       </section>
       <section className="py-10 lg:pb-24">
         <div className="">
-          <h2 className="h3 px-6 mb-8 md:text-center">
+          <h2 className="h3 px-6 mb-8 text-center">
             What you need to do next...
           </h2>
           <div className="relative">

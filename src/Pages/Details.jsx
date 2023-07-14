@@ -16,8 +16,8 @@ const Details = () => {
   const prevStep = () =>
     setActive((current) => (current > 0 ? current - 1 : current))
   return (
-    <div className="py-12 flex items-center justify-center">
-      <div className="w-[80%] overflow-y-scroll">
+    <div className="py-12 flex  items-center justify-center">
+      <div className="w-[80%] ">
         <Stepper
           active={active}
           mx={{ display: "flex" }}

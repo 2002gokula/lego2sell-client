@@ -20,52 +20,14 @@ const SignUpForm = () => {
   const [password, setPassword] = useState("")
   const [repeatpassword, setRepeatpassword] = useState()
   const navigation = useNavigate()
-  const handleSubmit3 = async (e) => {
-    e.preventDefault()
 
-    try {
-      const response = await fetch(
-        "https://wicked-shoe-cow.cyclic.app/signup",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, password }),
-        }
-      )
-
-      if (!response.ok) {
-        throw new Error("Error: " + response.status)
-      }
-
-      // Sign-up successful
-      const responseData = await response.json()
-      const userId = responseData.userId // Access the _id field from the response
-      console.log("Sign-up successful. User ID:", userId)
-
-      // Reset form inputs
-      setEmail("")
-      setPassword("")
-
-      // Save the user ID in localStorage
-      localStorage.setItem("userId", userId)
-
-      // Navigate to another route
-      navigation(`/lego2sell-client/`)
-    } catch (error) {
-      console.error("An error occurred:", error)
-      // Handle the error as needed
-    }
-  }
   // demo
   const [searchValue, onSearchChange] = useState("")
-  const [selectedCoutry, setSelectedCoutry] = useState()
-  const [selectedCity, setSelectedCity] = useState()
-  const [selectedState, setSelectedState] = useState()
+  const [selectedCoutry, setSelectedCoutry] = useState("")
+  const [selectedCity, setSelectedCity] = useState("")
+  const [selectedState, setSelectedState] = useState("")
   const [PaymentDetails, setPaymentDetails] = useState("Paypal")
   const [state, setState] = useState([])
-  console.log("demo9999", selectedCoutry)
   const form = useForm({
     initialValues: {
       email: "",
@@ -78,7 +40,7 @@ const SignUpForm = () => {
       termsOfService: true,
       StreetAddress2: "",
       city: selectedCity,
-      // State: selectedState,
+      State: selectedState,
       Country: selectedCoutry,
       Paypalemail: "",
       accountNumber: "",
@@ -110,8 +72,27 @@ const SignUpForm = () => {
   })
 
   const handleSubmit = async (values) => {
-    console.log(values)
     try {
+      const payload = {
+        email: form.values.email,
+        paymentMethod: form.values.paymentMethod,
+        firstName: form.values.firstName,
+        lastName: form.values.lastName,
+        Telephone: form.values.Telephone,
+        title: form.values.title,
+        StreetAddress1: form.values.StreetAddress1,
+        termsOfService: form.values.termsOfService,
+        StreetAddress2: form.values.StreetAddress2,
+        city: selectedCity,
+        State: selectedState,
+        Country: selectedCoutry,
+        Paypalemail: form.values.Paypalemail,
+        accountNumber: form.values.accountNumber,
+        sortCode1: form.values.sortCode1,
+        sortCode2: form.values.sortCode2,
+        sortCode3: form.values.sortCode3,
+      }
+      console.log(values)
       const response = await fetch(
         "https://wicked-shoe-cow.cyclic.app/signup",
         {
@@ -119,13 +100,10 @@ const SignUpForm = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            email: values.email,
-            password,
-          }),
+          body: JSON.stringify({ email: form.values.email, password }),
         }
       )
-
+      console.log(form.email)
       if (!response.ok) {
         throw new Error("Error: " + response.status)
       }
@@ -142,7 +120,7 @@ const SignUpForm = () => {
       setPassword("")
       const response1 = await axios.post(
         `https://wicked-shoe-cow.cyclic.app/MyDetails/${userId}`,
-        values
+        payload
       )
       console.log("sdsds", response1.data)
       // Navigate to another route

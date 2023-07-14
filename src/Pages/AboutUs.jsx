@@ -77,7 +77,7 @@ const AboutUs = () => {
                 improvement.
               </p>
             </div>
-            <button className="text-xl border duration-300 hover:bg-white hover:border hover:text-black font-bold px-6 py-4 my-6 bg-green-400 text-black rounded-full">
+            <button className="text-xl border duration-300 hover:bg-white hover:border hover:text-black font-bold px-6 py-4 my-6 rounded-xl bg-blue-500 text-white ">
               How its Works ?
             </button>
           </div>

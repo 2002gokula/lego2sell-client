@@ -14,25 +14,26 @@ const CountryCity = ({
   const [country, setCountry] = useState(countryData[231])
   const [state, setState] = useState()
   const [city, setCity] = useState()
-  // console.log(state)
+  console.log(country.name)
 
   useEffect(() => {
     setStateData(State.getStatesOfCountry(country?.isoCode))
-    // setSelectedCoutry(state)
-  }, [country])
+    setSelectedState(state?.name)
+    setSelectedCoutry(country.name)
+    setSelectedCity(city?.name)
+  }, [country, state, city])
 
   useEffect(() => {
     setCityData(City.getCitiesOfState(country?.isoCode, state?.isoCode))
   }, [state])
 
   useEffect(() => {
-    stateData && setState(stateData)
+    stateData && setState(stateData[0])
   }, [stateData])
 
   useEffect(() => {
     cityData && setCity(cityData[0])
   }, [cityData])
-  // console.log(country.name)
   return (
     <section className="w-full">
       <div className="w-full">
@@ -40,7 +41,7 @@ const CountryCity = ({
           <div>
             <p className="font-semibold">Country*</p>
             <Selector
-              setSelect={setSelectedCoutry}
+              // setSelectedCoutry={setSelectedCoutry}
               form={form}
               data={countryData}
               selected={country}
@@ -51,6 +52,7 @@ const CountryCity = ({
             <div>
               <p className=" font-semibold">State*</p>
               <Selector
+                // setSelectedCoutry={setSelectedState}
                 setSelect={setSelectedState}
                 data={stateData}
                 selected={state}

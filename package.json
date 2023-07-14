@@ -19,6 +19,7 @@
     "@mantine/dates": "^6.0.15",
     "@mantine/form": "^6.0.15",
     "@mantine/hooks": "^6.0.15",
+    "@tabler/icons-react": "^2.25.0",
     "aos": "^3.0.0-beta.6",
     "axios": "^1.4.0",
     "country-state-city": "^3.1.4",

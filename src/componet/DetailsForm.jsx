@@ -120,30 +120,30 @@ const DetailsForm = ({
   }, [])
   console.log("demo", firstName)
   return (
-    <div>
-      <div class="w-full">
-        <h1 className="text-4xl font-bold text-center">Details</h1>
-        <form
-          onSubmit={form.onSubmit(async (values) => {
-            // try {
-            //   const response = await axios.post(
-            //     `https://wicked-shoe-cow.cyclic.app/MyDetails/${storedUserId}`,
-            //     values
-            //   )
+    <div className="!h-[100%]">
+      <h1 className="text-4xl font-bold text-center">Details</h1>
+      <form
+        onSubmit={form.onSubmit(async (values) => {
+          // try {
+          //   const response = await axios.post(
+          //     `https://wicked-shoe-cow.cyclic.app/MyDetails/${storedUserId}`,
+          //     values
+          //   )
 
-            //   console.log("workingsdsd", response.data)
-            // } catch (error) {
-            //   console.error(error)
-            // }
+          //   console.log("workingsdsd", response.data)
+          // } catch (error) {
+          //   console.error(error)
+          // }
 
-            setFormData(values)
-            window.scrollTo({ top: 0, behavior: "smooth" })
-            nextStep()
-          })}
-          id="login-form"
-          className="py-6 flex-col lg:flex-row space-x-0 lg:space-x-12 flex"
-          method="post"
-        >
+          setFormData(values)
+          window.scrollTo({ top: 0, behavior: "smooth" })
+          nextStep()
+        })}
+        id="login-form"
+        className=""
+        method="post"
+      >
+        <div className="py-6 w-full flex-col lg:flex-row space-x-0 lg:space-x-12 flex">
           <div className="flex-1">
             <h3 className="text-2xl font-bold">My Details</h3>
             <div className="py-3">
@@ -273,18 +273,7 @@ const DetailsForm = ({
                       {...form.getInputProps("StreetAddress2")}
                     />
                   </div>
-                  {/* <select
-                    name="country"
-                    className="form-control"
-                    onChange={(e) => handlecounty(e)}
-                  >
-                    <option value="">--Select Country--</option>
-                    {CountryCitits.map((getcountry, index) => (
-                      <option value={getcountry.country_id} key={index}>
-                        {getcountry.country_name}
-                      </option>
-                    ))}
-                  </select> */}
+
                   <div className="py-3">
                     <Select
                       defaultValue={data?.Country}
@@ -295,20 +284,22 @@ const DetailsForm = ({
                       placeholder="Pick Country"
                       name="Country"
                       searchable
+                      searchValue={data?.Country}
                       data={CountryCitits.map((items) => items.country_name)}
                       {...form.getInputProps("Country")}
                     />
                   </div>
                   <div className="py-3">
                     <Select
-                      defaultValue={data?.city}
-                      value={data?.city}
+                      searchValue={data?.city}
+                      // defaultValue={data?.city}
+                      // value={data?.city}
                       {...form.getInputProps("city")}
                       withAsterisk
                       label="Town / city"
                       placeholder=" Pick Town / city "
                       searchable
-                      nothingFound="No options"
+                      // nothingFound="No options"
                       data={cities.data.map((value) => value.city)}
                     />
                   </div>
@@ -383,7 +374,8 @@ const DetailsForm = ({
                   <div className="flex flex-col md:flex-row">
                     <div className="w-full md:w-1/2 md:pr-4 mb-4 md:mb-0">
                       <label className="w-full flex text-2xl font-bold mb-2">
-                        Account number<span className="text-[#E52D3B]">*</span>
+                        Account number
+                        <span className="text-[#E52D3B]">*</span>
                       </label>
                       <TextInput
                         defaultValue={data?.accountNumber}
@@ -459,36 +451,34 @@ const DetailsForm = ({
               )}
             </div>
           </div>
-          <div className="flex-[0.4] sticky top-5">
-            <div className="w-full mt-10 md:mt-0  md:relative bottom-0 left-0 right-0 z-10">
-              <div className="bg-white  rounded-2xl shadow-[0_4px_25px_rgba(38,50,92,0.1)] p-4 px-6 md:p-8 text-center !sticky top-[160px]">
-                <h2 className="h4 mb-4 hidden md:block">Offer summary</h2>
-                <div className="flex flex-row md:flex-col items-center justify-between">
-                  <div className="text-[#706AEA] text-xl md:text-5xl font-bold mb-0 md:mb-2 order-2 md:order-1">
-                    <h2>
-                      {" "}
-                      {price ? (
-                        <h2> £{price.toFixed(2)}</h2>
-                      ) : (
-                        <Loader size="xs" />
-                      )}
-                    </h2>
-                  </div>
-                  <div className="font-bold text-xl md:text-base order-1 md:order-2">
-                    1 Item
-                  </div>
+          <div className="flex-[0.4]">
+            <div className="bg-white relative lg:!fixed !top-18 w-full lg:w-[340px] rounded-2xl shadow-[0_4px_25px_rgba(38,50,92,0.1)] p-4 px-6 md:p-8 text-center ">
+              <h2 className="h4 mb-4 hidden md:block">Offer summary</h2>
+              <div className="flex flex-row md:flex-col items-center justify-between">
+                <div className="text-[#706AEA] text-xl md:text-5xl font-bold mb-0 md:mb-2 order-2 md:order-1">
+                  <h2>
+                    {" "}
+                    {price ? (
+                      <h2> £{price.toFixed(2)}</h2>
+                    ) : (
+                      <Loader size="xs" />
+                    )}
+                  </h2>
                 </div>
-                <button
-                  type="submit"
-                  className="hover:scale-[1.05] transition-all mt-4 w-full text-center lg:ml-0 flex items-center justify-center px-6 lg:px-9 rounded-full bg-blue-500 hover:bg-white hover:text-black  hover:border text-white font-bold text-[15px] h-[49px] lg:h-[65px]  xl:text-[18px]"
-                >
-                  Continue
-                </button>
+                <div className="font-bold text-xl md:text-base order-1 md:order-2">
+                  1 Item
+                </div>
               </div>
+              <button
+                type="submit"
+                className="hover:scale-[1.05] transition-all mt-4 w-full text-center lg:ml-0 flex items-center justify-center px-6 lg:px-9 rounded-xl bg-blue-500 hover:bg-white hover:text-black  hover:border text-white font-bold text-[15px] h-[49px] lg:h-[65px]  xl:text-[18px]"
+              >
+                Continue
+              </button>
             </div>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   )
 }
