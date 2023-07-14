@@ -291,9 +291,7 @@ const DetailsForm = ({
                   </div>
                   <div className="py-3">
                     <Select
-                      searchValue={data?.city}
-                      // defaultValue={data?.city}
-                      // value={data?.city}
+                      searchValue={data?.State}
                       {...form.getInputProps("city")}
                       withAsterisk
                       label="Town / city"
@@ -303,6 +301,20 @@ const DetailsForm = ({
                       data={cities.data.map((value) => value.city)}
                     />
                   </div>
+                  {data?.city && (
+                    <div className="py-3">
+                      <Select
+                        searchValue={data?.city}
+                        {...form.getInputProps("city")}
+                        withAsterisk
+                        label="city"
+                        placeholder=" Pick Town / city "
+                        searchable
+                        // nothingFound="No options"
+                        data={cities.data.map((value) => value.city)}
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
