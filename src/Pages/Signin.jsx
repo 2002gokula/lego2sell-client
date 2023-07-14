@@ -28,7 +28,7 @@ const SignUpForm = () => {
   const [selectedState, setSelectedState] = useState("")
   const [PaymentDetails, setPaymentDetails] = useState("Paypal")
   // const [state, setState] = useState([])
-  console.log("demo98892323", selectedCoutry)
+  console.log("demo98892323", selectedState)
   const form = useForm({
     initialValues: {
       email: "",

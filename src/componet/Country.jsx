@@ -15,16 +15,17 @@ const CountryCity = ({
   const [country, setCountry] = useState(countryData[231])
   const [state, setState] = useState()
   const [city, setCity] = useState()
-
+  // console.log(state?.name)
   useEffect(() => {
     setStateData(State.getStatesOfCountry(country?.isoCode))
     setSelectedCoutry(country?.name)
-    setSelectedState(state?.name)
+
     setSelectedCity(city?.name)
   }, [country])
 
   useEffect(() => {
     setCityData(City.getCitiesOfState(country?.isoCode, state?.isoCode))
+    setSelectedState(state?.name)
   }, [state])
 
   useEffect(() => {
