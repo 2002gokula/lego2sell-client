@@ -27,7 +27,8 @@ const SignUpForm = () => {
   const [selectedCity, setSelectedCity] = useState("")
   const [selectedState, setSelectedState] = useState("")
   const [PaymentDetails, setPaymentDetails] = useState("Paypal")
-  const [state, setState] = useState([])
+  // const [state, setState] = useState([])
+  console.log("demo98892323", selectedCoutry)
   const form = useForm({
     initialValues: {
       email: "",
@@ -103,7 +104,6 @@ const SignUpForm = () => {
           body: JSON.stringify({ email: form.values.email, password }),
         }
       )
-      console.log(form.email)
       if (!response.ok) {
         throw new Error("Error: " + response.status)
       }

@@ -8,7 +8,7 @@ function Selector({
   form,
   selected,
   setSelected,
-  setSelect,
+
   setSelectedCoutry,
 }) {
   const [query, setQuery] = useState("")
@@ -57,7 +57,6 @@ function Selector({
               ) : (
                 filteredPeople.map((person) => (
                   <Combobox.Option
-                    // onClick={() => setSelectedCoutry(person.name)}
                     key={person.id}
                     className={({ active }) =>
                       `relative cursor-pointer select-none py-2 pl-10 pr-4 ${
