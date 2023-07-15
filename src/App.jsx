@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom"
 import "./App.css"
 import { Loader, Modal, Tooltip } from "@mantine/core"
 import { useDisclosure } from "@mantine/hooks"
+import { Helmet } from "react-helmet"
 const App = () => {
   const [e, setE] = useState("")
   const [isLoading, setIsLoading] = useState(false)
@@ -10,39 +11,36 @@ const App = () => {
   const navigation = useNavigate()
   const storedUserId = localStorage.getItem("userId")
   const handleSearch = async () => {
-    if (storedUserId === "") {
-      navigation(`/lego2sell-client/signup`)
-    } else {
-      try {
-        setIsLoading(true) // Set loading state to true
+    try {
+      setIsLoading(true) // Set loading state to true
 
-        const response = await fetch(
-          "https://wicked-shoe-cow.cyclic.app/find-lego",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ itemCode: e }),
-          }
-        )
-        const data = await response.json()
-        console.log("Data", data)
-
-        if (data.message === "SUCCESS") {
-          navigation(`/lego2sell-client/product/`, {
-            state: { data, e },
-          })
-        } else {
-          open(true)
-          // alert("Could not find the LEGO you are looking for.")
+      const response = await fetch(
+        "https://wicked-shoe-cow.cyclic.app/find-lego",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ itemCode: e }),
         }
-      } catch {
+      )
+      const data = await response.json()
+      console.log("Data", data)
+      localStorage.setItem("data", data)
+      if (data.message === "SUCCESS") {
+        navigation(`/lego2sell-client/product/`, {
+          state: { data, e },
+        })
+      } else {
         open(true)
+        setE("")
         // alert("Could not find the LEGO you are looking for.")
-      } finally {
-        setIsLoading(false) // Set loading state back to false
       }
+    } catch {
+      open(true)
+      // alert("Could not find the LEGO you are looking for.")
+    } finally {
+      setIsLoading(false) // Set loading state back to false
     }
   }
   const handleInputChange = (event) => {
@@ -68,6 +66,18 @@ const App = () => {
 
   return (
     <div>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Lego2Sell | LEGO®</title>
+        <meta property="og:title" content="Sell LEGO® | WeBuyBricks.co.uk" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="keywords" content="Sell, LEGO, sell2lego, lego" />
+        <meta name="viewport" content="width=device-width" />
+        <meta
+          property="og:description"
+          content="WeBuyBricks is the fast, FREE and easy way to sell LEGO® online for cash! We’ll buy complete collections or a mismatched bag of bricks - start selling now."
+        />
+      </Helmet>
       <div className="h-[87.6vh] lg:h-[85.6vh]">
         <div className="">
           <div className="">

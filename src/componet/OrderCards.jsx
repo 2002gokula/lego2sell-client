@@ -9,6 +9,7 @@ const OrderCards = ({
   offerId,
   Status,
   Price,
+  items,
 }) => {
   const [opened, { open, close }] = useDisclosure(false)
 
@@ -94,7 +95,7 @@ const OrderCards = ({
               </div>
               <div className="flex  flex-wrap w-full items-center justify-between mt-2">
                 <div>No. of items</div>
-                <div>1</div>
+                <div>{items}</div>
               </div>
               <div className="flex  flex-wrap w-full items-center justify-between mt-2">
                 <div>Delivery method</div>

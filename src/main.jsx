@@ -23,8 +23,9 @@ import SignUpForm from "./Pages/Signin.jsx"
 import LoginPage from "./Pages/Login.jsx"
 import Login from "./Pages/Login.jsx"
 import Admin from "./Pages/Admin.jsx"
+import PrivacyStatement from "./Pages/PrivacyStatement.jsx"
 const storedUserId = localStorage.getItem("userId")
-const isAdmin = storedUserId === "64ad76dbd662357b1c99f829"
+const isAdmin = storedUserId === "64b275a9de091215940de10c"
 const router = createBrowserRouter([
   {
     path: "/lego2sell-client/",
@@ -52,7 +53,8 @@ const router = createBrowserRouter([
     element: (
       <>
         <Header />
-        {isAdmin ? <Admin /> : <div>Unauthorization Persn Not allow</div>}
+        {/* {isAdmin ? <Admin /> : <div>Unauthorization Persn Not allow</div>} */}
+        <Admin />
         <Footer />
       </>
     ),
@@ -173,6 +175,16 @@ const router = createBrowserRouter([
       <>
         <Header />
         <Contact />
+        <Footer />
+      </>
+    ),
+  },
+  {
+    path: "/lego2sell-client/privacy-statement",
+    element: (
+      <>
+        <Header />
+        <PrivacyStatement />
         <Footer />
       </>
     ),

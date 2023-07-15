@@ -24,7 +24,7 @@ const Details = () => {
           onStepClick={setActive}
           breakpoint="sm"
         >
-          <Stepper.Step label="My Details" description="Create an account">
+          <Stepper.Step label="My Details" description="Confirm your details">
             <DetailsForm
               storedUserId={storedUserId}
               formData={formData}
@@ -35,10 +35,7 @@ const Details = () => {
               setActive={setActive}
             />
           </Stepper.Step>
-          <Stepper.Step
-            label="Offer Summary"
-            description=" overview of an offer "
-          >
+          <Stepper.Step label="Offer Summary" description=" Offer Summary ">
             <Summary
               storedUserId={storedUserId}
               formData={formData}

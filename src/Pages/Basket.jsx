@@ -1,16 +1,46 @@
 import { Loader } from "@mantine/core"
 import React, { useEffect, useState } from "react"
+import { Helmet } from "react-helmet"
 import { useLocation, useNavigate } from "react-router-dom"
 
 const Basket = () => {
   const location = useLocation()
   const navigation = useNavigate()
-  const data = location.state && location.state.data
+  // const data = location.state && location.state.data
   const SearchValue = location.state.SearchValue
   const condition = location.state.condition
   const [price, setPrice] = useState(null)
-  console.log(price)
-  // console.log("Discounted Price:", discountedPrice)
+  const [data, setData] = useState()
+  console.log("demo", price)
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          "https://wicked-shoe-cow.cyclic.app/find-lego",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ itemCode: SearchValue }),
+          }
+        )
+
+        const data = await response.json()
+        console.log("Data", data)
+        setData(data)
+        localStorage.setItem("data", JSON.stringify(data))
+      } catch (error) {
+        console.log(error)
+        // alert("Could not find the LEGO you are looking for.")
+      } finally {
+        console.log("Complete")
+        // Set loading state back to false
+      }
+    }
+
+    fetchData() // Call the fetchData function
+  }, [SearchValue])
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -46,16 +76,27 @@ const Basket = () => {
 
   return (
     <div className="lg:px-12 lg:flex-row flex-col px-4 h-[88vh] lg:h-[84vh] space-x-0 lg:space-x-8 items-start flex py-8">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <meta property="og:title" content="Sell LEGO® | WeBuyBricks.co.uk" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="keywords" content="Sell, LEGO, sell2lego, lego" />
+        <meta name="viewport" content="width=device-width" />
+        <meta
+          property="og:description"
+          content="WeBuyBricks is the fast, FREE and easy way to sell LEGO® online for cash! We’ll buy complete collections or a mismatched bag of bricks - start selling now."
+        />
+      </Helmet>
       <div className="border w-full flex-1 py-6 px-4 lg:px-12  border-gray-300 rounded-xl">
         <div className="flex flex-col lg:flex-row items-center justify-between">
           <div className="flex flex-col lg:flex-row items-center gap-6">
             <img
               className="lg:w-44 w-26 py-2 object-contain  border rounded-lg px-4 border-gray-300 h-14 lg:h-32"
-              src={data.body.image_url}
+              src={data?.body?.image_url}
               alt=""
             />
             <h3 className="text-lg font-semibold">
-              {data.body.name} {SearchValue}
+              {data?.body?.name} {SearchValue}
             </h3>
           </div>
           <div className="flex items-center lg:py-0 py-4 gap-6">

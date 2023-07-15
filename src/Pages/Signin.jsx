@@ -15,6 +15,7 @@ import PasswordStrengthChecker from "./Password"
 import PasswordStrengthMeter from "./Password"
 import Country from "../componet/Country"
 import CountryCity from "../componet/Country"
+import { Helmet } from "react-helmet"
 const SignUpForm = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -28,7 +29,7 @@ const SignUpForm = () => {
   const [selectedState, setSelectedState] = useState("")
   const [PaymentDetails, setPaymentDetails] = useState("Paypal")
   // const [state, setState] = useState([])
-  console.log("demo98892323", selectedState)
+  // console.log("demo98892323", selectedState)
   const form = useForm({
     initialValues: {
       email: "",
@@ -40,7 +41,7 @@ const SignUpForm = () => {
       StreetAddress1: "",
       termsOfService: true,
       StreetAddress2: "",
-      city: selectedCity,
+      city: selectedCity ? selectedCity : null,
       State: selectedState,
       Country: selectedCoutry,
       Paypalemail: "",
@@ -84,7 +85,7 @@ const SignUpForm = () => {
         StreetAddress1: form.values.StreetAddress1,
         termsOfService: form.values.termsOfService,
         StreetAddress2: form.values.StreetAddress2,
-        city: selectedCity,
+        city: selectedCity ? selectedCity : null,
         State: selectedState,
         Country: selectedCoutry,
         Paypalemail: form.values.Paypalemail,
@@ -137,6 +138,17 @@ const SignUpForm = () => {
 
   return (
     <div className="flex w-full px-6 items-center justify-center flex-col">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Create Account | LEGO®</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="keywords" content="Sell, LEGO, sell2lego, lego" />
+        <meta name="viewport" content="width=device-width" />
+        <meta
+          property="og:description"
+          content="WeBuyBricks is the fast, FREE and easy way to sell LEGO® online for cash! We’ll buy complete collections or a mismatched bag of bricks - start selling now."
+        />
+      </Helmet>
       <section className="lg:pt-24 py-10">
         <div className="container max-w-6xl md:text-center">
           <h1 className="h1 text-2xl lg:text-4xl font-bold mb-6">

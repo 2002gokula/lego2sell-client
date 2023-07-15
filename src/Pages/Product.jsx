@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import { Modal } from "@mantine/core"
 import axios from "axios"
 import { useLocation, useNavigate } from "react-router-dom"
+import { Helmet } from "react-helmet"
 const ConditionData = [
   { img: "../mint.png", Discount: "52" },
   { img: "../Images/verygood.png", Discount: "62" },
@@ -16,12 +17,14 @@ const Product = () => {
   const SearchValue = location.state && location.state.e
   const navigation = useNavigate()
   const [isFormValid, setIsFormValid] = useState(true)
+  // console.log(data)
   const [formData, setFormData] = useState({
     SetCondition: "",
     email: "",
     ifcondition: "",
   })
   const storedUserId = localStorage.getItem("userId")
+  console.log("demo", storedUserId)
   const handleSubmit = async (e) => {
     e.preventDefault()
 
@@ -31,28 +34,36 @@ const Product = () => {
       return
     }
 
+    localStorage.setItem("condition", condition)
+    localStorage.setItem("SearchValue", SearchValue)
+    if (storedUserId === "") {
+      navigation(`/lego2sell-client/signup`)
+    }
     const payload = {
       SetCondition: formData.SetCondition,
       email: formData.email,
       ifSetcondition: formData.ifcondition,
     }
 
-    try {
-      const response = await axios.post(
-        `https://wicked-shoe-cow.cyclic.app/get_Quote/${storedUserId}`,
-        payload
-      )
+    if (storedUserId === "") {
+      navigation(`/lego2sell-client/login`)
+    } else {
+      try {
+        const response = await axios.post(
+          `https://wicked-shoe-cow.cyclic.app/get_Quote/${storedUserId}`,
+          payload
+        )
 
-      console.log("workingsdsd", response.data)
-    } catch (error) {
-      console.error(error)
+        console.log("workingsdsd", response.data)
+      } catch (error) {
+        console.error(error)
+      }
+      console.log(formData)
+
+      navigation(`/lego2sell-client/selling-basket/`, {
+        state: { SearchValue, condition },
+      })
     }
-
-    console.log(formData)
-
-    navigation(`/lego2sell-client/selling-basket/`, {
-      state: { data, SearchValue, condition, formData },
-    })
   }
 
   useEffect(() => {
@@ -69,7 +80,19 @@ const Product = () => {
   }
 
   return (
-    <div className="flex h-full items-center justify-center 2xl:h-[84vh] lg:flex-row flex-col">
+    <div className="flex h-full items-center max-h-[786px]:py-0 py-9 justify-center overflow-hidden   lg:flex-row flex-col">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{data.body.name} | LEGO®</title>
+        <meta property="og:title" content="Sell LEGO® | WeBuyBricks.co.uk" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="keywords" content="Sell, LEGO, sell2lego, lego" />
+        <meta name="viewport" content="width=device-width" />
+        <meta
+          property="og:description"
+          content="WeBuyBricks is the fast, FREE and easy way to sell LEGO® online for cash! We’ll buy complete collections or a mismatched bag of bricks - start selling now."
+        />
+      </Helmet>
       <div className="flex-1 py-8 max-w-3xl  px-6 lg:px-24">
         <div className="flex items-center max-w-lg flex-col justify-center">
           <h2 class="mb-3 text-lg lg:text-2xl font-bold leading-9 tracking-tight text-gray-900">
@@ -202,7 +225,7 @@ const Product = () => {
                   {damageOpen && (
                     <Modal
                       centered
-                      title="Sorry!"
+                      title="Woops"
                       opened
                       onClose={() => setDamageOpen(false)}
                     >

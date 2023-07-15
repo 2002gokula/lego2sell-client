@@ -298,3 +298,10 @@
   flex-direction: row;
   justify-content: space-between;
 }
+
+.mantine-Stepper-steps {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 40px 20px;
+}

@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import axios from "axios"
 import { Link, useNavigate } from "react-router-dom"
+import { Helmet } from "react-helmet"
 
 function Login() {
   const [email, setEmail] = useState("")
@@ -51,6 +52,18 @@ function Login() {
 
   return (
     <div className="flex items-center justify-center flex-col">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Login ccount | LEGO®</title>
+        <meta property="og:title" content="Sell LEGO® | WeBuyBricks.co.uk" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="keywords" content="Sell, LEGO, sell2lego, lego" />
+        <meta name="viewport" content="width=device-width" />
+        <meta
+          property="og:description"
+          content="WeBuyBricks is the fast, FREE and easy way to sell LEGO® online for cash! We’ll buy complete collections or a mismatched bag of bricks - start selling now."
+        />
+      </Helmet>
       <section className="lg:pt-24 px-6 py-10">
         <div className="container md:text-center">
           <h1 className="h1 text-4xl font-bold">Log in or create an account</h1>
@@ -111,7 +124,7 @@ function Login() {
                 <div className="mt-4">
                   <button
                     type="submit"
-                    className="cursor-pointer bg-[#69B832] text-white rounded-full h-[80px] w-full flex items-center justify-center font-bold text-lg"
+                    className="cursor-pointer bg-[#3b82f6] text-white rounded-xl h-[80px] w-full flex items-center justify-center font-bold text-lg"
                   >
                     Submit
                   </button>
@@ -123,7 +136,7 @@ function Login() {
                   /> */}
                 </div>
               </div>
-              <div className="mt-4">
+              {/* <div className="mt-4">
                 <a
                   title="Forgotten Password"
                   className="text-sm font-bold text-[#706AEA]"
@@ -131,7 +144,7 @@ function Login() {
                 >
                   I've forgotten my password
                 </a>
-              </div>
+              </div> */}
             </form>
           </div>
           <div className="w-full lg:w-2/12 text-center flex items-center justify-center py-14 lg:py-0">
@@ -140,13 +153,13 @@ function Login() {
           <div className="w-full lg:w-5/12">
             <h3 className="h3 text-3xl font-bold mb-6">New customers</h3>
             <p className="mb-8 ont-medium text-[#87888F]">
-              Create an account with WeBuyBricks to start selling your LEGO® for
+              Create an account with lego2sell to start selling your LEGO® for
               cash! Creating an account will allow you to easily view and track
               your orders and much more.
             </p>
             <Link
               to="/lego2sell-client/signup/"
-              className="bg-[#69B832] text-white rounded-full h-[80px] w-full flex items-center justify-center font-bold text-lg"
+              className="bg-[#3b82f6] text-white rounded-xl h-[80px] w-full flex items-center justify-center font-bold text-lg"
             >
               Create an account
             </Link>

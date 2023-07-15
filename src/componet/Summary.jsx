@@ -3,6 +3,7 @@ import axios from "axios"
 import React, { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { Country, State, City } from "country-state-city"
+import { Helmet } from "react-helmet"
 const summary = ({
   data,
   price,
@@ -21,11 +22,12 @@ const summary = ({
   const payload = {
     Deliverymethod: sendMethod,
     Price: price ? price.toFixed(2) : null,
-    noItems: 2,
+    noItems: 1,
     Status: "pending",
     ProductName: data.body.name,
     ProductId: SearchValue,
     ProductImg: data.body.image_url,
+    timestamp: new Date(),
   }
   useEffect(() => {
     const fetchData = async () => {
@@ -62,254 +64,39 @@ const summary = ({
 
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Confirm your details| LEGO®</title>
+        <meta property="og:title" content="Sell LEGO® | WeBuyBricks.co.uk" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="keywords" content="Sell, LEGO, sell2lego, lego" />
+        <meta name="viewport" content="width=device-width" />
+        <meta
+          property="og:description"
+          content="WeBuyBricks is the fast, FREE and easy way to sell LEGO® online for cash! We’ll buy complete collections or a mismatched bag of bricks - start selling now."
+        />
+      </Helmet>
       <h1 className="text-4xl py-4 font-bold text-center">Offer Summary</h1>
       <div className="flex lg:flex-row flex-col space-x-0 lg:space-x-8">
         <div className="flex-1">
           <div className="py-12">
-            <h1 className="text-2xl font-bold ">
-              How are you sending your LEGO?*
+            <h1 className="text-2xl py-6 font-bold ">
+              Please Send Your LEGO® Sets
             </h1>
 
-            <p className="text-gray-500 py-1">Select your preferred method*</p>
+            {/* <p className="text-gray-500 py-1">Select your preferred method*</p> */}
             <div className="">
-              <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 mb-14">
-                <label
-                  htmlFor="deliverymethoddropoff"
-                  className={` mt-10 relative ${
-                    sendMethod === "Dropoff" ? "border-[#706AEA]" : ""
-                  } border-2 bg-white rounded-lg rounded-tl-none shadow-[0_4px_25px_rgba(38,50,92,0.1)] cursor-pointer`}
-                >
-                  <div
-                    className={`font-bold absolute top-[-42px] left-[-2px] p-4 py-2  ${
-                      sendMethod === "Dropoff" ? "bg-[#706AEA]" : "bg-gray-300"
-                    }  text-white rounded-t-lg`}
-                  >
-                    ⭐️ Recommended
-                  </div>
-                  <div className="p-6 border  py-10 flex items-center justify-between">
-                    <input
-                      value={sendMethod === "Dropoff"}
-                      onChange={(e) => setSendMethod("Dropoff")}
-                      type="radio"
-                      id="deliverymethoddropoff"
-                      name="deliverymethod"
-                      className="w-[23px] h-[23px]"
-                      defaultValue="dropoff"
-                      defaultChecked={true}
-                    />
-                    <div
-                      className={` ${
-                        sendMethod === "Dropoff"
-                          ? " text-[#373845]"
-                          : "text-gray-400"
-                      }   font-bold text-lg mr-auto ml-4`}
-                    >
-                      Drop off your trade
-                    </div>
-                    <span
-                      style={{
-                        boxSizing: "border-box",
-                        display: "inline-block",
-                        overflow: "hidden",
-                        width: "initial",
-                        height: "initial",
-                        background: "none",
-                        opacity: 1,
-                        border: 0,
-                        margin: 0,
-                        padding: 0,
-                        position: "relative",
-                        maxWidth: "100%",
-                      }}
-                    >
-                      <span
-                        style={{
-                          boxSizing: "border-box",
-                          display: "block",
-                          width: "initial",
-                          height: "initial",
-                          background: "none",
-                          opacity: 1,
-                          border: 0,
-                          margin: 0,
-                          padding: 0,
-                          maxWidth: "100%",
-                        }}
-                      >
-                        {/* <img
-                          alt=""
-                          aria-hidden="true"
-                          src="./Images/evri.webp"
-                          style={{
-                            display: "block",
-                            maxWidth: "100%",
-                            width: "initial",
-                            height: "initial",
-                            background: "none",
-                            opacity: 1,
-                            border: 0,
-                            margin: 0,
-                            padding: 0,
-                          }}
-                        /> */}
-                      </span>
-                      {/* <img
-                        src="./Images/evri.webp"
-                        decoding="async"
-                        data-nimg="intrinsic"
-                        style={{
-                          position: "absolute",
-                          inset: 0,
-                          boxSizing: "border-box",
-                          padding: 0,
-                          border: "none",
-                          margin: "auto",
-                          display: "block",
-                          width: 0,
-                          height: 0,
-                          minWidth: "100%",
-                          maxWidth: "100%",
-                          minHeight: "100%",
-                          maxHeight: "100%",
-                        }}
-                      /> */}
-                    </span>
-                  </div>
-                  <div className="relative rounded-b-lg bg-[rgba(112,106,234,0.05)] p-6 py-10">
-                    <div
-                      className={`rounded-full   ${
-                        sendMethod === "Dropoff"
-                          ? "bg-[#706AEA]"
-                          : "bg-gray-300"
-                      }   text-white font-bold text-sm p-1 px-4 absolute top-[-10px]`}
-                    >
-                      Fastest Method
-                    </div>
-                    <div
-                      className={`  ${
-                        sendMethod === "Dropoff"
-                          ? "text-[#706AEA]"
-                          : "text-gray-400"
-                      }  text-sm md:tracking-wide`}
-                    >
-                      <strong>No printer? No problem.</strong> The majority of
-                      Evri drop off points allow you to print your label in
-                      store - by scanning the QR code on your confirmation
-                      email.
-                    </div>
-                  </div>
-                </label>
-                <label
-                  htmlFor="deliverymethodcollection"
-                  className={`xl:mt-10  ${
-                    sendMethod === "Homecollection" ? "border-[#706AEA]" : ""
-                  } bg-white rounded-lg overflow-hidden border-2 shadow-[0_4px_25px_rgba(38,50,92,0.1)] cursor-pointer`}
-                >
-                  <div className="p-6 py-10 flex items-center justify-between">
-                    <input
-                      value={sendMethod === "Homecollection"}
-                      onChange={(e) => setSendMethod("Homecollection")}
-                      type="radio"
-                      id="deliverymethodcollection"
-                      name="deliverymethod"
-                      className="w-[23px] h-[23px]"
-                      defaultValue="Homecollection"
-                    />
-                    <div
-                      className={` ${
-                        sendMethod === "Homecollection"
-                          ? "text-[#706AEA]"
-                          : "text-gray-400"
-                      } font-bold text-lg mr-auto ml-4`}
-                    >
-                      Home collection
-                    </div>
-                    <span
-                      style={{
-                        boxSizing: "border-box",
-                        display: "inline-block",
-                        overflow: "hidden",
-                        width: "initial",
-                        height: "initial",
-                        background: "none",
-                        opacity: 1,
-                        border: 0,
-                        margin: 0,
-                        padding: 0,
-                        position: "relative",
-                        maxWidth: "100%",
-                      }}
-                    >
-                      <span
-                        style={{
-                          boxSizing: "border-box",
-                          display: "block",
-                          width: "initial",
-                          height: "initial",
-                          background: "none",
-                          opacity: 1,
-                          border: 0,
-                          margin: 0,
-                          padding: 0,
-                          maxWidth: "100%",
-                        }}
-                      >
-                        {/* <img
-                          alt=""
-                          aria-hidden="true"
-                          src="./Images/evri.webp"
-                          style={{
-                            display: "block",
-                            maxWidth: "100%",
-                            width: "initial",
-                            height: "initial",
-                            background: "none",
-                            opacity: 1,
-                            border: 0,
-                            margin: 0,
-                            padding: 0,
-                          }}
-                        /> */}
-                      </span>
-                      {/* <img
-                        src="./Images/evri.webp"
-                        decoding="async"
-                        data-nimg="intrinsic"
-                        style={{
-                          position: "absolute",
-                          inset: 0,
-                          boxSizing: "border-box",
-                          padding: 0,
-                          border: "none",
-                          margin: "auto",
-                          display: "block",
-                          width: 0,
-                          height: 0,
-                          minWidth: "100%",
-                          maxWidth: "100%",
-                          minHeight: "100%",
-                          maxHeight: "100%",
-                        }}
-                      /> */}
-                    </span>
-                  </div>
-                  <div className="bg-[rgba(55,56,69,0.05)] p-6 py-10 h-full">
-                    <div
-                      className={`${
-                        sendMethod === "Homecollection"
-                          ? "text-[#706AEA]"
-                          : "text-gray-400"
-                      }  text-sm md:tracking-wide`}
-                    >
-                      <strong>Printer required.</strong> Can't get to a drop off
-                      point? Simply arrange a convenient collection date &amp;
-                      time when you check out.
-                    </div>
-                  </div>
-                </label>
+              <div className="w-2/4 rounded-xl border gap-8 mb-14">
+                <div className="relative w-full rounded-b-lg p-6 py-10">
+                  <img
+                    className="w-full object-contain h-full"
+                    src="./Images/brand.jpeg"
+                    alt=""
+                  />
+                </div>
               </div>
 
-              <div className="">
+              <div className="mt-12">
                 <div className="flex items-center justify-between">
                   <h1 className="text-2xl font-bold ">Your Details</h1>
                   <button onClick={prevStep} className="text-blue-500">

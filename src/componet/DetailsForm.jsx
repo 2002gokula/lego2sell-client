@@ -6,6 +6,7 @@ import CountryData from "../../CountryData.json"
 import cities from "../../cities.json"
 import CountryCitits from "../../CountryCitits.json"
 import axios from "axios"
+import { Helmet } from "react-helmet"
 // import Select from "react-select"
 const DetailsForm = ({
   setActive,
@@ -121,7 +122,19 @@ const DetailsForm = ({
   console.log("demo", firstName)
   return (
     <div className="!h-[100%]">
-      <h1 className="text-4xl font-bold text-center">Details</h1>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Confirm your details| LEGO®</title>
+        <meta property="og:title" content="Sell LEGO® | WeBuyBricks.co.uk" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="keywords" content="Sell, LEGO, sell2lego, lego" />
+        <meta name="viewport" content="width=device-width" />
+        <meta
+          property="og:description"
+          content="WeBuyBricks is the fast, FREE and easy way to sell LEGO® online for cash! We’ll buy complete collections or a mismatched bag of bricks - start selling now."
+        />
+      </Helmet>
+      <h1 className="text-4xl font-bold text-center">Confirm your details</h1>
       <form
         onSubmit={form.onSubmit(async (values) => {
           // try {
