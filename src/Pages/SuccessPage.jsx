@@ -2,7 +2,7 @@ import { Loader } from "@mantine/core"
 import axios from "axios"
 import React, { useEffect, useState } from "react"
 import { Link, useLocation } from "react-router-dom"
-import PDFModificationExample from "../componet/PDFComplete"
+// import PDFModificationExample from "../componet/PDFComplete"
 
 const SuccessPage = () => {
   const location = useLocation()
