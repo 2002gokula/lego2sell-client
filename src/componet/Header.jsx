@@ -255,7 +255,7 @@ const Header = () => {
               </div>
               <img
                 className="w-6 object-contain h-6"
-                src="../Images/howworks.png"
+                src="./Images/howworks.png"
                 alt=""
               />
               {/* <svg

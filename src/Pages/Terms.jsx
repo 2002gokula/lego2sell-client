@@ -191,7 +191,7 @@ const Terms = () => {
               </p>
               <p>
                 3.d) you have read and understood our 
-                <Link className="text-blue-600 mx-2">
+                <Link to={""} className="text-blue-600 mx-2">
                   Item Condition Guidelines
                 </Link>
                 ; and
