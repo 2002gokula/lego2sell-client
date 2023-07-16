@@ -2,6 +2,7 @@ import { Loader } from "@mantine/core"
 import axios from "axios"
 import React, { useEffect, useState } from "react"
 import { Link, useLocation } from "react-router-dom"
+import PDFModificationExample from "../componet/PDFComplete"
 // import PDFModificationExample from "../componet/PDFComplete"
 
 const SuccessPage = () => {
@@ -37,7 +38,7 @@ const SuccessPage = () => {
   }, [storedUserId, setOrderitems])
   return (
     <div>
-      {/* <PDFModificationExample /> */}
+      <PDFModificationExample />
       <section className="lg:pt-24 px-6 py-10">
         <div className=" md:text-center">
           <div className="text-5xl flex items-center justify-center lg:text-6xl mb-8">
