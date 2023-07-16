@@ -4,15 +4,17 @@ import { Link } from "react-router-dom"
 const PrivacyStatement = () => {
   return (
     <div>
-      <div className="w-full  px-6 lg:w-9/12 lg:pl-20 py-12 lg:py-24">
+      <div className="w-full  px-6 lg:pl-20 py-12 lg:py-24">
         <h1 className="h1 text-2xl lg:text-6xl font-extrabold mb-8">
           Privacy Statement
         </h1>
         <div className="content-wrapper">
           <div>
             <div className="space-y-8">
-              <h3 className="text-xl font-bold">Lego2sell.com</h3>
-              <h2 className="text-lg font-semibold">Privacy Policy</h2>
+              <h3 className="text-xl text-center font-bold">Lego2sell.com</h3>
+              <h2 className="text-lg text-center font-semibold">
+                Privacy Policy
+              </h2>
               <p>
                 <strong>Introduction</strong>
               </p>
@@ -31,15 +33,15 @@ const PrivacyStatement = () => {
                 <strong>Purpose of this privacy policy</strong>
               </p>
               <p>
-                This privacy policy aims to give you information on how Revival
-                Books Limited collects and processes your personal data through
-                your use of our websites or mobile applications ("Apps"),
-                including any data you may provide when you sell a product to us
-                and / or purchase a service from us.
+                We respect your privacy and are committed to protecting your
+                personal data. This privacy policy will inform you as to how we
+                look after your personal data when you visit any of our websites
+                (regardless of where you visit them from) and tell you about
+                your privacy rights and how the law protects you.
               </p>
               <p>
-                None of our websites or Apps are not intended for children and
-                we do not knowingly collect data relating to children.
+                None of our websites are not intended for children and we do not
+                knowingly collect data relating to children.
               </p>
               <p>
                 It is important that you read this privacy policy together with
@@ -54,32 +56,25 @@ const PrivacyStatement = () => {
                 <strong>Controller</strong>
               </p>
               <p>
-                Revival Books Limited is the controller and responsible for your
-                personal data (collectively referred to as "Revival", "we", "us"
-                or "our" in this privacy policy).
+                Lego2sell.com is the controller and responsible for your
+                personal data (collectively referred to as " Lego2sell.com ",
+                "we", "us" or "our" in this privacy policy).
               </p>
               <p>
-                We have appointed a data privacy manager who is responsible for
-                overseeing questions in relation to this privacy policy. If you
-                have any questions about this privacy policy, including any
-                requests to exercise your legal rights, please contact the data
-                privacy manager using the details set out below.
+                If you have any questions about this privacy policy, including
+                any requests to exercise your legal rights, please contact the
+                data privacy manager using the details set out below.
               </p>
               <p>
                 <strong>Contact details</strong>
               </p>
               <p>
-                Contact details If you have any questions about this privacy
-                policy or our privacy practices, please contact our data privacy
-                manager in the following ways:
+                If you have any questions about this privacy policy or our
+                privacy practices, please contact our data privacy manager in
+                the following ways:
               </p>
-              <p>Full name of legal entity: Revival Books Limited</p>
-              <p>Email address: support@lego2sell.com .</p>
-              <p>
-                Postal address: Unit 11 Hugh Business Park, Rossendale,
-                Lancashire, BB4 7BT
-              </p>
-              <p>Telephone number: 01706 248281</p>
+              <p>Full name of legal entity: lego2sell.com</p>
+              <p>Email address: support@lego2sell.com</p>
               <p>
                 You have the right to make a complaint at any time to the
                 Information Commissioner's Office (ICO), the UK supervisory
@@ -87,6 +82,7 @@ const PrivacyStatement = () => {
                 however, appreciate the chance to deal with your concerns before
                 you approach the ICO so please contact us in the first instance.
               </p>
+
               <p>
                 <strong>
                   Changes to the privacy policy and your duty to inform us of
@@ -114,7 +110,9 @@ const PrivacyStatement = () => {
                 our website, we encourage you to read the privacy policy of
                 every website you visit.
               </p>
-              <h3>2. The data we collect about you</h3>
+              <h3 className="text-lg font-bold">
+                2. The data we collect about you
+              </h3>
               <p>
                 Personal data, or personal information, means any information
                 about an individual from which that person can be identified. It
@@ -201,7 +199,9 @@ const PrivacyStatement = () => {
                 we may have to cancel a product or service you have with us but
                 we will notify you if this is the case at the time.
               </p>
-              <h3>3. How is your personal data collected?</h3>
+              <h3 className="font-bold">
+                3. How is your personal data collected?
+              </h3>
               <p>
                 We use different methods to collect data from and about you
                 including through:
@@ -223,19 +223,15 @@ const PrivacyStatement = () => {
               </ul>
               <p />
               <p>
-                <strong>Automated technologies or interactions.</strong> As you
+                <strong>Automated technologies or interactions.</strong> As you
                 interact with our websites and Apps, we will automatically
                 collect Technical Data about your equipment, browsing actions
                 and patterns. We collect this personal data by using cookies,
                 server logs and other similar technologies. We may also receive
                 Technical Data about you if you visit other websites employing
-                our cookies. Please see our cookie policy {" "}
-                <Link>
-                  Please see our cookie
-                  policy https://www.WeBuyBricks.co.uk/cookie-policy for further
-                  details.
-                </Link>
-                for further details.
+                our cookies. Please see our cookie policy at{" "}
+                <Link to={"Lego2sell.com"}>Lego2sell.com</Link> for further
+                details.
               </p>
               <p>
                 Third parties or publicly available sources. We will receive
@@ -268,13 +264,13 @@ const PrivacyStatement = () => {
                   as the Electoral Register based inside the EU.
                 </li>
               </ul>
-              <h3>4. How we use your personal data</h3>
+              <h3 className="font-bold">4. How we use your personal data</h3>
               <p>
                 We will only use your personal data when the law allows us to.
                 Most commonly, we will use your personal data in the following
                 circumstances:
               </p>
-              <ul>
+              <ul className="space-y-6">
                 <li>
                   <strong>Performance of Contract</strong> means processing your
                   data where it is necessary for the performance of a contract
@@ -631,7 +627,7 @@ const PrivacyStatement = () => {
                 disable or refuse cookies, please note that some parts of this
                 website may become inaccessible or not function properly. For
                 more information about the cookies we use, please see
-                https://www.WeBuyBricks.co.uk/cookie-policy.
+                Lego2sell.com
               </p>
               <p>
                 <strong>Change of purpose</strong>
@@ -654,7 +650,9 @@ const PrivacyStatement = () => {
                 knowledge or consent, in compliance with the above rules, where
                 this is required or permitted by law.
               </p>
-              <h3>5. Disclosures of your personal data</h3>
+              <h3 className="font-bold">
+                5. Disclosures of your personal data
+              </h3>
               <p>
                 We may share your personal data with the parties set out below
                 for the purposes set out in the table above.
@@ -694,7 +692,7 @@ const PrivacyStatement = () => {
                 personal data for specified purposes and in accordance with our
                 instructions.
               </p>
-              <h3>6. International transfers</h3>
+              <h3 className="font-bold">6. International transfers</h3>
               <p>
                 Whenever we transfer your personal data out of the EEA, we
                 ensure a similar degree of protection is afforded to it by
@@ -729,7 +727,7 @@ const PrivacyStatement = () => {
                 specific mechanism used by us when transferring your personal
                 data out of the EEA.
               </p>
-              <h3>7. Data security</h3>
+              <h3 className="font-bold">7. Data security</h3>
               <p>
                 We have put in place appropriate security measures to prevent
                 your personal data from being accidentally lost, used or
@@ -745,7 +743,7 @@ const PrivacyStatement = () => {
                 personal data breach and will notify you and any applicable
                 regulator of a breach where we are legally required to do so.
               </p>
-              <h3>8. Data retention</h3>
+              <h3 className="font-bold">8. Data retention</h3>
               <p>
                 <strong>How long will you use my personal data for?</strong>
               </p>
@@ -782,7 +780,7 @@ const PrivacyStatement = () => {
                 statistical purposes, in which case we may use this information
                 indefinitely without further notice to you.
               </p>
-              <h3>9. Your legal rights</h3>
+              <h3 className="font-bold">9. Your legal rights</h3>
               <p>
                 Under certain circumstances, you have rights under data
                 protection laws in relation to your personal data. You have the

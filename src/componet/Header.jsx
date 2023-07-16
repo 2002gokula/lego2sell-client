@@ -248,13 +248,17 @@ const Header = () => {
           <div className="lg:flex hidden gap-8  items-center ">
             <Link
               to="/lego2sell-client/how-it-works"
-              className="flex gap-3 items-center"
+              className="flex gap-2 items-center"
             >
               <div className="">
                 <h4 className="text-base font-medium">How it Works?</h4>
-                <p className="text-sm text-gray-400">Just 4 Easy Steps</p>
               </div>
-              <svg
+              <img
+                className="w-6 object-contain h-6"
+                src="../Images/howworks.png"
+                alt=""
+              />
+              {/* <svg
                 width={24}
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
@@ -274,7 +278,7 @@ const Header = () => {
                     d="M10 3a7 7 0 100 14 7 7 0 000-14zm-9 7a9 9 0 1118 0 9 9 0 01-18 0zm10.01 4a1 1 0 01-1 1H10a1 1 0 110-2h.01a1 1 0 011 1zM11 6a1 1 0 10-2 0v5a1 1 0 102 0V6z"
                   ></path>{" "}
                 </g>
-              </svg>
+              </svg> */}
             </Link>
             <Link
               to="/lego2sell-client/my-account"

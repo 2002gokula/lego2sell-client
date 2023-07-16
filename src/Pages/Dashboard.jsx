@@ -4,6 +4,7 @@ import axios from "axios"
 import React, { useEffect, useState } from "react"
 import OrderCards from "../componet/OrderCards"
 import { useNavigate } from "react-router-dom"
+import MyDetails from "../componet/MyDetails"
 
 const Dashboard = () => {
   const [orderitems, setOrderitems] = useState()
@@ -156,6 +157,7 @@ const Dashboard = () => {
               </div>
             </div>
           )}
+          {SidebarActive === 1 && <MyDetails />}
           {SidebarActive === 2 && (
             <div className="w-full lg:w-9/12 lg:pl-20 py-12 lg:py-24">
               <h1 className="h1 mb-8">Recover your password</h1>
