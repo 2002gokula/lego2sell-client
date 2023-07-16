@@ -1,10 +1,11 @@
-import { Modal } from "@mantine/core"
+import { Modal, Select } from "@mantine/core"
 import { useDisclosure } from "@mantine/hooks"
 import axios from "axios"
 import React, { useEffect, useState } from "react"
 import OrderCards from "../componet/OrderCards"
 import { useNavigate } from "react-router-dom"
 import MyDetails from "../componet/MyDetails"
+import { useForm } from "@mantine/form"
 
 const Dashboard = () => {
   const [orderitems, setOrderitems] = useState()
@@ -50,10 +51,20 @@ const Dashboard = () => {
     {
       title: "Dashboard",
     },
+    { title: "Past offers" },
     { title: "My details" },
+    { title: "Marketing Preferences" },
     { title: "Change password" },
     { title: "Logout" },
   ]
+  const form = useForm({
+    initialValues: {
+      MarketingPreferences: "",
+    },
+
+    validate: {},
+  })
+
   // console.log(totalPrice)
   return (
     <div>
@@ -138,7 +149,7 @@ const Dashboard = () => {
 
               <a
                 title="Sell more Lego®"
-                className="hover:scale-[1.05] transition-all ml-auto mt-10 lg:ml-0 text-center flex lg:inline-flex justify-center items-center px-6 lg:px-14 rounded-full bg-[#69B832] text-white font-bold text-[15px] h-[49px] lg:h-[65px] text-[15px] xl:text-[18px]"
+                className="hover:scale-[1.05] mb-12 transition-all ml-auto mt-10 lg:ml-0 text-center flex lg:inline-flex justify-center items-center px-6 lg:px-14 rounded-full bg-[#69B832] text-white font-bold text-[15px] h-[49px] lg:h-[65px] text-[15px] xl:text-[18px]"
                 href="/lego2sell-client"
               >
                 Sell more LEGO®
@@ -157,8 +168,105 @@ const Dashboard = () => {
               </div>
             </div>
           )}
-          {SidebarActive === 1 && <MyDetails />}
-          {SidebarActive === 2 && (
+          {SidebarActive === 1 && (
+            <div className="w-full lg:pl-20 py-12 lg:py-24">
+              <h1 className="text-4xl font-extrabold mb-6">Past offers</h1>
+              <p className="mb-8 text-[#373845] font-bold">
+                Here is a list of your past offers...
+              </p>
+              {orderitems?.length === 0 ? (
+                <p>No order available.</p>
+              ) : (
+                orderitems?.map((value, index) => (
+                  <OrderCards
+                    items={index + 1}
+                    length={orderitems.length}
+                    key={index}
+                    Deliverymethod={value.Deliverymethod}
+                    timestamp={value.timestamp}
+                    Price={value?.Price}
+                    Status={value?.Status}
+                    offerId={value?.offerId}
+                  />
+                ))
+              )}
+
+              <a
+                title="Sell more Lego®"
+                className="hover:scale-[1.05] mb-12 transition-all ml-auto mt-10 lg:ml-0 text-center flex lg:inline-flex justify-center items-center px-6 lg:px-14 rounded-full bg-[#69B832] text-white font-bold text-[15px] h-[49px] lg:h-[65px] text-[15px] xl:text-[18px]"
+                href="/lego2sell-client"
+              >
+                Sell more LEGO®
+              </a>
+              <div className="lg:hidden mt-10">
+                <ul>
+                  <li className="relative">
+                    <a
+                      href="/lego2sell-client/"
+                      className="font-bold flex justify-center font-bold w-full items-center text-[#E52D3B] cursor-pointer h-[49px]"
+                    >
+                      Logout
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          )}
+
+          {SidebarActive === 2 && <MyDetails />}
+          {SidebarActive === 3 && (
+            <div className="">
+              <div className="w-full lg:pl-20 py-12 lg:py-24">
+                <h1 className="mb-6 text-2xl lg:text-5xl font-bold h1">
+                  Marketing Preferences
+                </h1>
+                <p className="mb-4">
+                  <strong>
+                    You're in control. Please update your marketing preferences.
+                  </strong>
+                </p>
+                <form
+                  onSubmit={form.onSubmit((values) => console.log(values))}
+                  method="post"
+                  className="my-6"
+                >
+                  <label className="w-full flex font-bold text-sm mb-2">
+                    Do you want to hear about special offers, voucher codes and
+                    our latest news?
+                  </label>
+                  {/* <select
+                    name="marketingPreference"
+                    className="h-[67px] border border-[rgba(133,138,149,0.4)] rounded-3xl lg:rounded-xl w-full pl-6"
+                  >
+                    <option value={1}>Yes</option>
+                    <option value={0}>No</option>
+                  </select> */}
+                  <Select
+                    defaultValue={"Yes"}
+                    {...form.getInputProps("MarketingPreferences")}
+                    searchable
+                    data={["Yes", "No"]}
+                  />
+                  <button
+                    type="submit"
+                    className="cursor-pointer bg-blue-500 text-white rounded-xl h-[80px] mt-10 px-16 inline-flex items-center justify-center font-bold text-lg"
+                  >
+                    Confirm preferences
+                  </button>
+                </form>
+                <div className="lg:hidden mt-10">
+                  <ul>
+                    <li className="relative">
+                      <a className="font-bold flex justify-center font-bold w-full items-center text-[#E52D3B] cursor-pointer h-[49px]">
+                        Logout
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          )}
+          {SidebarActive === 4 && (
             <div className="w-full lg:w-9/12 lg:pl-20 py-12 lg:py-24">
               <h1 className="h1 mb-8">Recover your password</h1>
               <form

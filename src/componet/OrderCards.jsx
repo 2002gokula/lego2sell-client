@@ -30,6 +30,9 @@ const OrderCards = ({
             <br className="md:hidden" />
             <span className="md:hidden text-[#706AEA] font-bold">£81.50</span>
           </div>
+          <div className="text-sm font-medium text-blue-500 pr-4">
+            {timestamp}
+          </div>
           <div className="rounded-full text-xs px-6 py-2 font-bold bg-[#FDEDD0] text-[#F4A414] mr-7">
             {Status}
           </div>
@@ -122,9 +125,6 @@ const OrderCards = ({
                 >
                   Download and print label
                 </a>
-                <button type="button" className="font-bold text-[#706AEA]">
-                  Re-Send label email
-                </button>
               </div>
             </div>
           </div>

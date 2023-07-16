@@ -11,7 +11,7 @@ const MyDetails = () => {
   const [getState, setGetState] = useState()
   const [countryid, setCountryid] = useState("")
   const [state, setState] = useState([])
-
+  const storedUserId = localStorage.getItem("userId")
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -27,6 +27,7 @@ const MyDetails = () => {
 
     fetchData()
   }, [])
+
   const [firstName, setFirstName] = useState()
   const form = useForm({
     initialValues: {

@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import "./App.css"
 import { Loader, Modal, Tooltip } from "@mantine/core"
 import { useDisclosure } from "@mantine/hooks"
 import { Helmet } from "react-helmet"
+import ReactLoading from "react-loading"
+import { useMediaQuery } from "react-responsive"
 const App = () => {
   const [e, setE] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [opened, { open, close }] = useDisclosure(false)
   const navigation = useNavigate()
-  const storedUserId = localStorage.getItem("userId")
+  // const storedUserId = localStorage.getItem("userId")
+  const [opened1, setOpened] = useState(false)
+
   const handleSearch = async () => {
     try {
       setIsLoading(true) // Set loading state to true
@@ -24,9 +28,11 @@ const App = () => {
           body: JSON.stringify({ itemCode: e }),
         }
       )
+
       const data = await response.json()
       console.log("Data", data)
-      localStorage.setItem("data", data)
+      // localStorage.setItem("data", data)
+      localStorage.setItem("SearchValue", e)
       if (data.message === "SUCCESS") {
         navigation(`/lego2sell-client/product/`, {
           state: { data, e },
@@ -51,19 +57,16 @@ const App = () => {
       setE(numericValue)
     }
   }
-  if (isLoading) {
-    return (
-      <div className="flex h-[84vh] items-center justify-center mx-auto my-auto">
-        <Loader />
-      </div>
-    )
-  }
+
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       handleSearch()
     }
   }
-
+  const isDesktopOrLaptop = useMediaQuery({
+    query: "(min-width: 1224px)",
+  })
+  // console.log(query)
   return (
     <div>
       <Helmet>
@@ -140,12 +143,21 @@ const App = () => {
                 </button>
                 <br />
                 <br />
+
                 <Tooltip
-                  label="To search your LEGO® set just type in the LEGO® ID code found on all LEGO® sets and hit enter or the search button. (Example: 77941)"
                   color="blue"
+                  multiline
+                  opened={!isDesktopOrLaptop ? opened1 : null}
+                  width={isDesktopOrLaptop ? 480 : 280}
                   withArrow
+                  transitionProps={{ duration: 200 }}
+                  label="To search your LEGO® set just type in the LEGO® ID code found on all LEGO® sets and hit enter or the search button. (Example: 77941)"
                 >
-                  <button className="text-base font-medium text-gray-400">
+                  <button
+                    variant="outline"
+                    onClick={() => setOpened((o) => !o)}
+                    className="text-base font-medium text-gray-400"
+                  >
                     search help
                   </button>
                 </Tooltip>

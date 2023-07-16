@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Modal } from "@mantine/core"
+import { Loader, Modal } from "@mantine/core"
 import axios from "axios"
 import { useLocation, useNavigate } from "react-router-dom"
 import { Helmet } from "react-helmet"
@@ -45,25 +45,21 @@ const Product = () => {
       ifSetcondition: formData.ifcondition,
     }
 
-    if (storedUserId === "") {
-      navigation(`/lego2sell-client/login`)
-    } else {
-      try {
-        const response = await axios.post(
-          `https://wicked-shoe-cow.cyclic.app/get_Quote/${storedUserId}`,
-          payload
-        )
+    try {
+      const response = await axios.post(
+        `https://wicked-shoe-cow.cyclic.app/get_Quote/${storedUserId}`,
+        payload
+      )
 
-        console.log("workingsdsd", response.data)
-      } catch (error) {
-        console.error(error)
-      }
-      console.log(formData)
-
-      navigation(`/lego2sell-client/selling-basket/`, {
-        state: { SearchValue, condition },
-      })
+      console.log("workingsdsd", response.data)
+    } catch (error) {
+      console.error(error)
     }
+    console.log(formData)
+
+    navigation(`/lego2sell-client/selling-basket/`, {
+      state: { SearchValue, condition },
+    })
   }
 
   useEffect(() => {
@@ -76,7 +72,11 @@ const Product = () => {
   }, [formData])
 
   if (isLoading) {
-    return <div>Loading...</div>
+    return (
+      <div>
+        <Loader />
+      </div>
+    )
   }
 
   return (
@@ -224,13 +224,14 @@ const Product = () => {
 
                   {damageOpen && (
                     <Modal
+                      className="font-bold"
                       centered
                       title="Woops"
                       opened
                       onClose={() => setDamageOpen(false)}
                     >
-                      <div className="py-4">
-                        <div className="mt-8 text-xl font-semibold">Sorry!</div>
+                      <div className="py-2">
+                        <div className="mt-8 text-xl font-medium">Sorry!</div>
                         <p className="font-normal text-gray-400 ">
                           We do not take Set's with damaged box's at this moment
                           in time.

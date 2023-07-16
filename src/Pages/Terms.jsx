@@ -191,14 +191,22 @@ const Terms = () => {
               </p>
               <p>
                 3.d) you have read and understood our 
-                <Link to={""} className="text-blue-600 mx-2">
+                <Link
+                  to={"/lego2sell-client/acceptance-guidelines"}
+                  className="text-blue-600 mx-2"
+                >
                   Item Condition Guidelines
                 </Link>
                 ; and
               </p>
               <p>
                 3.g)you have read and understood our{" "}
-                <Link className="text-blue-600 mx-2">Packaging Guidelines</Link>
+                <Link
+                  to={"/lego2sell-client/packaging-guidelines"}
+                  className="text-blue-600 mx-2"
+                >
+                  Packaging Guidelines
+                </Link>
                 .
               </p>
 
@@ -249,7 +257,13 @@ const Terms = () => {
               </p>
               <p>
                 You acknowledge and agree to be bound by the terms of our{" "}
-                <Link className="text-blue-600 mx-2">Privacy Statement</Link>.
+                <Link
+                  to={"/lego2sell-client/privacy-statement"}
+                  className="text-blue-600 mx-2"
+                >
+                  Privacy Statement
+                </Link>
+                .
               </p>
               <p>
                 <u>
@@ -474,12 +488,12 @@ const Terms = () => {
 
               <p>
                 We therefore strongly recommend you read our{" "}
-                <a
+                <Link
+                  to={"/lego2sell-client/packaging-guidelines"}
                   className="text-blue-600"
-                  href="/lego2sell-client/packaging-guidelines/"
                 >
                   Packaging Guidelines which can be found here
-                </a>
+                </Link>
                 .
               </p>
               <p>
@@ -540,12 +554,12 @@ const Terms = () => {
                 Our decision is final where items fail our Quality Assessment.
                 Please note that we may supply photos of the rejected Item(s),
                 but whether we do so will be at our discretion. Our{" "}
-                <a
+                <Link
                   className="text-blue-600"
-                  href="/lego2sell-client/acceptance-guidelines/"
+                  to="/lego2sell-client/acceptance-guidelines/"
                 >
                   Item Condition Guidelines can be found here
-                </a>{" "}
+                </Link>{" "}
                 for further information.
               </p>
               <p>

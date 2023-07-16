@@ -1,13 +1,16 @@
 import { Accordion, Group, Text } from "@mantine/core"
 import React, { useEffect, useRef, useState } from "react"
 import { charactersList } from "./FAQData"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 const Header = () => {
   const [FAQOpen, setFAQOpen] = useState()
   const [openMenu, setOpenMenu] = useState()
   const navigation = useNavigate()
   const savedLength = localStorage.getItem("savedLength")
   const OrderTotalPrice = localStorage.getItem("totalPrice")
+  const location = useLocation()
+  const route = location.pathname
+  // console.log(route)
   const items = charactersList.map((item) => (
     <Accordion.Item value={item.id} key={item.label}>
       <Accordion.Control>
@@ -25,6 +28,7 @@ const Header = () => {
       if (ref.current && !ref.current.contains(event.target)) {
         setFAQOpen(false)
         setMenuOpen(false)
+        setOpenMenu(false)
       }
     }
 
@@ -32,6 +36,7 @@ const Header = () => {
       if (event.key === "Escape") {
         setFAQOpen(false)
         setMenuOpen(false)
+        setOpenMenu(false)
       }
     }
 
@@ -47,15 +52,14 @@ const Header = () => {
   const router = location.pathname
   var savedCondition = localStorage.getItem("condition")
   var data = localStorage.getItem("data")
-  console.log("demo98989", data)
   var SearchValue = localStorage.getItem("SearchValue")
   return (
-    <div
-      ref={ref}
-      className="flex flex-col items-center w-full justify-between"
-    >
+    <div className="flex flex-col items-center w-full justify-between">
       {router === "/lego2sell-client/" ? (
-        <div className="flex justify-between w-full px-6 py-4 items-center">
+        <div
+          ref={ref}
+          className="flex justify-between w-full px-6 py-4 items-center"
+        >
           <div className="flex gap-8 items-center">
             <button
               onClick={() => {
@@ -146,8 +150,8 @@ const Header = () => {
               FAQS
             </button>
             {FAQOpen && (
-              <div className="lg:w-[40%] w-[90%] rounded-2xl left-6 shadow-2xl px-6 h-screen overflow-y-scroll absolute top-16 lg:left-36 z-50 bg-white py-12 lg:py-12">
-                <h1 className="text-2xl font-bold py-6">
+              <div className="lg:w-[40%] w-[90%] rounded-2xl left-4 shadow-2xl px-6 overflow-y-scroll border absolute top-16 h-[80vh] lg:left-24 z-50 bg-white py-12 lg:py-12">
+                <h1 className="text-2xl font-bold py-1">
                   Frequently asked questions{" "}
                 </h1>
                 <div className="content-wrapper">
@@ -160,13 +164,6 @@ const Header = () => {
                           alt="frequently-asked-questions.webp"
                         />
                       </p>
-                      {/* <p className="font-semibold text-base text-gray-500 py-4">
-                        Got a question? Well, you’re in the right place. To find
-                        answers to all of our common queries, check out our FAQs
-                        below. If you still can’t find an answer to your
-                        question or need help with something else, get in touch
-                        with us and we’ll guide you as best we can.
-                      </p> */}
                     </div>
                   </div>
                   <div
@@ -185,30 +182,30 @@ const Header = () => {
                         <Accordion chevronPosition="right">{items}</Accordion>
                       </div>
                     </div>
-                    {/* <div className="mt-16">
+                    <div className="mt-16">
                       <h4 className="h4 mb-4 text-black">
                         Can't find an answer to your question?
                       </h4>
                       <p>
-                        If you still need help and would like to contact us, you
-                        can call us on weekdays from 9 am - 5 pm on{" "}
+                        If you still need help and would like to contact us,
+                        Simply send an email to{" "}
                         <Link
-                          to="tel:01706248282"
-                          className="font-bold text-[#706AEA]"
+                          className="text-blue-600"
+                          to="mailto:support@lego2sell.com"
                         >
-                          Phone Numberr
-                        </Link>{" "}
-                        or email us any time at{" "}
-                        <Link
-                          to="mailto:info@webuybricks.co.uk"
-                          className="font-bold text-[#706AEA]"
-                        >
-                          Email Demo
+                          support@lego2sell.com.
                         </Link>
-                        . Alternatively, you can visit our contact us page and
-                        use our web form to submit your enquiry. A member of our
-                        customer service team will be in contact to help you
-                        with your questions.
+                        Alternatively, you can visit our{" "}
+                        <Link
+                          onClick={() => setFAQOpen(false)}
+                          className="text-blue-600"
+                          to="contact"
+                        >
+                          contact us
+                        </Link>{" "}
+                        page and use our web form to submit your enquiry. A
+                        member of our customer service team will be in contact
+                        to help you with your questions.
                       </p>
                       <a
                         title="Contact our team"
@@ -217,17 +214,22 @@ const Header = () => {
                       >
                         Contact our team
                       </a>
-                    </div> */}
+                    </div>
                   </div>
                 </div>
               </div>
             )}
-            <Link
-              to="/lego2sell-client/login/"
-              className="text-lg hidden lg:block font-medium"
+            <button
+              onClick={() => {
+                setFAQOpen(false)
+                navigation("/lego2sell-client/login/", {
+                  state: { route },
+                })
+              }}
+              className="text-lg  font-medium"
             >
               Account
-            </Link>
+            </button>
             {/* <Link
               to="/lego2sell-client/login/"
               className="text-lg  hidden lg:block font-medium"
@@ -247,6 +249,7 @@ const Header = () => {
           </div>
           <div className="lg:flex hidden gap-8  items-center ">
             <Link
+              onClick={() => setFAQOpen(false)}
               to="/lego2sell-client/how-it-works"
               className="flex gap-2 items-center"
             >
@@ -281,6 +284,7 @@ const Header = () => {
               </svg> */}
             </Link>
             <Link
+              onClick={() => setFAQOpen(false)}
               to="/lego2sell-client/my-account"
               className="flex gap-3 items-center"
             >
@@ -349,34 +353,13 @@ const Header = () => {
                   className="flex gap-3 items-center"
                 >
                   <div className="">
-                    <h4 className="text-base max-[398px]:text-xs font-medium">
-                      How it Works?
-                    </h4>
-                    <p className="text-sm max-[398px]:text-xs text-gray-400">
-                      Just 4 Easy Steps
-                    </p>
+                    <h4 className="text-base font-medium">How it Works?</h4>
                   </div>
-                  <svg
-                    width={24}
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                  >
-                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                    <g
-                      id="SVGRepo_tracerCarrier"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    ></g>
-                    <g id="SVGRepo_iconCarrier">
-                      {" "}
-                      <path
-                        fill="#000"
-                        fill-rule="evenodd"
-                        d="M10 3a7 7 0 100 14 7 7 0 000-14zm-9 7a9 9 0 1118 0 9 9 0 01-18 0zm10.01 4a1 1 0 01-1 1H10a1 1 0 110-2h.01a1 1 0 011 1zM11 6a1 1 0 10-2 0v5a1 1 0 102 0V6z"
-                      ></path>{" "}
-                    </g>
-                  </svg>
+                  <img
+                    className="w-6 object-contain h-6"
+                    src="https://drive.google.com/uc?export=download&id=1MTRDrHk__4kNlTfZ9eXjD0ENRn-qIq-W"
+                    alt=""
+                  />
                 </Link>
                 <Link
                   to="/lego2sell-client/my-account"
@@ -386,9 +369,11 @@ const Header = () => {
                     <h4 className="text-base max-[398px]:text-xs font-medium">
                       Start Selling
                     </h4>
-                    <p className="text-sm max-[398px]:text-xs text-gray-400">
-                      0 item | $0.00
-                    </p>
+                    {savedLength && (
+                      <p className="text-sm text-gray-400">
+                        {savedLength} item | £{OrderTotalPrice}
+                      </p>
+                    )}
                   </div>
                   <svg
                     width={28}
@@ -411,179 +396,51 @@ const Header = () => {
                     </g>
                   </svg>
                 </Link>
-                <button
-                  onClick={() => {
-                    setMenuOpen(!MenuOpen)
-                    setFAQOpen(false)
-                  }}
-                  className="text-lg font-medium"
-                >
-                  Menu
-                </button>
-                {MenuOpen && (
-                  <div
-                    ref={ref}
-                    className=" absolute top-[85px] left-2.5 bg-white rounded-2xl px-6 border py-4"
-                  >
-                    <ul class="">
-                      <li class="pb-5 hover:text-blue-500 duration-300 last:pb-0 relative">
-                        <Link
-                          onClick={() => setMenuOpen(!MenuOpen)}
-                          title="Acceptance guidelines"
-                          class="font-bold false"
-                          to="/lego2sell-client/acceptance-guidelines"
-                        >
-                          Acceptance guidelines
-                        </Link>
-                      </li>
-                      <li class="pb-5  hover:text-blue-500 duration-300 last:pb-0 relative">
-                        <Link
-                          onClick={() => setMenuOpen(!MenuOpen)}
-                          title="Packaging guidelines"
-                          class="font-bold false"
-                          to="/lego2sell-client/packaging-guidelines"
-                        >
-                          Packaging guidelines
-                        </Link>
-                      </li>
-
-                      <li class="pb-5 hover:text-blue-500 duration-300 last:pb-0 relative">
-                        <Link
-                          onClick={() => setMenuOpen(!MenuOpen)}
-                          title="About"
-                          class="font-bold false"
-                          to="/lego2sell-client/about"
-                        >
-                          About
-                        </Link>
-                      </li>
-                      <li class="pb-5 over:text-blue-500 duration-300 last:pb-0 relative">
-                        <Link
-                          onClick={() => setMenuOpen(!MenuOpen)}
-                          title="Contact"
-                          class="font-bold false"
-                          to="/lego2sell-client/contact"
-                        >
-                          Contact
-                        </Link>
-                      </li>
-                      <li class="pb-5 duration-300 hover:text-blue-500 last:pb-0 relative">
-                        <Link
-                          onClick={() => setMenuOpen(!MenuOpen)}
-                          title="Privacy statement"
-                          class="font-bold false"
-                          to="/lego2sell-client/privacy-statement"
-                        >
-                          Privacy statement
-                        </Link>
-                      </li>
-                      <li class="pb-5 duration-300 hover:text-blue-500 last:pb-0 relative">
-                        <Link
-                          onClick={() => setMenuOpen(!MenuOpen)}
-                          title="Terms &amp; conditions"
-                          class="font-bold false"
-                          to="/lego2sell-client/terms-and-conditions"
-                        >
-                          Terms &amp; conditions
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
-                )}
-                <button
-                  onClick={() => {
-                    setFAQOpen(!FAQOpen)
-                    setOpenMenu(false)
-                  }}
-                  className="text-lg font-medium"
-                >
-                  FAQS
-                </button>
-                {FAQOpen && (
-                  <div className="lg:w-[40%] w-[90%] rounded-2xl left-6 shadow-2xl px-6 h-screen overflow-y-scroll absolute top-16 lg:left-36 z-50 bg-white py-12 lg:py-12">
-                    <h1 className="text-2xl font-bold py-6">
-                      Frequently asked questions{" "}
-                    </h1>
-                    <div className="content-wrapper">
-                      <div>
-                        <div>
-                          <p>
-                            <img
-                              src="https://revival-strapi.s3.eu-west-2.amazonaws.com/frequently_asked_questions_f371730e95.webp"
-                              alt="frequently-asked-questions.webp"
-                            />
-                          </p>
-                          <p className="font-semibold text-base text-gray-500 py-4">
-                            Got a question? Well, you’re in the right place. To
-                            find answers to all of our common queries, check out
-                            our FAQs below. If you still can’t find an answer to
-                            your question or need help with something else, get
-                            in touch with us and we’ll guide you as best we can.
-                          </p>
-                        </div>
-                      </div>
-                      <div
-                        className="mt-12 border-t border-[#CCCCCC]"
-                        itemScope=""
-                        itemType="https://schema.org/FAQPage"
-                      >
-                        <div
-                          className="border-b border-[#CCCCCC]"
-                          itemScope=""
-                          itemProp="mainEntity"
-                          itemType="https://schema.org/Question"
-                        >
-                          <div className="">
-                            {" "}
-                            <Accordion chevronPosition="right">
-                              {items}
-                            </Accordion>
-                          </div>
-                        </div>
-                        <div className="mt-16">
-                          <h4 className="h4 mb-4 text-black">
-                            Can't find an answer to your question?
-                          </h4>
-                          <p>
-                            If you still need help and would like to contact us,
-                            you can call us on weekdays from 9 am - 5 pm on{" "}
-                            <Link
-                              to="tel:01706248282"
-                              className="font-bold text-[#706AEA]"
-                            >
-                              Phone Numberr
-                            </Link>{" "}
-                            or email us any time at{" "}
-                            <Link
-                              to="mailto:info@webuybricks.co.uk"
-                              className="font-bold text-[#706AEA]"
-                            >
-                              Email Demo
-                            </Link>
-                            . Alternatively, you can visit our contact us page
-                            and use our web form to submit your enquiry. A
-                            member of our customer service team will be in
-                            contact to help you with your questions.
-                          </p>
-                          <a
-                            title="Contact our team"
-                            className="button"
-                            href="/lego2sell-client/contact/"
-                          >
-                            Contact our team
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
               </div>
             )}
           </div>
         </div>
       ) : (
-        <div className="flex flex-row-reverse justify-between w-full px-6 py-4 items-center">
+        <div
+          ref={ref}
+          className="flex flex-row-reverse justify-between w-full px-6 py-4 items-center"
+        >
           <div className="flex gap-7 items-center">
+            <Link
+              onClick={() => setFAQOpen(false)}
+              to="/lego2sell-client/how-it-works"
+              className="flex gap-2 items-center"
+            >
+              <div className="">
+                <h4 className="text-base font-medium">How it Works?</h4>
+              </div>
+              <img
+                className="w-6 object-contain h-6"
+                src="https://drive.google.com/uc?export=download&id=1MTRDrHk__4kNlTfZ9eXjD0ENRn-qIq-W"
+                alt=""
+              />
+              {/* <svg
+                width={24}
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+              >
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g
+                  id="SVGRepo_tracerCarrier"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></g>
+                <g id="SVGRepo_iconCarrier">
+                  {" "}
+                  <path
+                    fill="#000"
+                    fill-rule="evenodd"
+                    d="M10 3a7 7 0 100 14 7 7 0 000-14zm-9 7a9 9 0 1118 0 9 9 0 01-18 0zm10.01 4a1 1 0 01-1 1H10a1 1 0 110-2h.01a1 1 0 011 1zM11 6a1 1 0 10-2 0v5a1 1 0 102 0V6z"
+                  ></path>{" "}
+                </g>
+              </svg> */}
+            </Link>
             <button
               onClick={() => {
                 setMenuOpen(!MenuOpen)
@@ -670,8 +527,8 @@ const Header = () => {
               FAQS
             </button>
             {FAQOpen && (
-              <div className="lg:w-[40%] w-[90%] rounded-2xl shadow-2xl px-6 h-screen overflow-y-scroll absolute top-24 right-3 lg:right-9 z-50 bg-white py-12 lg:py-12">
-                <h1 className="text-2xl font-bold py-6">
+              <div className="lg:w-[40%] w-[90%] rounded-2xl right-4 shadow-2xl px-6 overflow-y-scroll border absolute top-20 h-[80vh] lg:right-44 z-50 bg-white py-12 lg:py-12">
+                <h1 className="text-2xl font-bold py-1">
                   Frequently asked questions{" "}
                 </h1>
                 <div className="content-wrapper">
@@ -679,16 +536,10 @@ const Header = () => {
                     <div>
                       <p>
                         <img
-                          src="https://revival-strapi.s3.eu-west-2.amazonaws.com/frequently_asked_questions_f371730e95.webp"
+                          className="w-full h-44 object-contain"
+                          src="../Images/FAQ.png"
                           alt="frequently-asked-questions.webp"
                         />
-                      </p>
-                      <p className="font-semibold text-base text-black py-4">
-                        Got a question? Well, you’re in the right place. To find
-                        answers to all of our common queries, check out our FAQs
-                        below. If you still can’t find an answer to your
-                        question or need help with something else, get in touch
-                        with us and we’ll guide you as best we can.
                       </p>
                     </div>
                   </div>
@@ -713,25 +564,21 @@ const Header = () => {
                         Can't find an answer to your question?
                       </h4>
                       <p>
-                        If you still need help and would like to contact us, you
-                        can call us on weekdays from 9 am - 5 pm on{" "}
-                        <a
-                          href="tel:01706248282"
-                          className="font-bold text-[#706AEA]"
+                        If you still need help and would like to contact us,
+                        Simply send an email to{" "}
+                        <Link
+                          className="text-blue-600"
+                          to="mailto:support@lego2sell.com"
                         >
-                          Phone Numberr
-                        </a>{" "}
-                        or email us any time at{" "}
-                        <a
-                          href="mailto:info@webuybricks.co.uk"
-                          className="font-bold text-[#706AEA]"
-                        >
-                          Email Demo
-                        </a>
-                        . Alternatively, you can visit our contact us page and
-                        use our web form to submit your enquiry. A member of our
-                        customer service team will be in contact to help you
-                        with your questions.
+                          support@lego2sell.com.
+                        </Link>
+                        Alternatively, you can visit our{" "}
+                        <Link className="text-blue-600" to="contact">
+                          contact us
+                        </Link>{" "}
+                        page and use our web form to submit your enquiry. A
+                        member of our customer service team will be in contact
+                        to help you with your questions.
                       </p>
                       <a
                         title="Contact our team"
@@ -745,19 +592,23 @@ const Header = () => {
                 </div>
               </div>
             )}
+
             <button
               onClick={() => {
                 navigation(`/lego2sell-client/selling-basket/`, {
                   state: { SearchValue, data, savedCondition },
                 })
               }}
-              className="text-md font-semibold bg-blue-400 px-6 py-2 rounded-full text-white lg:flex hidden"
+              className="text-md font-semibold bg-blue-500 px-6 py-2 rounded-full text-white lg:flex hidden"
             >
-              Shoping Card
+              Your Sets
             </button>
           </div>
           <div className="lg:hidden flex">
-            <button onClick={() => setOpenMenu(!openMenu)}>
+            <button
+              className="absolute top-8 right-8"
+              onClick={() => setOpenMenu(!openMenu)}
+            >
               <svg
                 className="w-6"
                 viewBox="0 0 24 24"
@@ -793,34 +644,13 @@ const Header = () => {
                   className="flex gap-3 items-center"
                 >
                   <div className="">
-                    <h4 className="text-base max-[398px]:text-xs font-medium">
-                      How it Works?
-                    </h4>
-                    <p className="text-sm max-[398px]:text-xs text-gray-400">
-                      Just 4 Easy Steps
-                    </p>
+                    <h4 className="text-base font-medium">How it Works?</h4>
                   </div>
-                  <svg
-                    width={24}
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                  >
-                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                    <g
-                      id="SVGRepo_tracerCarrier"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    ></g>
-                    <g id="SVGRepo_iconCarrier">
-                      {" "}
-                      <path
-                        fill="#000"
-                        fill-rule="evenodd"
-                        d="M10 3a7 7 0 100 14 7 7 0 000-14zm-9 7a9 9 0 1118 0 9 9 0 01-18 0zm10.01 4a1 1 0 01-1 1H10a1 1 0 110-2h.01a1 1 0 011 1zM11 6a1 1 0 10-2 0v5a1 1 0 102 0V6z"
-                      ></path>{" "}
-                    </g>
-                  </svg>
+                  <img
+                    className="w-6 object-contain h-6"
+                    src="https://drive.google.com/uc?export=download&id=1MTRDrHk__4kNlTfZ9eXjD0ENRn-qIq-W"
+                    alt=""
+                  />
                 </Link>
                 <Link
                   to="/lego2sell-client/my-account"
@@ -942,8 +772,8 @@ const Header = () => {
                   FAQS
                 </button>
                 {FAQOpen && (
-                  <div className="lg:w-[40%] w-[90%] rounded-2xl left-6 shadow-2xl px-6 h-screen overflow-y-scroll absolute top-16 lg:left-36 z-50 bg-white py-12 lg:py-12">
-                    <h1 className="text-2xl font-bold py-6">
+                  <div className="lg:w-[40%] w-[90%] rounded-2xl left-4 shadow-2xl px-6 overflow-y-scroll border absolute top-16 h-[80vh] lg:left-24 z-50 bg-white py-12 lg:py-12">
+                    <h1 className="text-2xl font-bold py-1">
                       Frequently asked questions{" "}
                     </h1>
                     <div className="content-wrapper">
@@ -951,16 +781,10 @@ const Header = () => {
                         <div>
                           <p>
                             <img
-                              src="https://revival-strapi.s3.eu-west-2.amazonaws.com/frequently_asked_questions_f371730e95.webp"
+                              className="w-full h-44 object-contain"
+                              src="../Images/FAQ.png"
                               alt="frequently-asked-questions.webp"
                             />
-                          </p>
-                          <p className="font-semibold text-base text-gray-500 py-4">
-                            Got a question? Well, you’re in the right place. To
-                            find answers to all of our common queries, check out
-                            our FAQs below. If you still can’t find an answer to
-                            your question or need help with something else, get
-                            in touch with us and we’ll guide you as best we can.
                           </p>
                         </div>
                       </div>
@@ -988,22 +812,18 @@ const Header = () => {
                           </h4>
                           <p>
                             If you still need help and would like to contact us,
-                            you can call us on weekdays from 9 am - 5 pm on{" "}
+                            Simply send an email to{" "}
                             <Link
-                              to="tel:01706248282"
-                              className="font-bold text-[#706AEA]"
+                              className="text-blue-600"
+                              to="mailto:support@lego2sell.com"
                             >
-                              Phone Numberr
-                            </Link>{" "}
-                            or email us any time at{" "}
-                            <Link
-                              to="mailto:info@webuybricks.co.uk"
-                              className="font-bold text-[#706AEA]"
-                            >
-                              Email Demo
+                              support@lego2sell.com.
                             </Link>
-                            . Alternatively, you can visit our contact us page
-                            and use our web form to submit your enquiry. A
+                            Alternatively, you can visit our{" "}
+                            <Link className="text-blue-600" to="contact">
+                              contact us
+                            </Link>{" "}
+                            page and use our web form to submit your enquiry. A
                             member of our customer service team will be in
                             contact to help you with your questions.
                           </p>
@@ -1019,6 +839,16 @@ const Header = () => {
                     </div>
                   </div>
                 )}
+                <button
+                  onClick={() => {
+                    navigation(`/lego2sell-client/selling-basket/`, {
+                      state: { SearchValue, data, savedCondition },
+                    })
+                  }}
+                  className="text-md font-semibold bg-blue-500 px-6 py-2 rounded-full text-white lg:flex hidden"
+                >
+                  Your Sets
+                </button>
               </div>
             )}
           </div>

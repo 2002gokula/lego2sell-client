@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import axios from "axios"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { Helmet } from "react-helmet"
 
 function Login() {
@@ -10,13 +10,17 @@ function Login() {
   const handleEmailChange = (e) => {
     setEmail(e.target.value)
   }
-
+  const location = useLocation()
+  const isLogin = location.state.route
+  console.log(isLogin)
   const handlePasswordChange = (e) => {
     setPassword(e.target.value)
   }
-
+  const price = localStorage.getItem("Price")
+  console.log(price)
   const handleSubmit = async (e) => {
     e.preventDefault()
+
     try {
       const response = await fetch("https://wicked-shoe-cow.cyclic.app/login", {
         method: "POST",
@@ -43,7 +47,11 @@ function Login() {
       localStorage.setItem("userId", userId)
 
       // Navigate to another route
-      navigation(`/lego2sell-client/`)
+      if (isLogin !== "/lego2sell-client/") {
+        navigation(`/lego2sell-client/check-your-details`)
+      } else {
+        navigation(`/lego2sell-client/`)
+      }
     } catch (error) {
       console.error("An error occurred:", error)
       // Handle the error as needed

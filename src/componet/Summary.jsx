@@ -5,28 +5,28 @@ import { Link, useNavigate } from "react-router-dom"
 import { Country, State, City } from "country-state-city"
 import { Helmet } from "react-helmet"
 const summary = ({
-  data,
-  price,
   SearchValue,
   condition,
   prevStep,
   formData,
   storedUserId,
 }) => {
+  const price = localStorage.getItem("Price")
   // console.log("SearchValue", SearchValue)
   const navigation = useNavigate()
   const [sendMethod, setSendMethod] = useState("Dropoff")
-  console.log(formData)
   const [acceptOffer, setAcceptOffer] = useState()
   const [details, setDetails] = useState()
+  const [data, setData] = useState(false)
+  console.log("demo92387273627632376", data)
   const payload = {
     Deliverymethod: sendMethod,
-    Price: price ? price.toFixed(2) : null,
+    Price: price ? price : null,
     noItems: 1,
     Status: "pending",
-    ProductName: data.body.name,
+    ProductName: data?.body?.name,
     ProductId: SearchValue,
-    ProductImg: data.body.image_url,
+    ProductImg: data?.body?.image_url,
     timestamp: new Date(),
   }
   useEffect(() => {
@@ -36,6 +36,26 @@ const summary = ({
           `https://wicked-shoe-cow.cyclic.app/Mydetails/${storedUserId}`
         )
         setDetails(response.data.Mydetails[0])
+        const response1 = await fetch(
+          "https://wicked-shoe-cow.cyclic.app/find-lego",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ itemCode: SearchValue }),
+          }
+        )
+
+        const data = await response1.json()
+        // console.log("Data", data)
+        // localStorage.setItem("data", data)
+        if (data.message === "SUCCESS") {
+          setData(data)
+        } else {
+          console.log("error")
+          // alert("Could not find the LEGO you are looking for.")
+        }
       } catch (error) {
         console.error("An error occurred:", error)
         // Handle the error as needed
@@ -62,6 +82,36 @@ const summary = ({
     }
   }
 
+  const handleSearch = async () => {
+    try {
+      const response = await fetch(
+        "https://wicked-shoe-cow.cyclic.app/find-lego",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ itemCode: SearchValue }),
+        }
+      )
+
+      const data = await response.json()
+      // console.log("Data", data)
+      // localStorage.setItem("data", data)
+      localStorage.setItem("SearchValue", e)
+      if (data.message === "SUCCESS") {
+        setDashPattern(data)
+      } else {
+        console.log("error")
+        // alert("Could not find the LEGO you are looking for.")
+      }
+    } catch {
+      console.log("error")
+      // alert("Could not find the LEGO you are looking for.")
+    } finally {
+      console.log("complete") // Set loading state back to false
+    }
+  }
   return (
     <>
       <Helmet>
@@ -86,7 +136,7 @@ const summary = ({
 
             {/* <p className="text-gray-500 py-1">Select your preferred method*</p> */}
             <div className="">
-              <div className="w-2/4 rounded-xl border gap-8 mb-14">
+              <div className="lg:w-2/4 w-full rounded-xl border gap-8 mb-14">
                 <div className="relative w-full rounded-b-lg p-6 py-10">
                   <img
                     className="w-full object-contain h-full"
@@ -149,19 +199,15 @@ const summary = ({
                   <div className="flex lg:flex-row flex-col items-center gap-6">
                     <img
                       className="w-44 object-contain  border rounded-lg px-4 border-gray-300 h-32"
-                      src={data.body.image_url}
+                      src={data?.body?.image_url}
                       alt=""
                     />
                     <h3 className="text-lg font-semibold">
-                      {data.body.name} {SearchValue}
+                      {data?.body?.name} {SearchValue}
                     </h3>
                   </div>
                   <div className="flex text-blue-500 font-bold items-center gap-6">
-                    {price ? (
-                      <h2> £{price.toFixed(2)}</h2>
-                    ) : (
-                      <Loader size="xs" />
-                    )}
+                    {price ? <h2> £{price}</h2> : <Loader size="xs" />}
                     <button onClick={() => navigation("/lego2sell-client/")}>
                       <svg
                         width={24}
@@ -203,7 +249,7 @@ const summary = ({
               <h2 className="h4 mb-4 hidden md:block">Offer summary</h2>
               <div className="flex flex-row md:flex-col items-center justify-between">
                 <div className="text-[#706AEA] text-xl md:text-5xl font-bold mb-0 md:mb-2 order-2 md:order-1">
-                  {price ? <h2> £{price.toFixed(2)}</h2> : <Loader size="xs" />}
+                  {price ? <h2> £{price}</h2> : <Loader size="xs" />}
                 </div>
                 <div className="font-bold text-xl md:text-base order-1 md:order-2">
                   1 Item
@@ -213,7 +259,7 @@ const summary = ({
                 <Checkbox onChange={() => setAcceptOffer(!acceptOffer)} />
                 <p>
                   {`I accept the offer of   £
-                          ${price.toFixed(2)} and the `}
+                          ${price} and the `}
                   <span>terms and conditions*</span>
                 </p>
               </div>

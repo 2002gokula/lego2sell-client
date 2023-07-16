@@ -1,4 +1,4 @@
-import { Divider, Group, Radio, Select, TextInput } from "@mantine/core"
+import { Divider, Group, Radio, Select, TextInput, Loader } from "@mantine/core"
 import { useForm } from "@mantine/form"
 import React, { useEffect, useState } from "react"
 import { DatePickerInput } from "@mantine/dates"
@@ -10,7 +10,7 @@ import { Helmet } from "react-helmet"
 // import Select from "react-select"
 const DetailsForm = ({
   setActive,
-  price,
+
   condition,
   setFormData,
   formData,
@@ -25,7 +25,7 @@ const DetailsForm = ({
   const [state, setState] = useState([])
   console.log(state)
   const [stateid, setStateid] = useState("")
-
+  const price = localStorage.getItem("Price")
   const handlecounty = (e) => {
     const getcountryId = e.target.value
     const getStatedata = CountryCitits.find(
@@ -70,7 +70,7 @@ const DetailsForm = ({
       Telephone: data?.Telephone,
       title: data?.title,
       StreetAddress1: data?.StreetAddress1,
-      termsOfService: false,
+      termsOfService: true,
       StreetAddress2: data?.StreetAddress2,
       city: data?.city,
       Country: data?.Country,
@@ -477,17 +477,12 @@ const DetailsForm = ({
             </div>
           </div>
           <div className="flex-[0.4]">
-            <div className="bg-white relative lg:!fixed !top-18 w-full lg:w-[340px] rounded-2xl shadow-[0_4px_25px_rgba(38,50,92,0.1)] p-4 px-6 md:p-8 text-center ">
+            <div className="bg-white relative lg:!fixed !top-18 w-full lg:w-[340px] rounded-2xl shadow-[0_4px_25px_rgba(38,50,92,0.1)] p-4 px-6 md:p-8 text-center">
               <h2 className="h4 mb-4 hidden md:block">Offer summary</h2>
               <div className="flex flex-row md:flex-col items-center justify-between">
                 <div className="text-[#706AEA] text-xl md:text-5xl font-bold mb-0 md:mb-2 order-2 md:order-1">
                   <h2>
-                    {" "}
-                    {price ? (
-                      <h2> £{price.toFixed(2)}</h2>
-                    ) : (
-                      <Loader size="xs" />
-                    )}
+                    {price ? <h2>{` £ ${price}`}</h2> : <Loader size="xs" />}
                   </h2>
                 </div>
                 <div className="font-bold text-xl md:text-base order-1 md:order-2">

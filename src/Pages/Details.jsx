@@ -5,26 +5,32 @@ import Summary from "../componet/Summary"
 import { useLocation } from "react-router-dom"
 const Details = () => {
   const location = useLocation()
-  const data = location.state && location.state.data
-  const price = location.state.price
-  const SearchValue = location.state.SearchValue
-  const condition = location.state.condition
-  console.log(SearchValue)
+  // const data = location.state && location.state.data
+  // const price = location.state.price
+  // const SearchValue = location.state.SearchValue
+  // const condition = location.state.condition
+  // console.log(SearchValue)
   const [formData, setFormData] = useState([])
   const [active, setActive] = useState(0)
   const storedUserId = localStorage.getItem("userId")
+  const data = localStorage.getItem("data")
+  console.log(data)
+  const price = localStorage.getItem("Price")
+
+  const SearchValue = localStorage.getItem("SearchValue")
+  const condition = localStorage.getItem("condition")
   const prevStep = () =>
     setActive((current) => (current > 0 ? current - 1 : current))
   return (
     <div className="py-12 flex  items-center justify-center">
-      <div className="w-[80%] ">
+      <div className="w-[80%]">
         <Stepper
           active={active}
           mx={{ display: "flex" }}
           onStepClick={setActive}
           breakpoint="sm"
         >
-          <Stepper.Step label="My Details" description="Confirm your details">
+          <Stepper.Step disabled label="" description="">
             <DetailsForm
               storedUserId={storedUserId}
               formData={formData}
@@ -35,7 +41,7 @@ const Details = () => {
               setActive={setActive}
             />
           </Stepper.Step>
-          <Stepper.Step label="Offer Summary" description=" Offer Summary ">
+          <Stepper.Step disabled label="" description="">
             <Summary
               storedUserId={storedUserId}
               formData={formData}
@@ -46,7 +52,7 @@ const Details = () => {
               data={data}
             />
           </Stepper.Step>
-          <Stepper.Step label="Final step" description="Get full access">
+          <Stepper.Step disabled label="" description="">
             Step 3 content: Get full access
           </Stepper.Step>
           <Stepper.Completed>

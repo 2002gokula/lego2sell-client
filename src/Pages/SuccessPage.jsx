@@ -8,9 +8,10 @@ import { Link, useLocation } from "react-router-dom"
 const SuccessPage = () => {
   const location = useLocation()
   const storedUserId = localStorage.getItem("userId")
+  const price = localStorage.getItem("Price")
   const condition = location.state.condition
   const offerId = location.state.offerId
-  const price = location.state.price
+  // const price = location.state.price
   const [orderitems, setOrderitems] = useState()
   console.log(orderitems)
   useEffect(() => {
@@ -67,9 +68,7 @@ const SuccessPage = () => {
             <strong className="font-bold text-[#706AEA]">#{offerId}</strong> |
             You'll receive
             {price ? (
-              <strong className="font-bold text-[#706AEA]">
-                £{price.toFixed(2)}
-              </strong>
+              <strong className="font-bold text-[#706AEA]">£{price}</strong>
             ) : (
               <Loader size="xs" />
             )}

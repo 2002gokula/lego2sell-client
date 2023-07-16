@@ -10,8 +10,10 @@ const Basket = () => {
   const SearchValue = location.state.SearchValue
   const condition = location.state.condition
   const [price, setPrice] = useState(null)
+  const storedUserId = localStorage.getItem("userId")
   const [data, setData] = useState()
-  console.log("demo", price)
+  const route = location.pathname
+  console.log("demo9999", price)
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -29,7 +31,6 @@ const Basket = () => {
         const data = await response.json()
         console.log("Data", data)
         setData(data)
-        localStorage.setItem("data", JSON.stringify(data))
       } catch (error) {
         console.log(error)
         // alert("Could not find the LEGO you are looking for.")
@@ -61,6 +62,8 @@ const Basket = () => {
         const discountPercentage = condition
         const discount = originalPrice * (discountPercentage / 100)
         const discountedPrice = originalPrice - discount
+        setPrice(discountedPrice)
+        localStorage.setItem("Price", discountedPrice.toFixed(2))
         if (priceData.message === "SUCCESS") {
           setPrice(discountedPrice)
         } else {
@@ -101,7 +104,7 @@ const Basket = () => {
           </div>
           <div className="flex items-center lg:py-0 py-4 gap-6">
             {price ? (
-              <h2 className="text-blue-500 font-semibold">
+              <h2 className="text-[#706AEA] font-semibold">
                 £{price.toFixed(2)}
               </h2>
             ) : (
@@ -152,11 +155,17 @@ const Basket = () => {
               </div>
             </div>
             <button
-              onClick={() =>
-                navigation("/lego2sell-client/check-your-details", {
-                  state: { data, price, SearchValue, condition },
-                })
-              }
+              onClick={() => {
+                if (storedUserId === "") {
+                  navigation("/lego2sell-client/login/", {
+                    state: { route },
+                  })
+                } else {
+                  navigation("/lego2sell-client/check-your-details", {
+                    state: { data, price, SearchValue, condition },
+                  })
+                }
+              }}
               type="button"
               className="hover:scale-[1.05] transition-all mt-4 w-full text-center lg:ml-0 flex items-center justify-center px-6 lg:px-9 rounded-xl bg-blue-500 hover:bg-white hover:text-black  hover:border text-white font-bold text-[15px] h-[49px] lg:h-[65px]  xl:text-[18px]"
             >

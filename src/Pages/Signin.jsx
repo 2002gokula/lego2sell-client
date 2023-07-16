@@ -28,8 +28,7 @@ const SignUpForm = () => {
   const [selectedCity, setSelectedCity] = useState("")
   const [selectedState, setSelectedState] = useState("")
   const [PaymentDetails, setPaymentDetails] = useState("Paypal")
-  // const [state, setState] = useState([])
-  // console.log("demo98892323", selectedState)
+
   const form = useForm({
     initialValues: {
       email: "",
@@ -49,6 +48,8 @@ const SignUpForm = () => {
       sortCode1: "",
       sortCode2: "",
       sortCode3: "",
+      TermsCheck: "",
+      Marketingpreferences: "",
     },
 
     validate: {
@@ -93,6 +94,8 @@ const SignUpForm = () => {
         sortCode1: form.values.sortCode1,
         sortCode2: form.values.sortCode2,
         sortCode3: form.values.sortCode3,
+        TermsCheck: form.values.TermsCheck,
+        Marketingpreferences: form.values.TermsCheck,
       }
       console.log(values)
       const response = await fetch(
@@ -125,7 +128,11 @@ const SignUpForm = () => {
       )
       console.log("sdsds", response1.data)
       // Navigate to another route
-      navigation(`/lego2sell-client/`)
+      if (isLogin !== "/lego2sell-client/") {
+        navigation(`/lego2sell-client/check-your-details`)
+      } else {
+        navigation(`/lego2sell-client/`)
+      }
     } catch (error) {
       console.error("An error occurred:", error)
       // Handle the error as needed
@@ -435,7 +442,7 @@ const SignUpForm = () => {
 
               <div className="mb-4">
                 <label className="flex items-center gap-2">
-                  <Checkbox {...form.getInputProps("Voucher")} />
+                  <Checkbox {...form.getInputProps("Marketingpreferences")} />
                   Please send me exclusive voucher codes and latest news by
                   email
                 </label>
