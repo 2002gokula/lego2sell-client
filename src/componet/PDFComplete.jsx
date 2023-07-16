@@ -1,10 +1,10 @@
 import React, { useState } from "react"
 import { degrees, PDFDocument, rgb, StandardFonts } from "pdf-lib"
 import download from "downloadjs"
-
+import pdf from "../../public/SellyournewsetsatLEGO2sell.pdf"
 const PDFModificationExample = () => {
   const handleModifyPdf = async () => {
-    const url = "./SellyournewsetsatLEGO2sell.pdf"
+    const url = pdf
     // console.log(url)
     const existingPdfBytes = await fetch(url).then((res) => res.arrayBuffer())
 
