@@ -48,7 +48,7 @@ const DetailsForm = ({ setActive, setFormData, storedUserId }) => {
       }, 500)
 
       return () => {
-        clearTimeout(reload === "1" ? null : reloadTimeout)
+        clearTimeout(reloadTimeout)
       }
     }, [])
   }
