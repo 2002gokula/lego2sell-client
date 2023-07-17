@@ -11,7 +11,7 @@ function Login() {
     setEmail(e.target.value)
   }
   const location = useLocation()
-  const isLogin = location.state.route
+  const isLogin = location.state?.route
   console.log(isLogin)
   const handlePasswordChange = (e) => {
     setPassword(e.target.value)

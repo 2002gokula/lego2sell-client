@@ -10,6 +10,7 @@ const Header = () => {
   const OrderTotalPrice = localStorage.getItem("totalPrice")
   const location = useLocation()
   const route = location.pathname
+  const storedUserId = localStorage.getItem("userId")
   // console.log(route)
   const items = charactersList.map((item) => (
     <Accordion.Item value={item.id} key={item.label}>
@@ -287,31 +288,14 @@ const Header = () => {
                 src="https://drive.google.com/uc?export=download&id=1MTRDrHk__4kNlTfZ9eXjD0ENRn-qIq-W"
                 alt=""
               />
-              {/* <svg
-                width={24}
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-              >
-                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                <g
-                  id="SVGRepo_tracerCarrier"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></g>
-                <g id="SVGRepo_iconCarrier">
-                  {" "}
-                  <path
-                    fill="#000"
-                    fill-rule="evenodd"
-                    d="M10 3a7 7 0 100 14 7 7 0 000-14zm-9 7a9 9 0 1118 0 9 9 0 01-18 0zm10.01 4a1 1 0 01-1 1H10a1 1 0 110-2h.01a1 1 0 011 1zM11 6a1 1 0 10-2 0v5a1 1 0 102 0V6z"
-                  ></path>{" "}
-                </g>
-              </svg> */}
             </Link>
             <Link
               onClick={() => setFAQOpen(false)}
-              to="/lego2sell-client/my-account"
+              to={
+                storedUserId !== ""
+                  ? "/lego2sell-client/my-account"
+                  : "/lego2sell-client/login/"
+              }
               className="flex gap-3 items-center"
             >
               <div className="">
@@ -631,7 +615,11 @@ const Header = () => {
               Account
             </button>
             <Link
-              to="/lego2sell-client/my-account"
+              to={
+                storedUserId !== ""
+                  ? "/lego2sell-client/my-account"
+                  : "/lego2sell-client/"
+              }
               className=" gap-3  hidden lg:flex items-center"
             >
               <div className="">
@@ -963,7 +951,7 @@ const Header = () => {
             <Link to={"/lego2sell-client/"}>
               <img
                 className="w-[80%] max-[306px]:w-[100%] px-3 lg:px-8 h-14 scale-125 object-contain"
-                src="../Images/Logo5.png"
+                src="./Logo5.png"
                 alt=""
               />
             </Link>
