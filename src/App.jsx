@@ -81,7 +81,8 @@ const App = () => {
           content="WeBuyBricks is the fast, FREE and easy way to sell LEGO® online for cash! We’ll buy complete collections or a mismatched bag of bricks - start selling now."
         />
       </Helmet>
-      <div className="h-[87.6vh] lg:h-[85.6vh]">
+      {/* <div className="h-[87.6vh] lg:h-[85.6vh]"> */}
+      <div className="">
         <div className="">
           <div className="">
             <div className="">

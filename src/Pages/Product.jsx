@@ -73,7 +73,7 @@ const Product = () => {
 
   if (isLoading) {
     return (
-      <div>
+      <div className="flex items-center justify-center mx-auto my-auto ">
         <Loader />
       </div>
     )
@@ -101,7 +101,7 @@ const Product = () => {
           </h2>
           <div className="">
             <img
-              className="w-[340px]  h-[210px] object-contain"
+              className="w-[340px] rounded-2xl  h-[210px] object-contain"
               src={data.body.image_url}
               alt="product-img"
             />

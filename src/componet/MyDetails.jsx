@@ -408,6 +408,11 @@ const MyDetails = () => {
           )}
         </div>
       </div>
+      <div class="flex w-full">
+        <button className="bg-blue-500 text-white rounded-xl h-[80px] px-16 mx-auto my-8 inline-flex items-center justify-center font-bold text-lg ">
+          Confirm
+        </button>
+      </div>
     </div>
   )
 }

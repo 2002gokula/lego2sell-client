@@ -21,43 +21,68 @@ const Header = () => {
       </Accordion.Panel>
     </Accordion.Item>
   ))
-  const ref = useRef(null)
+  // const ref = useRef(null)
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (ref.current && !ref.current.contains(event.target)) {
-        setFAQOpen(false)
-        setMenuOpen(false)
-        setOpenMenu(false)
+  // useEffect(() => {
+  //   const handleClickOutside = (event) => {
+  //     if (ref.current && !ref.current.contains(event.target)) {
+  //       setFAQOpen(false)
+  //       setMenuOpen(false)
+  //       setOpenMenu(false)
+  //     }
+  //   }
+
+  //   const handleEscapeKey = (event) => {
+  //     if (event.key === "Escape") {
+  //       setFAQOpen(false)
+  //       setMenuOpen(false)
+  //       setOpenMenu(false)
+  //     }
+  //   }
+
+  //   document.addEventListener("mousedown", handleClickOutside)
+  //   document.addEventListener("keydown", handleEscapeKey)
+
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleClickOutside)
+  //     document.removeEventListener("keydown", handleEscapeKey)
+  //   }
+  // }, [])
+  function useOutsideAlerter(ref) {
+    useEffect(() => {
+      /**
+       * Alert if clicked on outside of element
+       */
+      function handleClickOutside(event) {
+        if (ref.current && !ref.current.contains(event.target)) {
+          setFAQOpen(false)
+          setMenuOpen(false)
+          setOpenMenu(false)
+        }
       }
-    }
-
-    const handleEscapeKey = (event) => {
-      if (event.key === "Escape") {
-        setFAQOpen(false)
-        setMenuOpen(false)
-        setOpenMenu(false)
+      // Bind the event listener
+      document.addEventListener("mousedown", handleClickOutside)
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener("mousedown", handleClickOutside)
       }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside)
-    document.addEventListener("keydown", handleEscapeKey)
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside)
-      document.removeEventListener("keydown", handleEscapeKey)
-    }
-  }, [])
+    }, [ref])
+  }
+  const wrapperRef = useRef(null)
+  useOutsideAlerter(wrapperRef)
   const [MenuOpen, setMenuOpen] = useState()
   const router = location.pathname
   var savedCondition = localStorage.getItem("condition")
   var data = localStorage.getItem("data")
   var SearchValue = localStorage.getItem("SearchValue")
   return (
-    <div className="flex flex-col items-center w-full justify-between">
+    <div
+      ref={wrapperRef}
+      className="flex flex-col items-center w-full justify-between"
+    >
       {router === "/lego2sell-client/" ? (
         <div
-          ref={ref}
+          ref={wrapperRef}
           className="flex justify-between w-full px-6 py-4 items-center"
         >
           <div className="flex gap-8 items-center">
@@ -72,7 +97,7 @@ const Header = () => {
             </button>
             {MenuOpen && (
               <div
-                ref={ref}
+                // ref={ref}
                 className=" absolute top-[85px] left-2.5 bg-white rounded-2xl px-6 border py-4"
               >
                 <ul class="">
@@ -253,7 +278,7 @@ const Header = () => {
               to="/lego2sell-client/how-it-works"
               className="flex gap-2 items-center"
             >
-              <div className="">
+              <div className="lg:flex hidden ">
                 <h4 className="text-base font-medium">How it Works?</h4>
               </div>
               <img
@@ -402,14 +427,14 @@ const Header = () => {
         </div>
       ) : (
         <div
-          ref={ref}
+          ref={wrapperRef}
           className="flex flex-row-reverse justify-between w-full px-6 py-4 items-center"
         >
           <div className="flex gap-7 items-center">
             <Link
               onClick={() => setFAQOpen(false)}
               to="/lego2sell-client/how-it-works"
-              className="flex gap-2 items-center"
+              className="hidden lg:flex gap-2 items-center"
             >
               <div className="">
                 <h4 className="text-base font-medium">How it Works?</h4>
@@ -693,10 +718,7 @@ const Header = () => {
                   Menu
                 </button>
                 {MenuOpen && (
-                  <div
-                    ref={ref}
-                    className=" absolute top-[85px] left-2.5 bg-white rounded-2xl px-6 border py-4"
-                  >
+                  <div className=" absolute top-[85px] left-2.5 bg-white rounded-2xl px-6 border py-4">
                     <ul class="">
                       <li class="pb-5 hover:text-blue-500 duration-300 last:pb-0 relative">
                         <Link
@@ -856,7 +878,7 @@ const Header = () => {
             <Link to={"/lego2sell-client/"}>
               <img
                 className="w-[80%] max-[306px]:w-[100%] px-3 lg:px-8 h-14 scale-125 object-contain"
-                src="../Images/Logo1.png"
+                src="../Images/Logo5.png"
                 alt=""
               />
             </Link>

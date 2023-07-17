@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "react-router-dom"
 
 const HowWrokPage = () => {
   return (
@@ -635,14 +636,14 @@ const HowWrokPage = () => {
               So don’t delay and sell today!
             </h1>
           </div>
-          <a
+          <Link
             data-aos="fade-up"
             title="Start selling LEGO®"
             className="flex w-full lg:inline-flex lg:w-auto justify-center items-center px-6 lg:px-12 rounded-xl bg-blue-500 text-white font-bold text-[15px] h-[49px] lg:h-[65px] xl:text-[18px]"
-            href="/lego2sell-client"
+            to="/lego2sell-client/"
           >
             Get Selling That LEGO®
-          </a>
+          </Link>
         </div>
       </section>
     </div>

@@ -6,11 +6,12 @@ const Adminorder = ({ items, data }) => {
   const [OrderOpen, setOrderOpen] = useState()
   const [userId, setUserId] = useState()
   const [Status, setStatus] = useState("pending")
+  console.log(Status)
   const [orderId, setOrderId] = useState()
   const storedUserId = localStorage.getItem("userId")
-  useEffect(() => {
-    handleUpdate()
-  }, [storedUserId, Status, Status])
+  // useEffect(() => {
+  //   handleUpdate()
+  // }, [storedUserId, Status, Status])
   const handleUpdate = () => {
     axios
       .put(
@@ -29,24 +30,26 @@ const Adminorder = ({ items, data }) => {
         // Handle error
       })
   }
+
   return (
     <div className="py-2">
       <div
         onClick={() => setOrderOpen(!OrderOpen)}
         className="last:mb-0 duration-300 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.15)] rounded-2xl py-6 px-8 cursor-pointer"
       >
-        <div className="flex items-center justify-between">
-          <div className="mr-auto font-medium">
+        <div className="flex flex-wrap items-center justify-between">
+          <div className="mr-auto lg:py-0 py-4 font-medium">
             User ID: # {items?._id}
             <br className="md:hidden" />
-            <span className="md:hidden text-[#706AEA] font-bold">
-              {items?.email}
-            </span>
           </div>
-          <div className="rounded-full text-xs px-6 py-2 font-bold bg-[#FDEDD0] text-[#F4A414] mr-7">
+          <div className="mr-auto lg:py-0 py-4 font-medium">
+            {data[0]?.firstName}
+            {data[0]?.lastName} {data[0]?.title}
+          </div>
+          <div className="rounded-full lg:py-0 py-4 text-[10px] lg:text-xs px-6  font-bold bg-[#FDEDD0] text-[#F4A414] mr-7">
             {items.email}
           </div>
-          <div className="text-[#706AEA] font-bold mr-6 hidden md:flex">
+          <div className="text-[#706AEA] lg:py-0 py-4 font-bold mr-6 flex">
             Watch Details
           </div>
           <div className="text-[#706AEA] text-lg">
@@ -71,9 +74,9 @@ const Adminorder = ({ items, data }) => {
       </div>
       {OrderOpen && (
         <div className="bg-white duration-300 mt-4 shadow-[0_4px_20px_rgba(0,0,0,0.15)] rounded-2xl">
-          <div className="flex items-start w-full flex-wrap">
+          <div className="flex  items-start w-full lg:flex-row flex-wrap flex-col">
             {items?.Order.map((value, index) => (
-              <div className="w-2/4">
+              <div className="lg:w-2/4 w-full">
                 <div class="px-6 border-t">
                   <h1 class="text-2xl font-bold py-4 ">
                     What you be sending to
@@ -133,6 +136,12 @@ const Adminorder = ({ items, data }) => {
                           { value: "waitingList", label: "waitingList" },
                         ]}
                       />
+                      <button
+                        onClick={handleUpdate}
+                        className="text-md my-6 text-white font-bold bg-blue-500 rounded-xl px-6 py-2"
+                      >
+                        Change
+                      </button>
                     </div>
                     <div className="rounded-full text-xs px-2 lg:px-6 py-2 font-bold bg-[#FDEDD0] text-[#F4A414] w-full">
                       {value.Status}
@@ -175,12 +184,6 @@ const Adminorder = ({ items, data }) => {
                         >
                           Download and print label
                         </a>
-                        <button
-                          type="button"
-                          className="font-bold text-[#706AEA]"
-                        >
-                          Re-Send label email
-                        </button>
                       </div>
                     </div>
                   </div>
