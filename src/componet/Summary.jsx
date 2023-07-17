@@ -130,9 +130,13 @@ const summary = ({
       <div className="flex lg:flex-row flex-col space-x-0 lg:space-x-8">
         <div className="flex-1">
           <div className="py-12">
-            <h1 className="text-2xl py-6 font-bold ">
+            <h1 className="text-2xl py-1 font-bold ">
               Please Send Your LEGO® Sets
             </h1>
+            <p className="text-xs mb-6 font-medium text-gray-500">
+              (Address Label Will Be Available Of Completed Checkout PopUp For
+              Download)
+            </p>
 
             {/* <p className="text-gray-500 py-1">Select your preferred method*</p> */}
             <div className="">
