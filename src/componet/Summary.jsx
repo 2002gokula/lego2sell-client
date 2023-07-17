@@ -140,7 +140,7 @@ const summary = ({
                 <div className="relative w-full rounded-b-lg p-6 py-10">
                   <img
                     className="w-full object-contain h-full"
-                    src="./Images/brand.jpeg"
+                    src="../Images/brand.jpeg"
                     alt=""
                   />
                 </div>
