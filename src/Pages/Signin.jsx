@@ -121,7 +121,7 @@ const SignUpForm = () => {
       localStorage.setItem("userId", userId)
       console.log("Sign-up successful. User ID:", userId)
       if (isLogin !== "/lego2sell-client/") {
-        navigation(`/lego2sell-client/check-your-details`)
+        navigation(`/lego2sell-client/check-your-details/`)
       } else {
         navigation(`/lego2sell-client/`)
       }

@@ -38,15 +38,16 @@ const DetailsForm = ({ setActive, setFormData, storedUserId }) => {
     e.preventDefault()
     alert("Get Country id" + countryid + " And " + stateid)
   }
-  useEffect(() => {
-    const reloadTimeout = setTimeout(() => {
-      window.location.reload()
-    }, 5500) // Reload after 5 seconds
 
-    return () => {
-      clearTimeout(reloadTimeout) // Clear the timeout when the component unmounts
-    }
-  }, [])
+  // useEffect(() => {
+  //   const reloadTimeout = setTimeout(() => {
+  //     window.location.reload()
+  //   }, 5500) // Reload after 5 seconds
+
+  //   return () => {
+  //     clearTimeout(reloadTimeout) // Clear the timeout when the component unmounts
+  //   }
+  // }, [])
   useEffect(() => {
     const fetchData = async () => {
       try {
