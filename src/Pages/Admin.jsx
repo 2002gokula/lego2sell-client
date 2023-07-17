@@ -4,7 +4,7 @@ import Adminorder from "../componet/Adminorder"
 const Admin = () => {
   const [data, setData] = useState()
   const fetchInfo = () => {
-    return fetch("https://wicked-shoe-cow.cyclic.app/GetOrder")
+    return fetch("https://long-tan-chicken-hem.cyclic.app/GetOrder")
       .then((res) => res.json())
       .then((d) => setData(d.data))
   }

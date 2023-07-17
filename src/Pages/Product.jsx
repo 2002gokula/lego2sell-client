@@ -47,7 +47,7 @@ const Product = () => {
 
     try {
       const response = await axios.post(
-        `https://wicked-shoe-cow.cyclic.app/get_Quote/${storedUserId}`,
+        `https://long-tan-chicken-hem.cyclic.app/get_Quote/${storedUserId}`,
         payload
       )
 

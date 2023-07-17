@@ -49,7 +49,7 @@ const DetailsForm = ({
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://wicked-shoe-cow.cyclic.app/Mydetails/${storedUserId}`
+          `https://long-tan-chicken-hem.cyclic.app/Mydetails/${storedUserId}`
         )
         setData(response.data.Mydetails[0])
       } catch (error) {
@@ -139,7 +139,7 @@ const DetailsForm = ({
         onSubmit={form.onSubmit(async (values) => {
           // try {
           //   const response = await axios.post(
-          //     `https://wicked-shoe-cow.cyclic.app/MyDetails/${storedUserId}`,
+          //     `https://long-tan-chicken-hem.cyclic.app//MyDetails/${storedUserId}`,
           //     values
           //   )
 

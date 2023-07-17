@@ -15,7 +15,7 @@ const Contact = () => {
     }
     try {
       const response = await fetch(
-        "https://wicked-shoe-cow.cyclic.app/contactus/submit",
+        "https://long-tan-chicken-hem.cyclic.app/contactus/submit",
         {
           method: "POST",
           headers: {

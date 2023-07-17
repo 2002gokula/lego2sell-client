@@ -18,7 +18,7 @@ const Basket = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://wicked-shoe-cow.cyclic.app/find-lego",
+          "https://long-tan-chicken-hem.cyclic.app/find-lego",
           {
             method: "POST",
             headers: {
@@ -46,7 +46,7 @@ const Basket = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://wicked-shoe-cow.cyclic.app/calculate-price",
+          "https://long-tan-chicken-hem.cyclic.app//calculate-price",
           {
             method: "POST",
             headers: {

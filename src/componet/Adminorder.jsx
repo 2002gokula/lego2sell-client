@@ -13,10 +13,13 @@ const Adminorder = ({ items, data }) => {
   }, [storedUserId, Status, Status])
   const handleUpdate = () => {
     axios
-      .put(`https://wicked-shoe-cow.cyclic.app/Getorder/status/${userId}`, {
-        Status,
-        orderId,
-      })
+      .put(
+        `https://long-tan-chicken-hem.cyclic.app/Getorder/status/${userId}`,
+        {
+          Status,
+          orderId,
+        }
+      )
       .then((response) => {
         console.log("Data updated:", response.data)
         // Handle successful update

@@ -22,13 +22,16 @@ function Login() {
     e.preventDefault()
 
     try {
-      const response = await fetch("https://wicked-shoe-cow.cyclic.app/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      })
+      const response = await fetch(
+        "https://long-tan-chicken-hem.cyclic.app/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        }
+      )
 
       if (!response.ok) {
         throw new Error("Error: " + response.status)
@@ -165,12 +168,14 @@ function Login() {
               cash! Creating an account will allow you to easily view and track
               your orders and much more.
             </p>
-            <Link
-              to="/lego2sell-client/signup/"
+            <button
+              onClick={() => {
+                navigation("/lego2sell-client/signup/", { state: { isLogin } })
+              }}
               className="bg-[#3b82f6] text-white rounded-xl h-[80px] w-full flex items-center justify-center font-bold text-lg"
             >
               Create an account
-            </Link>
+            </button>
           </div>
         </div>
       </section>

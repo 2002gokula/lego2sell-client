@@ -33,11 +33,11 @@ const summary = ({
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://wicked-shoe-cow.cyclic.app/Mydetails/${storedUserId}`
+          `https://long-tan-chicken-hem.cyclic.app/Mydetails/${storedUserId}`
         )
         setDetails(response.data.Mydetails[0])
         const response1 = await fetch(
-          "https://wicked-shoe-cow.cyclic.app/find-lego",
+          "https://long-tan-chicken-hem.cyclic.app/find-lego",
           {
             method: "POST",
             headers: {
@@ -68,7 +68,7 @@ const summary = ({
     e.preventDefault()
     try {
       const response = await axios.post(
-        `https://wicked-shoe-cow.cyclic.app/Getorder/${storedUserId}`,
+        `https://long-tan-chicken-hem.cyclic.app/Getorder/${storedUserId}`,
         payload
       )
       const offerId = response.data.offerId
@@ -85,7 +85,7 @@ const summary = ({
   const handleSearch = async () => {
     try {
       const response = await fetch(
-        "https://wicked-shoe-cow.cyclic.app/find-lego",
+        "https://long-tan-chicken-hem.cyclic.app/find-lego",
         {
           method: "POST",
           headers: {

@@ -8,7 +8,7 @@ import {
 } from "@mantine/core"
 import { useForm } from "@mantine/form"
 import React, { useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import CountryCitits from "../../CountryCitits.json"
 import axios from "axios"
 import PasswordStrengthChecker from "./Password"
@@ -21,7 +21,9 @@ const SignUpForm = () => {
   const [password, setPassword] = useState("")
   const [repeatpassword, setRepeatpassword] = useState()
   const navigation = useNavigate()
-
+  const location = useLocation()
+  const isLogin = location.state.isLogin
+  console.log(isLogin)
   // demo
   const [searchValue, onSearchChange] = useState("")
   const [selectedCoutry, setSelectedCoutry] = useState("")
@@ -99,7 +101,7 @@ const SignUpForm = () => {
       }
       console.log(values)
       const response = await fetch(
-        "https://wicked-shoe-cow.cyclic.app/signup",
+        "https://long-tan-chicken-hem.cyclic.app/signup",
         {
           method: "POST",
           headers: {
@@ -118,21 +120,20 @@ const SignUpForm = () => {
       const userId = responseData.userId // Access the _id field from the response
       localStorage.setItem("userId", userId)
       console.log("Sign-up successful. User ID:", userId)
-
-      // Reset form inputs
-      setEmail("")
-      setPassword("")
-      const response1 = await axios.post(
-        `https://wicked-shoe-cow.cyclic.app/MyDetails/${userId}`,
-        payload
-      )
-      console.log("sdsds", response1.data)
-      // Navigate to another route
       if (isLogin !== "/lego2sell-client/") {
         navigation(`/lego2sell-client/check-your-details`)
       } else {
         navigation(`/lego2sell-client/`)
       }
+      // Reset form inputs
+      setEmail("")
+      setPassword("")
+      const response1 = await axios.post(
+        `https://long-tan-chicken-hem.cyclic.app/MyDetails/${userId}`,
+        payload
+      )
+      console.log("sdsds", response1.data)
+      // Navigate to another route
     } catch (error) {
       console.error("An error occurred:", error)
       // Handle the error as needed

@@ -19,7 +19,7 @@ const App = () => {
       setIsLoading(true) // Set loading state to true
 
       const response = await fetch(
-        "https://wicked-shoe-cow.cyclic.app/find-lego",
+        "https://long-tan-chicken-hem.cyclic.app/find-lego",
         {
           method: "POST",
           headers: {
