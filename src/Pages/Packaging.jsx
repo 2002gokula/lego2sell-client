@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "react-router-dom"
 
 const Packaging = () => {
   return (
@@ -10,7 +11,7 @@ const Packaging = () => {
             <div className="text-lg text-black font-medium">
               <p>
                 <img
-                  className="rounded-2xl h-[296px] object-cover w-full"
+                  className="rounded-2xl h-[446px] object-cover w-full"
                   src="./Images/Packaging.png"
                   alt="packaging-guidelines.webp"
                 />
@@ -156,12 +157,12 @@ const Packaging = () => {
                 Head over to our FAQs page to see if we’ve answered any of your
                 questions there. Alternatively, get in touch with us by
                 emailing 
-                <a
-                  className="text-blue-500"
-                  href="mailto:info@webuybricks.co.uk"
+                <Link
+                  className="text-blue-500 pl-2"
+                  to="mailto:info@webuybricks.co.uk"
                 >
                   support@lego2sell.com{" "}
-                </a>
+                </Link>
                 .
               </p>
             </div>

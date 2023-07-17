@@ -2,7 +2,7 @@ import { Select } from "@mantine/core"
 import axios from "axios"
 import React, { useEffect, useState } from "react"
 
-const Adminorder = ({ items, data }) => {
+const Adminorder = ({ items, data, SearchValue }) => {
   const [OrderOpen, setOrderOpen] = useState()
   const [userId, setUserId] = useState()
   const [Status, setStatus] = useState("pending")
@@ -46,8 +46,8 @@ const Adminorder = ({ items, data }) => {
             {data[0]?.firstName}
             {data[0]?.lastName} {data[0]?.title}
           </div>
-          <div className="rounded-full lg:py-0 py-4 text-[10px] lg:text-xs px-6  font-bold bg-[#FDEDD0] text-[#F4A414] mr-7">
-            {items.email}
+          <div className="rounded-full lg:py-2 py-4 text-[10px] lg:text-xs px-6  font-bold bg-[#FDEDD0] text-[#F4A414] mr-7">
+            {items.Order[0]?.Status}
           </div>
           <div className="text-[#706AEA] lg:py-0 py-4 font-bold mr-6 flex">
             Watch Details

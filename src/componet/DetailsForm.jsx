@@ -8,14 +8,7 @@ import CountryCitits from "../../CountryCitits.json"
 import axios from "axios"
 import { Helmet } from "react-helmet"
 // import Select from "react-select"
-const DetailsForm = ({
-  setActive,
-
-  condition,
-  setFormData,
-  formData,
-  storedUserId,
-}) => {
+const DetailsForm = ({ setActive, setFormData, storedUserId }) => {
   const [searchValue, onSearchChange] = useState("")
   const [PaymentDetails, setPaymentDetails] = useState("Paypal")
   const [data, setData] = useState()
@@ -33,8 +26,8 @@ const DetailsForm = ({
     ).states
     setState(getStatedata)
     setCountryid(getcountryId)
-    //console.log(getcountryId);
   }
+  console.log(data)
 
   const handlestate = (e) => {
     const stateid = e.target.value
@@ -45,6 +38,15 @@ const DetailsForm = ({
     e.preventDefault()
     alert("Get Country id" + countryid + " And " + stateid)
   }
+  useEffect(() => {
+    const reloadTimeout = setTimeout(() => {
+      window.location.reload()
+    }, 58738473847000) // Reload after 5 seconds
+
+    return () => {
+      clearTimeout(reloadTimeout) // Clear the timeout when the component unmounts
+    }
+  }, [])
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -59,7 +61,7 @@ const DetailsForm = ({
     }
 
     fetchData()
-  }, [])
+  }, [setData])
   const [firstName, setFirstName] = useState()
   const form = useForm({
     initialValues: {

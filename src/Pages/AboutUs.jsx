@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "react-router-dom"
 
 const AboutUs = () => {
   return (
@@ -10,7 +11,7 @@ const AboutUs = () => {
             <div className="text-lg text-black font-medium">
               <p>
                 <img
-                  className="rounded-2xl my-6 w-full object-cover h-[296px]"
+                  className="rounded-2xl my-6 w-full object-cover h-auto"
                   src="./Images/About-Us.png"
                   alt="Acceptance guidelines.webp"
                 />
@@ -77,9 +78,14 @@ const AboutUs = () => {
                 improvement.
               </p>
             </div>
-            <button className="text-xl border duration-300 hover:bg-white hover:border hover:text-black font-bold px-6 py-4 my-6 rounded-xl bg-blue-500 text-white ">
-              How its Works ?
-            </button>
+            <Link to={"/lego2sell-client/how-it-works"}>
+              <button
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                className="text-xl border duration-300 hover:bg-white hover:border hover:text-black font-bold px-6 py-4 my-6 rounded-xl bg-blue-500 text-white "
+              >
+                How its Works ?
+              </button>
+            </Link>
           </div>
         </div>
       </div>

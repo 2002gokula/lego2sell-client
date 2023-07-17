@@ -26,15 +26,23 @@ const Admin = () => {
             onChange={(e) => setSearchValue(e.target.value)}
           />
         </div>
+
         {data
           ?.filter((value) => {
-            console.log(value.Mydetails[0].firstName)
             return SearchValue
-              ? value.Mydetails[0].firstName.includes(SearchValue)
-              : value
+              ? value._id.includes(SearchValue)
+                ? value._id
+                : value.Mydetails[0].firstName.includes(SearchValue)
+                ? value.Mydetails[0].firstName
+                : null
+              : value + " " + value.email
           })
           .map((value) => (
-            <Adminorder data={value.Mydetails} items={value} />
+            <Adminorder
+              SearchValue={SearchValue}
+              data={value.Mydetails}
+              items={value}
+            />
           ))}
       </div>
     </div>

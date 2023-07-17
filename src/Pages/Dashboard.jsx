@@ -18,7 +18,7 @@ const Dashboard = () => {
     const fetchUserOrders = async () => {
       try {
         const response = await axios.get(
-          `https://long-tan-chicken-hem.cyclic.app//Getorder/${storedUserId}`
+          `https://long-tan-chicken-hem.cyclic.app/Getorder/${storedUserId}`
         )
 
         if (response.status === 200) {

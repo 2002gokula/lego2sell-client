@@ -24,7 +24,7 @@ const Contact = () => {
           body: JSON.stringify({ formData }),
         }
       )
-      // setNotificateion(true)
+
       console.log(response)
     } catch {
       alert("Could not find the LEGO you are looking for.")
@@ -54,7 +54,7 @@ const Contact = () => {
       </p>
       <div className="content-wrapper">
         <div className="flex items-center py-6 justify-center flex-col">
-          <img src="../Images/email-logo.png" alt="" />
+          <img className="" src="./Images/email-logo.png" alt="" />
           <h2 className="text-3xl text-blue-600 font-medium">
             Support@lego2sell.com
           </h2>
