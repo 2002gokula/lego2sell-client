@@ -39,15 +39,16 @@ const DetailsForm = ({ setActive, setFormData, storedUserId }) => {
     alert("Get Country id" + countryid + " And " + stateid)
   }
 
-  useEffect(() => {
-    const reloadTimeout = setTimeout(() => {
-      window.location.reload()
-    }, 5500) // Reload after 5 seconds
+  // useEffect(() => {
+  //   const reloadTimeout = setTimeout(() => {
+  //     window.location.reload()
+  //   }, 5500) // Reload after 5 seconds
 
-    return () => {
-      clearTimeout(reloadTimeout)
-    }
-  }, [])
+  //   return () => {
+  //     clearTimeout(reloadTimeout)
+  //   }
+  // }, [])
+
   useEffect(() => {
     const fetchData = async () => {
       try {
