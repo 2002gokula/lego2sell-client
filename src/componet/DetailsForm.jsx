@@ -45,7 +45,7 @@ const DetailsForm = ({ setActive, setFormData, storedUserId }) => {
     }, 5500) // Reload after 5 seconds
 
     return () => {
-      clearTimeout(reloadTimeout) // Clear the timeout when the component unmounts
+      clearTimeout(reloadTimeout)
     }
   }, [])
   useEffect(() => {
