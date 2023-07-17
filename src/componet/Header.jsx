@@ -963,7 +963,7 @@ const Header = () => {
             <Link to={"/lego2sell-client/"}>
               <img
                 className="w-[80%] max-[306px]:w-[100%] px-3 lg:px-8 h-14 scale-125 object-contain"
-                src="../Images/Logo5.png"
+                src="./Images/Logo5.png"
                 alt=""
               />
             </Link>
