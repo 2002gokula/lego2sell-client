@@ -626,13 +626,13 @@ const Header = () => {
                   state: { route },
                 })
               }}
-              className="text-lg  font-medium"
+              className="text-lg hidden lg:block  font-medium"
             >
               Account
             </button>
             <Link
               to="/lego2sell-client/my-account"
-              className="flex gap-3 items-center"
+              className=" gap-3  hidden lg:flex items-center"
             >
               <div className="">
                 <h4 className="text-base font-medium"> Your Sets</h4>
@@ -706,7 +706,7 @@ const Header = () => {
               </svg>
             </button>
             {openMenu && (
-              <div className="flex gap-8 flex-wrap flex-col items-start justify-center  absolute right-6 px-6 py-4 rounded-lg top-[80px] bg-white border">
+              <div className="flex gap-8 flex-wrap z-50 flex-col items-start justify-center  absolute right-6 px-6 py-4 rounded-lg top-[80px] bg-white border">
                 <Link
                   to="/lego2sell-client/how-it-works"
                   className="flex gap-3 items-center"
