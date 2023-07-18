@@ -96,12 +96,4 @@ export const charactersList = [
     content:
       "If we find any LEGO® that doesn’t meet our acceptance guidelines, we’ll email you to let you know. You can choose whether you would like us to dispose of your LEGO® on your behalf, or we can send it back to you. However, you will need to cover the postage cost for this. See our return postage costs for details:",
   },
-  {
-    id: "13",
-
-    label: "Can't find an answer to your question?",
-
-    content:
-      "If you still need help and would like to contact us, Simply send an email to support@lego2sell.com. Alternatively, you can visit our contact us page and use our web form to submit your enquiry. A member of our customer service team will be in contact to help you with your questions.",
-  },
 ]

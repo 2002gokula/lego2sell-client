@@ -226,7 +226,7 @@ const Header = () => {
                         <Link
                           onClick={() => setFAQOpen(false)}
                           className="text-blue-600"
-                          to="contact"
+                          to="/lego2sell-client/contact/"
                         >
                           contact us
                         </Link>{" "}
@@ -234,13 +234,13 @@ const Header = () => {
                         member of our customer service team will be in contact
                         to help you with your questions.
                       </p>
-                      <a
+                      <Link
                         title="Contact our team"
                         className="button"
-                        href="/lego2sell-client/contact/"
+                        to="/lego2sell-client/contact/"
                       >
                         Contact our team
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -289,13 +289,18 @@ const Header = () => {
                 alt=""
               />
             </Link>
-            <Link
-              onClick={() => setFAQOpen(false)}
-              to={
-                storedUserId !== ""
-                  ? "/lego2sell-client/my-account"
-                  : "/lego2sell-client/login/"
-              }
+            <button
+              onClick={() => {
+                setFAQOpen(false)
+                navigation(
+                  storedUserId === ""
+                    ? "/lego2sell-client/login/"
+                    : "/lego2sell-client/my-account",
+                  {
+                    state: { route },
+                  }
+                )
+              }}
               className="flex gap-3 items-center"
             >
               <div className="">
@@ -324,7 +329,7 @@ const Header = () => {
                   ></path>{" "}
                 </g>
               </svg>
-            </Link>
+            </button>
           </div>
           <div className="lg:hidden flex">
             <button onClick={() => setOpenMenu(!openMenu)}>
@@ -372,7 +377,17 @@ const Header = () => {
                   />
                 </Link>
                 <Link
-                  to="/lego2sell-client/my-account"
+                  onClick={() => {
+                    setFAQOpen(false)
+                    navigation(
+                      storedUserId === ""
+                        ? "/lego2sell-client/login/"
+                        : "/lego2sell-client/my-account",
+                      {
+                        state: { route },
+                      }
+                    )
+                  }}
                   className="flex gap-3 items-center"
                 >
                   <div className="">
@@ -530,14 +545,15 @@ const Header = () => {
             <button
               onClick={() => {
                 setFAQOpen(!FAQOpen)
+                setOpenMenu(false)
                 setMenuOpen(false)
               }}
-              className="text-lg lg:flex hidden font-medium"
+              className="text-lg font-medium"
             >
               FAQS
             </button>
             {FAQOpen && (
-              <div className="lg:w-[40%] w-[90%] rounded-2xl right-4 shadow-2xl px-6 overflow-y-scroll border absolute top-20 h-[80vh] lg:right-44 z-50 bg-white py-12 lg:py-12">
+              <div className="lg:w-[40%] w-[90%] rounded-2xl right-4 shadow-2xl px-6 overflow-y-scroll border absolute top-16 h-[80vh] lg:right-24 z-50 bg-white py-12 lg:py-12">
                 <h1 className="text-2xl font-bold py-1">
                   Frequently asked questions{" "}
                 </h1>
@@ -547,7 +563,7 @@ const Header = () => {
                       <p>
                         <img
                           className="w-full h-44 object-contain"
-                          src="../Images/FAQ.png"
+                          src="./Images/FAQ.png"
                           alt="frequently-asked-questions.webp"
                         />
                       </p>
@@ -583,20 +599,24 @@ const Header = () => {
                           support@lego2sell.com.
                         </Link>
                         Alternatively, you can visit our{" "}
-                        <Link className="text-blue-600" to="contact">
+                        <Link
+                          onClick={() => setFAQOpen(false)}
+                          className="text-blue-600"
+                          to="/lego2sell-client/contact/"
+                        >
                           contact us
                         </Link>{" "}
                         page and use our web form to submit your enquiry. A
                         member of our customer service team will be in contact
                         to help you with your questions.
                       </p>
-                      <a
+                      <Link
                         title="Contact our team"
                         className="button"
-                        href="/lego2sell-client/contact/"
+                        to="/lego2sell-client/contact/"
                       >
                         Contact our team
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -615,11 +635,17 @@ const Header = () => {
               Account
             </button>
             <Link
-              to={
-                storedUserId !== ""
-                  ? "/lego2sell-client/my-account"
-                  : "/lego2sell-client/"
-              }
+              onClick={() => {
+                setFAQOpen(false)
+                navigation(
+                  storedUserId === ""
+                    ? "/lego2sell-client/login/"
+                    : "/lego2sell-client/my-account",
+                  {
+                    state: { route },
+                  }
+                )
+              }}
               className=" gap-3  hidden lg:flex items-center"
             >
               <div className="">
@@ -709,7 +735,17 @@ const Header = () => {
                   />
                 </Link>
                 <Link
-                  to="/lego2sell-client/my-account"
+                  onClick={() => {
+                    setFAQOpen(false)
+                    navigation(
+                      storedUserId === ""
+                        ? "/lego2sell-client/login/"
+                        : "/lego2sell-client/my-account",
+                      {
+                        state: { route },
+                      }
+                    )
+                  }}
                   className="flex gap-3 items-center"
                 >
                   <div className="">
@@ -873,20 +909,23 @@ const Header = () => {
                               support@lego2sell.com.
                             </Link>
                             Alternatively, you can visit our{" "}
-                            <Link className="text-blue-600" to="contact">
+                            <Link
+                              className="text-blue-600"
+                              to="/lego2sell-client/contact/"
+                            >
                               contact us
                             </Link>{" "}
                             page and use our web form to submit your enquiry. A
                             member of our customer service team will be in
                             contact to help you with your questions.
                           </p>
-                          <a
+                          <Link
                             title="Contact our team"
                             className="button"
-                            href="/lego2sell-client/contact/"
+                            to="/lego2sell-client/contact/"
                           >
                             Contact our team
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -904,7 +943,17 @@ const Header = () => {
                   Account
                 </button>
                 <Link
-                  to="/lego2sell-client/my-account"
+                  onClick={() => {
+                    setFAQOpen(false)
+                    navigation(
+                      storedUserId === ""
+                        ? "/lego2sell-client/login/"
+                        : "/lego2sell-client/my-account",
+                      {
+                        state: { route },
+                      }
+                    )
+                  }}
                   className="flex gap-3 items-center"
                 >
                   <div className="">
@@ -951,7 +1000,7 @@ const Header = () => {
             <Link to={"/lego2sell-client/"}>
               <img
                 className="w-[80%] max-[306px]:w-[100%] px-3 lg:px-8 h-14 scale-125 object-contain"
-                src="./Logo5.png"
+                src="/Logo5.png"
                 alt=""
               />
             </Link>
